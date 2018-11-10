@@ -1,0 +1,13 @@
+C:\Users\Flavio\documents\visual studio 2015\Projects\MAP\Data\bin\Debug\Data.dll
+C:\Users\Flavio\documents\visual studio 2015\Projects\MAP\Data\bin\Debug\Data.pdb
+C:\Users\Flavio\documents\visual studio 2015\Projects\MAP\Data\bin\Debug\Domain.dll
+C:\Users\Flavio\documents\visual studio 2015\Projects\MAP\Data\bin\Debug\EntityFramework.dll
+C:\Users\Flavio\documents\visual studio 2015\Projects\MAP\Data\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Flavio\documents\visual studio 2015\Projects\MAP\Data\bin\Debug\MySql.Data.dll
+C:\Users\Flavio\documents\visual studio 2015\Projects\MAP\Data\bin\Debug\MySql.Data.Entity.EF6.dll
+C:\Users\Flavio\documents\visual studio 2015\Projects\MAP\Data\bin\Debug\Domain.pdb
+C:\Users\Flavio\documents\visual studio 2015\Projects\MAP\Data\bin\Debug\EntityFramework.xml
+C:\Users\Flavio\documents\visual studio 2015\Projects\MAP\Data\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Flavio\documents\visual studio 2015\Projects\MAP\Data\obj\Debug\Data.csprojResolveAssemblyReference.cache
+C:\Users\Flavio\documents\visual studio 2015\Projects\MAP\Data\obj\Debug\Data.dll
+C:\Users\Flavio\documents\visual studio 2015\Projects\MAP\Data\obj\Debug\Data.pdb
