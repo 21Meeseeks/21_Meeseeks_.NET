@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Globalization;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Security.Claims;
+using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -68,6 +71,32 @@ namespace WebMAP.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         {
+            var request = (HttpWebRequest)WebRequest.Create("http://localhost:18080/21meeseeks-web/rest/authentication");
+            request.Method = "POST";
+            request.ContentType = "application/x-www-form-urlencoded";
+            byte[] bytes = Encoding.ASCII.GetBytes("username="+model.Email+"&password="+model.Password);
+            request.ContentLength = bytes.Length;
+            using (var reqStream = request.GetRequestStream())
+            {
+                reqStream.Write(bytes, 0, bytes.Length);
+            }
+
+            try
+            {
+                using (var response = (HttpWebResponse)request.GetResponse())
+                {
+                    Session["Token"] = response;
+                    return View(model);
+                }
+            }
+            catch (WebException e)
+            {
+                return RedirectToAction("Register");
+
+            }
+         
+           
+            /*
             if (!ModelState.IsValid)
             {
                 return View(model);
@@ -88,7 +117,7 @@ namespace WebMAP.Controllers
                 default:
                     ModelState.AddModelError("", "Invalid login attempt.");
                     return View(model);
-            }
+            }*/
         }
 
         //
