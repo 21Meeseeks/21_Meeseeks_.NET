@@ -1,0 +1,47 @@
+﻿
+
+@{
+    
+    Layout = "";
+}
+
+
+
+<div class="m-section">
+    <div class="m-section__content">
+        <table class="table m-table m-table--head-separator-primary">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+@foreach (var item in ViewBag.result)
+{
+                <tr>
+                    <th scope="row">@item.name</th>
+                    <td>@item.description</td>
+                    <th><a href=" @Url.Action("Delete", "ClientCategory" , new { name=@item.name }) ">
+    <span>delete</span>
+</a>
+                    
+                    </th>
+                </tr>
+}
+            </tbody>
+        </table>
+    </div>
+    <td>
+        <button type="button" class="btn btn-focus" data-toggle="modal" data-target="#m_modal_6">Launch Modal</button>
+    </td>
+</div>
+@{
+    Html.RenderPartial("~/Views/ClientCategory/_ClientCategoryCreate.cshtml");
+}
+
+
+ 
+
+

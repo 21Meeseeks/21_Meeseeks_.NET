@@ -590,6 +590,9 @@
     <Content Include="Views\Test\Index.cshtml" />
     <Content Include="Views\ClientCategory\Index.cshtml" />
     <Content Include="Views\ClientCategory\Create.cshtml" />
+    <Content Include="Views\ClientCategory\_ClientCategoryList.cshtml" />
+    <Content Include="Views\Home\Settings.cshtml" />
+    <Content Include="Views\ClientCategory\_ClientCategoryCreate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

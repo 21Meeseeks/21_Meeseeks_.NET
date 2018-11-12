@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Web;
@@ -51,8 +52,9 @@ namespace WebMAP.Controllers
    
                 client.PostAsJsonAsync<ClientCategory>("client/category", cc).ContinueWith((postTask) => postTask.Result.EnsureSuccessStatusCode());
             System.Threading.Thread.Sleep(3000);
+            return RedirectToAction("Settings", "Home", new { area = "" });
 
-            return RedirectToAction("index");
+          
         }
 
         // GET: ClientCategory/Edit/5
@@ -77,10 +79,25 @@ namespace WebMAP.Controllers
             }
         }
 
-        // GET: ClientCategory/Delete/5
-        public ActionResult Delete(int id)
+        // GET: ClientCategory/Delete
+        public ActionResult Delete(String name)
         {
-            return View();
+            string sURL = "http://localhost:18080/21meeseeks-web/rest/client/category/"+name;
+
+            WebRequest request = WebRequest.Create(sURL);
+            request.Method = "DELETE";
+
+            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+            return RedirectToAction("Settings", "Home", new { area = "" });
+            //            name = (String)Request.QueryString["name"];
+
+
+            //          HttpClient client = new HttpClient();
+            //        client.BaseAddress = new Uri("http://localhost:18080/21meeseeks-web/rest");
+            //      var response = client.DeleteAsync("client/category/omar").Result;
+
+            //    System.Threading.Thread.Sleep(3000);
+            //  return RedirectToAction("Settings", "Home", new { area = "" });
         }
 
         // POST: ClientCategory/Delete/5
