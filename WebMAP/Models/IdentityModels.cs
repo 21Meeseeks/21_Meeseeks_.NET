@@ -29,5 +29,7 @@ namespace WebMAP.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<WebMAP.Models.ClientCategory> ClientCategories { get; set; }
     }
 }

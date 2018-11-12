@@ -83,19 +83,26 @@ namespace WebMAP.Controllers
 
             try
             {
-                using (var response = (HttpWebResponse)request.GetResponse())
+                using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
                 {
-                    Session["Token"] = response;
+                   
+
+                    string responseMessage = response.ToString(); //response raw
+
+                    Response.Cookies["token"].Value = responseMessage;
+                 //   Response.Cookies["userName"].Expires = DateTime.Now.AddDays(1);
+                    Session["token"] = responseMessage;
                     return View(model);
+
                 }
             }
             catch (WebException e)
             {
-                return RedirectToAction("Register");
+                return View(model);
 
             }
-         
-           
+
+
             /*
             if (!ModelState.IsValid)
             {
