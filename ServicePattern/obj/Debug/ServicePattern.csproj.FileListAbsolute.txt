@@ -13,3 +13,6 @@ C:\Users\Flavio\Documents\Visual Studio 2015\Projects\MAP\ServicePattern\obj\Deb
 C:\Users\User\Documents\21_Meeseeks_NET\ServicePattern\obj\Debug\ServicePattern.csprojResolveAssemblyReference.cache
 C:\Users\User\Documents\21_Meeseeks_NET\ServicePattern\obj\Debug\ServicePattern.dll
 C:\Users\User\Documents\21_Meeseeks_NET\ServicePattern\obj\Debug\ServicePattern.pdb
+C:\Users\Prometheus\Documents\Visual Studio 2015\Projects\21_Meeseeks_.NET\ServicePattern\obj\Debug\ServicePattern.csprojResolveAssemblyReference.cache
+C:\Users\Prometheus\Documents\Visual Studio 2015\Projects\21_Meeseeks_.NET\ServicePattern\obj\Debug\ServicePattern.dll
+C:\Users\Prometheus\Documents\Visual Studio 2015\Projects\21_Meeseeks_.NET\ServicePattern\obj\Debug\ServicePattern.pdb
