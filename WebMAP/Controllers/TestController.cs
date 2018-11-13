@@ -58,11 +58,11 @@ namespace WebMAP.Controllers
             List<KeyValuePair<string, Resource>> listFinal = new List<KeyValuePair<string, Resource>>();
             foreach (var x in list) {
                 string rousource = x.ElementAt<Object>(1).ToString();
-                Resource r = ObjectExtensions.ToObject<Resource>((IDictionary<string,Object>)x.ElementAt<Object>(0));
+                Resource r = ObjectExtensions.ToObject<Resource>((IDictionary<string,Object>)x.ElementAt<Object>(1));
                 int c = r.idUser;/*
                 dictionary.Key = Convert.ToString(x.ElementAt<Object>(0);
                 dictionary.Value =r;*/
-                listFinal.Add(new KeyValuePair<string, Resource>(Convert.ToString(x.ElementAt<Object>(1)), r));
+                listFinal.Add(new KeyValuePair<string, Resource>(Convert.ToString(x.ElementAt<Object>(0)), r));
             }
 
             return listFinal;

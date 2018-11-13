@@ -172,3 +172,5 @@ C:\Users\Prometheus\Documents\Visual Studio 2015\Projects\21_Meeseeks_.NET\WebMA
 C:\Users\Prometheus\Documents\Visual Studio 2015\Projects\21_Meeseeks_.NET\WebMAP\obj\Debug\WebMAP.pdb
 C:\Users\Prometheus\Documents\Visual Studio 2015\Projects\21_Meeseeks_.NET\WebMAP\bin\System.Net.Http.Formatting.dll
 C:\Users\Prometheus\Documents\Visual Studio 2015\Projects\21_Meeseeks_.NET\WebMAP\bin\System.Runtime.InteropServices.RuntimeInformation.dll
+C:\Users\Flavio\Documents\Visual Studio 2015\Projects\MAP\WebMAP\bin\System.Net.Http.Formatting.dll
+C:\Users\Flavio\Documents\Visual Studio 2015\Projects\MAP\WebMAP\bin\System.Runtime.InteropServices.RuntimeInformation.dll

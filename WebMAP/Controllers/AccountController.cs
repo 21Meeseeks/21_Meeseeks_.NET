@@ -92,7 +92,7 @@ namespace WebMAP.Controllers
                     Response.Cookies["token"].Value = responseMessage;
                  //   Response.Cookies["userName"].Expires = DateTime.Now.AddDays(1);
                     Session["token"] = responseMessage;
-                    return View(model);
+                    return RedirectToAction("","Home");
 
                 }
             }
