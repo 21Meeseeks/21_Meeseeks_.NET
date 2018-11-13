@@ -22,7 +22,7 @@ namespace WebMAP.Controllers
             string data = await response.Content.ReadAsStringAsync();
             JavaScriptSerializer JSserializer = new JavaScriptSerializer();
             ViewBag.result = JSserializer.Deserialize<IEnumerable<Project>>(data);
-            response = Client.GetAsync("rest/")
+            //response = Client.GetAsync("rest/")
             return View();
         }
     }

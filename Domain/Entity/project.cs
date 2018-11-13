@@ -32,7 +32,8 @@ namespace Domain
         [StringLength(255)]
         public string picture { get; set; }
 
-        public int? projectType { get; set; }
+        [StringLength(50)]
+        public string projectType { get; set; }
 
         public int? client_idUser { get; set; }
 
