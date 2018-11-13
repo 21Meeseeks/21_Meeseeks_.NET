@@ -1,4 +1,4 @@
-namespace Domain
+namespace Domain.Entity
 {
     using System;
     using System.Collections.Generic;
@@ -13,8 +13,8 @@ namespace Domain
         public term()
         {
             termarchives = new HashSet<termarchive>();
-            projects = new HashSet<project>();
             resources = new HashSet<resource>();
+            projects = new HashSet<project>();
         }
 
         [Key]
@@ -26,11 +26,6 @@ namespace Domain
         [Column(Order = 1)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int idResource { get; set; }
-
-        [Key]
-        [Column(Order = 2)]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int idTerm { get; set; }
 
         public float dailyFee { get; set; }
 
@@ -55,9 +50,9 @@ namespace Domain
         public virtual ICollection<termarchive> termarchives { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<project> projects { get; set; }
+        public virtual ICollection<resource> resources { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<resource> resources { get; set; }
+        public virtual ICollection<project> projects { get; set; }
     }
 }

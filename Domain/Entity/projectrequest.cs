@@ -1,4 +1,4 @@
-namespace Domain
+namespace Domain.Entity
 {
     using System;
     using System.Collections.Generic;
@@ -12,13 +12,18 @@ namespace Domain
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public projectrequest()
         {
-            projectrequest_competence = new HashSet<projectrequest_competence>();
-            projectrequest_competence1 = new HashSet<projectrequest_competence>();
             admins = new HashSet<admin>();
+            competences = new HashSet<competence>();
         }
 
         [Key]
         public int idRequest { get; set; }
+
+        [Column(TypeName = "bit")]
+        public bool archived { get; set; }
+
+        [StringLength(255)]
+        public string comments { get; set; }
 
         [Column(TypeName = "date")]
         public DateTime? dateEndProject { get; set; }
@@ -34,32 +39,23 @@ namespace Domain
         [StringLength(255)]
         public string nameProject { get; set; }
 
-        public int resourcesNumber { get; set; }
-
-        public int? client_idUser { get; set; }
-
-        [StringLength(255)]
-        public string comments { get; set; }
-
         [StringLength(255)]
         public string presentedBy { get; set; }
 
-        [Column(TypeName = "bit")]
-        public bool archived { get; set; }
-
         public int? requestStatus { get; set; }
 
+        public int resourcesNumber { get; set; }
+
         public DateTime? reviewDate { get; set; }
+
+        public int? client_idUser { get; set; }
 
         public virtual client client { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<projectrequest_competence> projectrequest_competence { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<projectrequest_competence> projectrequest_competence1 { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<admin> admins { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<competence> competences { get; set; }
     }
 }

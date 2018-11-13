@@ -1,4 +1,4 @@
-namespace Domain
+namespace Domain.Entity
 {
     using System;
     using System.Collections.Generic;
@@ -13,9 +13,10 @@ namespace Domain
         public competence()
         {
             levels = new HashSet<level>();
-            projectrequest_competence = new HashSet<projectrequest_competence>();
+            resumes = new HashSet<resume>();
             levels1 = new HashSet<level>();
             projects = new HashSet<project>();
+            projectrequests = new HashSet<projectrequest>();
         }
 
         [Key]
@@ -28,12 +29,15 @@ namespace Domain
         public virtual ICollection<level> levels { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<projectrequest_competence> projectrequest_competence { get; set; }
+        public virtual ICollection<resume> resumes { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<level> levels1 { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<project> projects { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<projectrequest> projectrequests { get; set; }
     }
 }
