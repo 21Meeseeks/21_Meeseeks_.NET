@@ -2,3 +2,8 @@ C:\Users\Flavio\Documents\Visual Studio 2015\Projects\MAP\Service\bin\Debug\Serv
 C:\Users\Flavio\Documents\Visual Studio 2015\Projects\MAP\Service\bin\Debug\Service.pdb
 C:\Users\Flavio\Documents\Visual Studio 2015\Projects\MAP\Service\obj\Debug\Service.dll
 C:\Users\Flavio\Documents\Visual Studio 2015\Projects\MAP\Service\obj\Debug\Service.pdb
+C:\Users\User\Documents\21_Meeseeks_NET\Service\bin\Debug\Service.dll
+C:\Users\User\Documents\21_Meeseeks_NET\Service\bin\Debug\Service.pdb
+C:\Users\User\Documents\21_Meeseeks_NET\Service\obj\Debug\Service.csprojResolveAssemblyReference.cache
+C:\Users\User\Documents\21_Meeseeks_NET\Service\obj\Debug\Service.dll
+C:\Users\User\Documents\21_Meeseeks_NET\Service\obj\Debug\Service.pdb

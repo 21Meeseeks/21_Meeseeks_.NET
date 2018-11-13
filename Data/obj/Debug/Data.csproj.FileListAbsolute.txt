@@ -11,3 +11,16 @@ C:\Users\Flavio\documents\visual studio 2015\Projects\MAP\Data\bin\Debug\EntityF
 C:\Users\Flavio\documents\visual studio 2015\Projects\MAP\Data\obj\Debug\Data.csprojResolveAssemblyReference.cache
 C:\Users\Flavio\documents\visual studio 2015\Projects\MAP\Data\obj\Debug\Data.dll
 C:\Users\Flavio\documents\visual studio 2015\Projects\MAP\Data\obj\Debug\Data.pdb
+C:\Users\User\Documents\21_Meeseeks_NET\Data\bin\Debug\Data.dll
+C:\Users\User\Documents\21_Meeseeks_NET\Data\bin\Debug\Data.pdb
+C:\Users\User\Documents\21_Meeseeks_NET\Data\bin\Debug\Domain.dll
+C:\Users\User\Documents\21_Meeseeks_NET\Data\bin\Debug\EntityFramework.dll
+C:\Users\User\Documents\21_Meeseeks_NET\Data\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\User\Documents\21_Meeseeks_NET\Data\bin\Debug\MySql.Data.dll
+C:\Users\User\Documents\21_Meeseeks_NET\Data\bin\Debug\MySql.Data.Entity.EF6.dll
+C:\Users\User\Documents\21_Meeseeks_NET\Data\bin\Debug\Domain.pdb
+C:\Users\User\Documents\21_Meeseeks_NET\Data\bin\Debug\EntityFramework.xml
+C:\Users\User\Documents\21_Meeseeks_NET\Data\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\User\Documents\21_Meeseeks_NET\Data\obj\Debug\Data.csprojResolveAssemblyReference.cache
+C:\Users\User\Documents\21_Meeseeks_NET\Data\obj\Debug\Data.dll
+C:\Users\User\Documents\21_Meeseeks_NET\Data\obj\Debug\Data.pdb

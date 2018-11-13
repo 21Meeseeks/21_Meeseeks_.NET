@@ -1,0 +1,97 @@
+﻿@model WebMAP.Models.ProjectRequest
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<div class="m-portlet m-portlet--mobile">
+    <div class="m-portlet__head">
+        <div class="m-portlet__head-tools">
+            <ul class="m-portlet__nav">
+                <li class="m-portlet__nav-item">
+                    <a href="@Url.Action("Index", "Request")">
+                        <span>
+                            <i class="fa fa-arrow-left"></i>
+                        </span>
+                    </a>
+                </li>
+                <li class="m-portlet__nav-item">
+                    <h2>Create Your New Project Request</h2>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                <h5 class="control-label col-md-3">Project's Start Date</h5>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.dateStartProject, new { htmlAttributes = new { @class = "form-control m-input col-md-4", @type = "date", @id = "example-date-input" } })
+                    @Html.ValidationMessageFor(model => model.dateStartProject, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <h5 class="control-label col-md-3">Project's End Date</h5>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.dateEndProject, new { htmlAttributes = new { @class = "form-control m-input col-md-4", @type = "date" } })
+                    @Html.ValidationMessageFor(model => model.dateEndProject, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <h5 class="control-label col-md-3">Project's Description</h5>
+                <div class="col-md-10">
+                    @Html.TextAreaFor(model => model.descriptionProject, new { @class = "form-control m-input", @cols = "77", @rows = "4" })
+                    @Html.ValidationMessageFor(model => model.descriptionProject, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <h5 class="control-label col-md-3">Project's Name</h5>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.nameProject, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.nameProject, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <h5 class="control-label col-md-3">Number Of Resources</h5>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.resourcesNumber, new { htmlAttributes = new { @class = "form-control col-md-4", @placeholder = "0" } })
+                    @Html.ValidationMessageFor(model => model.resourcesNumber, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <h5 class="control-label col-md-3">Comments</h5>
+                <div class="col-md-10">
+                    @Html.TextAreaFor(model => model.comments, new { @class = "form-control m-input", @cols = "77", @rows = "4" })
+                    @Html.ValidationMessageFor(model => model.comments, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <h5 class="control-label col-md-3">Presented By</h5>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.presentedBy, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.presentedBy, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
+
+

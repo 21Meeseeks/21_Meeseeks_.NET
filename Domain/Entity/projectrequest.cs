@@ -26,7 +26,8 @@ namespace Domain
         [Column(TypeName = "date")]
         public DateTime? dateStartProject { get; set; }
 
-        public DateTime? depositDate { get; set; }
+        [Column(TypeName = "datetime")]
+        public DateTime depositDate { get; set; }
 
         [StringLength(255)]
         public string descriptionProject { get; set; }

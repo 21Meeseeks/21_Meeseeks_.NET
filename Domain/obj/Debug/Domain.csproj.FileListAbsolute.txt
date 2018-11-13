@@ -10,3 +10,15 @@ C:\Users\Flavio\Documents\Visual Studio 2015\Projects\MAP\Domain\bin\Debug\MySql
 C:\Users\Flavio\Documents\Visual Studio 2015\Projects\MAP\Domain\bin\Debug\MySql.Data.Entity.EF6.dll
 C:\Users\Flavio\Documents\Visual Studio 2015\Projects\MAP\Domain\bin\Debug\EntityFramework.xml
 C:\Users\Flavio\Documents\Visual Studio 2015\Projects\MAP\Domain\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\User\Documents\21_Meeseeks_NET\Domain\bin\Debug\Domain.dll.config
+C:\Users\User\Documents\21_Meeseeks_NET\Domain\bin\Debug\Domain.dll
+C:\Users\User\Documents\21_Meeseeks_NET\Domain\bin\Debug\Domain.pdb
+C:\Users\User\Documents\21_Meeseeks_NET\Domain\bin\Debug\EntityFramework.dll
+C:\Users\User\Documents\21_Meeseeks_NET\Domain\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\User\Documents\21_Meeseeks_NET\Domain\bin\Debug\MySql.Data.dll
+C:\Users\User\Documents\21_Meeseeks_NET\Domain\bin\Debug\MySql.Data.Entity.EF6.dll
+C:\Users\User\Documents\21_Meeseeks_NET\Domain\bin\Debug\EntityFramework.xml
+C:\Users\User\Documents\21_Meeseeks_NET\Domain\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\User\Documents\21_Meeseeks_NET\Domain\obj\Debug\Domain.csprojResolveAssemblyReference.cache
+C:\Users\User\Documents\21_Meeseeks_NET\Domain\obj\Debug\Domain.dll
+C:\Users\User\Documents\21_Meeseeks_NET\Domain\obj\Debug\Domain.pdb
