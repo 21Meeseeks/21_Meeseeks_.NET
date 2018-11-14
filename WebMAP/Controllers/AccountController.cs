@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
@@ -71,6 +74,7 @@ namespace WebMAP.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         {
+            String email = model.Email.ToString();
             var request = (HttpWebRequest)WebRequest.Create("http://localhost:18080/21meeseeks-web/rest/authentication");
             request.Method = "POST";
             request.ContentType = "application/x-www-form-urlencoded";
@@ -90,9 +94,33 @@ namespace WebMAP.Controllers
                     string responseMessage = response.ToString(); //response raw
 
                     Response.Cookies["token"].Value = responseMessage;
-                 //   Response.Cookies["userName"].Expires = DateTime.Now.AddDays(1);
+                    //   Response.Cookies["userName"].Expires = DateTime.Now.AddDays(1);
+
+                    //localhost:18080/21meeseeks-web/rest/client?email=admin@admin.com
+
+
+
+                    HttpClient client = new HttpClient();
+                    client.BaseAddress = new Uri("http://localhost:18080/21meeseeks-web/");
+                    client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                    HttpResponseMessage response2 = client.GetAsync("rest/client?email=").Result;
+                    //localhost:18080/21meeseeks-web/rest/client
+
+                    IEnumerable<Client> lc = response2.Content.ReadAsAsync<IEnumerable<Client>>().Result;
+                    Client c = lc.Where(cli => cli.email == email).First();
+
+
+
                     Session["token"] = responseMessage;
+<<<<<<< Updated upstream
                     return RedirectToAction("","Home");
+=======
+                    Session["username"] =c.email;
+                    Session["logo"] = c.logo;
+                    Session["name"] = c.clientName;
+
+                    return RedirectToAction("Settings", "Home", new { area = "" });
+>>>>>>> Stashed changes
 
                 }
             }
