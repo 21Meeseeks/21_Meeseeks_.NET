@@ -170,9 +170,7 @@ C:\Users\User\Documents\21_Meeseeks_NET\WebMAP\bin\Microsoft.Owin.Security.Micro
 C:\Users\User\Documents\21_Meeseeks_NET\WebMAP\obj\Debug\WebMAP.csprojResolveAssemblyReference.cache
 C:\Users\User\Documents\21_Meeseeks_NET\WebMAP\obj\Debug\WebMAP.dll
 C:\Users\User\Documents\21_Meeseeks_NET\WebMAP\obj\Debug\WebMAP.pdb
-C:\Users\User\Documents\21_Meeseeks_NET\WebMAP\bin\System.Net.Http.Extensions.dll
 C:\Users\User\Documents\21_Meeseeks_NET\WebMAP\bin\System.Net.Http.Formatting.dll
-C:\Users\User\Documents\21_Meeseeks_NET\WebMAP\bin\System.Net.Http.Primitives.dll
 C:\Users\Prometheus\Documents\Visual Studio 2015\Projects\21_Meeseeks_.NET\WebMAP\bin\ApplicationInsights.config
 C:\Users\Prometheus\Documents\Visual Studio 2015\Projects\21_Meeseeks_.NET\WebMAP\bin\roslyn\csc.exe
 C:\Users\Prometheus\Documents\Visual Studio 2015\Projects\21_Meeseeks_.NET\WebMAP\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
@@ -261,3 +259,4 @@ C:\Users\Prometheus\Documents\Visual Studio 2015\Projects\21_Meeseeks_.NET\WebMA
 C:\Users\Prometheus\Documents\Visual Studio 2015\Projects\21_Meeseeks_.NET\WebMAP\obj\Debug\WebMAP.pdb
 C:\Users\Prometheus\Documents\Visual Studio 2015\Projects\21_Meeseeks_.NET\WebMAP\bin\System.Net.Http.Formatting.dll
 C:\Users\Prometheus\Documents\Visual Studio 2015\Projects\21_Meeseeks_.NET\WebMAP\bin\System.Runtime.InteropServices.RuntimeInformation.dll
+C:\Users\User\Documents\21_Meeseeks_NET\WebMAP\bin\System.Runtime.InteropServices.RuntimeInformation.dll

@@ -31,5 +31,9 @@ namespace WebMAP.Models
         }
 
         public System.Data.Entity.DbSet<WebMAP.Models.ClientCategory> ClientCategories { get; set; }
+
+        public System.Data.Entity.DbSet<WebMAP.Models.LeaveType> LeaveTypes { get; set; }
+
+        public System.Data.Entity.DbSet<WebMAP.Models.LeaveRequest> LeaveRequests { get; set; }
     }
 }

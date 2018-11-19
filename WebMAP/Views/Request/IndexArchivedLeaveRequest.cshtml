@@ -3,16 +3,16 @@
         <div class="m-portlet__head-caption">
             <div class="m-portlet__head-title">
                 <h3 class="m-portlet__head-text">
-                    Archived Project Requests List
+                    Archived Leave Requests List
                 </h3>
             </div>
         </div>
         <div class="m-portlet__head-tools">
             <ul class="m-portlet__nav">
                 <li class="m-portlet__nav-item">
-                    <a href="@Url.Action("Index", "Request")" class="btn btn-danger">
+                    <a href="@Url.Action("IndexLeaveRequest", "Request")" class="btn btn-danger">
                         <span>
-                            <span>Show Project Requests</span>
+                            <span>Show Leave Requests</span>
                         </span>
                     </a>
                 </li>
@@ -26,33 +26,34 @@
             <thead>
                 <tr>
                     <th></th>
-                    <th>Client</th>
-                    <th>Presented By</th>
-                    <th>Project Name</th>
+                    <th>Resource</th>
+                    <th>Cause</th>
+                    <th>From</th>
+                    <th>To</th>
+                    <th>Description</th>
                     <th>Deposit Date</th>
-                    <th>Request Status</th>
-                    <th>Review Date</th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
                 @if (ViewBag.result != null)
                 {
-                    foreach (var pr in ViewBag.result)
+                    foreach (var lr in ViewBag.result)
                     {
                         <tr>
                             <td></td>
                             <td>Client</td>
-                            <td>@pr.presentedBy</td>
-                            <td>@pr.nameProject</td>
-                            <td>@pr.depositDate</td>
-                            <td><span class="m-badge m-badge--info m-badge--wide">@pr.requestStatus</span></td>
-                            <td>@pr.reviewDate</td>
+                            <td>@lr.leaveType.name</td>
+                            <td>@lr.fromDate</td>
+                            <td>@lr.toDate</td>
                             <td>
-                                <a href="@Url.Action("Details", "Request", new {ID = @pr.idRequest})">
-                                    <button class="btn btn-info" type="button">Details</button>
+                                <a tabindex="0" class="btn btn-info" role="button" data-toggle="m-popover" data-placement="bottom" data-trigger="focus" title="" data-content=@lr.description>
+                                    View Description
                                 </a>
-                                <a href="@Url.Action("Unarchive", "Request", new {ID = @pr.idRequest})">
+                            </td>
+                            <td>@lr.depositDate</td>
+                            <td>
+                                <a href="@Url.Action("UnarchiveLeaveRequest", "Request", new {ID = @lr.idLeaveRequest})">
                                     <button class="btn btn-warning" type="button">Unarchive</button>
                                 </a>
                             </td>
@@ -63,6 +64,8 @@
         </table>
     </div>
 </div>
+
+
 
 
 

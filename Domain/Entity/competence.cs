@@ -24,6 +24,9 @@ namespace Domain
         [StringLength(255)]
         public string Label { get; set; }
 
+        [StringLength(255)]
+        public string description { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<level> levels { get; set; }
 

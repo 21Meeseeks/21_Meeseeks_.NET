@@ -22,6 +22,7 @@ namespace WebMAP.Models
         public bool archived { get; set; }
         public DateTime? reviewDate { get; set; }
         public string requestStatus { get; set; }
+        public IEnumerable<Competence> competences { get; set; }
     }
 
     public class ProjectRequestDBContext : DbContext
