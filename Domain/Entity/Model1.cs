@@ -10,7 +10,7 @@ namespace Domain.Entity
     public partial class Model1 : DbContext
     {
         public Model1()
-            : base("mapdb")
+            : base("map")
         {
         }
 

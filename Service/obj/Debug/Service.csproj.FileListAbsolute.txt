@@ -7,3 +7,13 @@ C:\Users\User\Documents\21_Meeseeks_NET\Service\bin\Debug\Service.pdb
 C:\Users\User\Documents\21_Meeseeks_NET\Service\obj\Debug\Service.csprojResolveAssemblyReference.cache
 C:\Users\User\Documents\21_Meeseeks_NET\Service\obj\Debug\Service.dll
 C:\Users\User\Documents\21_Meeseeks_NET\Service\obj\Debug\Service.pdb
+C:\Users\User\Documents\21_Meeseeks_NET\Service\bin\Debug\Data.dll
+C:\Users\User\Documents\21_Meeseeks_NET\Service\bin\Debug\Domain.dll
+C:\Users\User\Documents\21_Meeseeks_NET\Service\bin\Debug\ServicePattern.dll
+C:\Users\User\Documents\21_Meeseeks_NET\Service\bin\Debug\EntityFramework.dll
+C:\Users\User\Documents\21_Meeseeks_NET\Service\bin\Debug\MySql.Data.Entity.EF6.dll
+C:\Users\User\Documents\21_Meeseeks_NET\Service\bin\Debug\MySql.Data.dll
+C:\Users\User\Documents\21_Meeseeks_NET\Service\bin\Debug\Data.pdb
+C:\Users\User\Documents\21_Meeseeks_NET\Service\bin\Debug\Domain.pdb
+C:\Users\User\Documents\21_Meeseeks_NET\Service\bin\Debug\ServicePattern.pdb
+C:\Users\User\Documents\21_Meeseeks_NET\Service\bin\Debug\EntityFramework.xml

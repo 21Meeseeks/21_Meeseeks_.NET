@@ -45,7 +45,7 @@ namespace WebMAP.Controllers
 
             ViewBag.result =  response.Content.ReadAsAsync<IEnumerable<ClientCategory>>().Result;
                 
-            return View();
+            return View("Create");
         }
 
         // POST: Client/Create
