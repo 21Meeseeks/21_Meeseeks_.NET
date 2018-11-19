@@ -1,2 +1,14 @@
 
 WebMAP/Content/ProfilePictures/
+
+Data/bin/Debug/
+
+Data/obj/Debug/
+
+Domain/obj/Debug/
+
+Service/obj/Debug/
+
+ServicePattern/bin/Debug/
+
+WebMAP/obj/Debug/

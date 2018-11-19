@@ -221,6 +221,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Admin.cs" />
     <Compile Include="Models\Client.cs" />
     <Compile Include="Models\ClientCategory.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -603,11 +604,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-<<<<<<< Updated upstream
-    <Folder Include="Views\Resource\" />
-=======
     <Folder Include="Content\ProfilePictures\" />
->>>>>>> Stashed changes
+    <Folder Include="Views\Resource\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

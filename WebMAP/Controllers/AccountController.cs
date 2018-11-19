@@ -84,7 +84,7 @@ namespace WebMAP.Controllers
             {
                 reqStream.Write(bytes, 0, bytes.Length);
             }
-
+            
             try
             {
                 using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
@@ -103,29 +103,47 @@ namespace WebMAP.Controllers
                     HttpClient client = new HttpClient();
                     client.BaseAddress = new Uri("http://localhost:18080/21meeseeks-web/");
                     client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                    HttpResponseMessage response2 = client.GetAsync("rest/client?email=").Result;
-                    //localhost:18080/21meeseeks-web/rest/client
+                    try
+                    {
+                        HttpResponseMessage response2 = client.GetAsync("rest/client?email=" + email).Result;
+                        //localhost:18080/21meeseeks-web/rest/client
 
-                    IEnumerable<Client> lc = response2.Content.ReadAsAsync<IEnumerable<Client>>().Result;
-                    Client c = lc.Where(cli => cli.email == email).First();
+                        IEnumerable<Client> lc = response2.Content.ReadAsAsync<IEnumerable<Client>>().Result;
+                            Client c = lc.Where(cli => cli.email == email).First();
+
+
+                        Session["role"] = "client";
+
+
+                        Session["token"] = responseMessage;
+                        Session["username"] = c.email;
+                        Session["logo"] = c.logo;
+                        Session["name"] = c.clientName;
+                    }
+                    catch (Exception e)
+                    {
+                        HttpResponseMessage response2 = client.GetAsync("rest/client/admin?email=" + email).Result;
+                        //localhost:18080/21meeseeks-web/rest/client/admin?email=theadmin222@admin.com
+                        Admin a = response2.Content.ReadAsAsync<Admin>().Result;
+                        Session["role"] = "admin";
+                        Session["token"] = responseMessage;
+                        Session["username"] =a.email;
+                        Session["logo"] = null;
+                        Session["name"] = a.firstName;
 
 
 
-                    Session["token"] = responseMessage;
-<<<<<<< Updated upstream
-                    return RedirectToAction("","Home");
-=======
-                    Session["username"] =c.email;
-                    Session["logo"] = c.logo;
-                    Session["name"] = c.clientName;
+                        return RedirectToAction("Index", "Client", new { area = "" });
 
-                    return RedirectToAction("Settings", "Home", new { area = "" });
->>>>>>> Stashed changes
+
+                    }
+                    return RedirectToAction("Index", "Client", new { area = "" });
 
                 }
             }
             catch (WebException e)
             {
+                ViewBag.message = "Wrong credentials";
                 return View(model);
 
             }

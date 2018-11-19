@@ -1,4 +1,0 @@
-C:\Users\Flavio\Documents\Visual Studio 2015\Projects\MAP\Service\bin\Debug\Service.dll
-C:\Users\Flavio\Documents\Visual Studio 2015\Projects\MAP\Service\bin\Debug\Service.pdb
-C:\Users\Flavio\Documents\Visual Studio 2015\Projects\MAP\Service\obj\Debug\Service.dll
-C:\Users\Flavio\Documents\Visual Studio 2015\Projects\MAP\Service\obj\Debug\Service.pdb

@@ -34,12 +34,19 @@ namespace WebMAP.Controllers
         // GET: Client/Create
         public ActionResult Create()
         {
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri("http://localhost:18080/21meeseeks-web/rest/");
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            HttpResponseMessage response = client.GetAsync("client/category").Result;
+
+            ViewBag.result =  response.Content.ReadAsAsync<IEnumerable<ClientCategory>>().Result;
+                
             return View();
         }
 
         // POST: Client/Create
         [HttpPost]
-        public ActionResult Create(Client cc, HttpPostedFileBase file)
+        public ActionResult Create(Client cc, HttpPostedFileBase file )
         {
             //file upload
 
@@ -68,7 +75,7 @@ namespace WebMAP.Controllers
             //client category affectation
             ClientCategory category = new ClientCategory
             {
-                name = Request.Form["cat"]
+                name = Request.Form["category"]
 
             };
             cc.clientCategory = category;
