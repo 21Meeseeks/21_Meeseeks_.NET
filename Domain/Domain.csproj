@@ -61,7 +61,6 @@
   <ItemGroup>
     <Compile Include="Entity\admin.cs" />
     <Compile Include="Entity\certificate.cs" />
-    <Compile Include="Entity\Class1.cs" />
     <Compile Include="Entity\client.cs" />
     <Compile Include="Entity\clientcategory.cs" />
     <Compile Include="Entity\clienttype.cs" />
@@ -69,12 +68,10 @@
     <Compile Include="Entity\conversation.cs" />
     <Compile Include="Entity\conversation_user.cs" />
     <Compile Include="Entity\dayoff.cs" />
-    <Compile Include="Entity\degree.cs" />
     <Compile Include="Entity\establishment.cs" />
     <Compile Include="Entity\field.cs" />
     <Compile Include="Entity\hibernate_sequences.cs" />
     <Compile Include="Entity\holiday.cs" />
-    <Compile Include="Entity\jobdate.cs" />
     <Compile Include="Entity\leaverequest.cs" />
     <Compile Include="Entity\leavetype.cs" />
     <Compile Include="Entity\level.cs" />
@@ -85,8 +82,6 @@
     <Compile Include="Entity\organigram.cs" />
     <Compile Include="Entity\project.cs" />
     <Compile Include="Entity\projectrequest.cs" />
-    <Compile Include="Entity\projectrequest_competence.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Entity\resource.cs" />
     <Compile Include="Entity\resume.cs" />
     <Compile Include="Entity\seniority.cs" />
@@ -94,10 +89,12 @@
     <Compile Include="Entity\term.cs" />
     <Compile Include="Entity\termarchive.cs" />
     <Compile Include="Entity\user.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <None Include="Entity\App.config" />
-    <None Include="Entity\packages.config" />
+    <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

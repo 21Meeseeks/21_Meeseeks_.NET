@@ -1,14 +1,16 @@
-namespace Domain
+namespace Domain.Entity
 {
     using System;
     using System.Data.Entity;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
+    using MySql.Data.Entity;
 
+    [DbConfigurationType(typeof(MySqlEFConfiguration))]
     public partial class Model1 : DbContext
     {
         public Model1()
-            : base("name=Model1")
+            : base("mapdb")
         {
         }
 
@@ -20,12 +22,10 @@ namespace Domain
         public virtual DbSet<competence> competences { get; set; }
         public virtual DbSet<conversation> conversations { get; set; }
         public virtual DbSet<dayoff> dayoffs { get; set; }
-        public virtual DbSet<degree> degrees { get; set; }
         public virtual DbSet<establishment> establishments { get; set; }
         public virtual DbSet<field> fields { get; set; }
         public virtual DbSet<hibernate_sequences> hibernate_sequences { get; set; }
         public virtual DbSet<holiday> holidays { get; set; }
-        public virtual DbSet<jobdate> jobdates { get; set; }
         public virtual DbSet<leaverequest> leaverequests { get; set; }
         public virtual DbSet<leavetype> leavetypes { get; set; }
         public virtual DbSet<level> levels { get; set; }
@@ -43,7 +43,6 @@ namespace Domain
         public virtual DbSet<user> users { get; set; }
         public virtual DbSet<conversation_user> conversation_user { get; set; }
         public virtual DbSet<message_user> message_user { get; set; }
-        public virtual DbSet<projectrequest_competence> projectrequest_competence { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -101,11 +100,11 @@ namespace Domain
                 .IsUnicode(false);
 
             modelBuilder.Entity<client>()
-                .Property(e => e.logo)
+                .Property(e => e.clientType)
                 .IsUnicode(false);
 
             modelBuilder.Entity<client>()
-                .Property(e => e.clientType)
+                .Property(e => e.logo)
                 .IsUnicode(false);
 
             modelBuilder.Entity<client>()
@@ -149,11 +148,6 @@ namespace Domain
                 .Property(e => e.Name)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<clienttype>()
-                .HasMany(e => e.clients)
-                .WithOptional(e => e.clienttype1)
-                .HasForeignKey(e => e.clientType_idClientType);
-
             modelBuilder.Entity<competence>()
                 .Property(e => e.Label)
                 .IsUnicode(false);
@@ -165,10 +159,9 @@ namespace Domain
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<competence>()
-                .HasMany(e => e.projectrequest_competence)
-                .WithRequired(e => e.competence)
-                .HasForeignKey(e => e.competences_idCompetence)
-                .WillCascadeOnDelete(false);
+                .HasMany(e => e.resumes)
+                .WithMany(e => e.competences)
+                .Map(m => m.ToTable("resume_competence", "map").MapRightKey("Resume_idResume"));
 
             modelBuilder.Entity<competence>()
                 .HasMany(e => e.projects)
@@ -190,18 +183,14 @@ namespace Domain
                 .WithOptional(e => e.conversation)
                 .HasForeignKey(e => e.conversation_idConversation);
 
-            modelBuilder.Entity<degree>()
-                .Property(e => e.name)
-                .IsUnicode(false);
-
             modelBuilder.Entity<establishment>()
                 .Property(e => e.nameEstablishment)
                 .IsUnicode(false);
 
             modelBuilder.Entity<establishment>()
-                .HasMany(e => e.degrees)
-                .WithRequired(e => e.establishment)
-                .WillCascadeOnDelete(false);
+                .HasMany(e => e.resumes)
+                .WithMany(e => e.establishments)
+                .Map(m => m.ToTable("resume_establishment", "map").MapLeftKey("etablissement_idEstablishment").MapRightKey("Resume_idResume"));
 
             modelBuilder.Entity<field>()
                 .Property(e => e.description)
@@ -227,7 +216,7 @@ namespace Domain
             modelBuilder.Entity<holiday>()
                 .HasMany(e => e.resources)
                 .WithMany(e => e.holidays)
-                .Map(m => m.ToTable("resource_holidays").MapLeftKey("holidays_idHolidays").MapRightKey("Resource_idUser"));
+                .Map(m => m.ToTable("resource_holidays", "map").MapLeftKey("holidays_idHolidays").MapRightKey("Resource_idUser"));
 
             modelBuilder.Entity<leaverequest>()
                 .Property(e => e.description)
@@ -252,14 +241,14 @@ namespace Domain
                 .HasForeignKey(e => e.leaveType_idLeaveType);
 
             modelBuilder.Entity<level>()
+                .HasMany(e => e.resources)
+                .WithMany(e => e.levels1)
+                .Map(m => m.ToTable("resource_level", "map").MapLeftKey(new[] { "levels_idCompetence", "levels_idLevel", "levels_idResource" }).MapRightKey("Resource_idUser"));
+
+            modelBuilder.Entity<level>()
                 .HasMany(e => e.competences)
                 .WithMany(e => e.levels1)
                 .Map(m => m.ToTable("competence_level").MapLeftKey(new[] { "levels_idCompetence", "levels_idLevel", "levels_idResource" }).MapRightKey("Competence_idCompetence"));
-
-            modelBuilder.Entity<level>()
-                .HasMany(e => e.resources)
-                .WithMany(e => e.levels1)
-                .Map(m => m.ToTable("resource_level").MapLeftKey(new[] { "levels_idCompetence", "levels_idLevel", "levels_idResource" }).MapRightKey("Resource_idUser"));
 
             modelBuilder.Entity<message>()
                 .Property(e => e.content)
@@ -283,7 +272,7 @@ namespace Domain
             modelBuilder.Entity<note>()
                 .HasMany(e => e.resources)
                 .WithMany(e => e.notes)
-                .Map(m => m.ToTable("resource_note").MapLeftKey("notes_idNote").MapRightKey("Resource_idUser"));
+                .Map(m => m.ToTable("resource_note", "map").MapLeftKey("notes_idNote").MapRightKey("Resource_idUser"));
 
             modelBuilder.Entity<organigram>()
                 .Property(e => e.assignmentManager)
@@ -306,6 +295,10 @@ namespace Domain
                 .IsUnicode(false);
 
             modelBuilder.Entity<project>()
+                .Property(e => e.description)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<project>()
                 .Property(e => e.name)
                 .IsUnicode(false);
 
@@ -314,7 +307,7 @@ namespace Domain
                 .IsUnicode(false);
 
             modelBuilder.Entity<project>()
-                .Property(e => e.description)
+                .Property(e => e.projectType)
                 .IsUnicode(false);
 
             modelBuilder.Entity<project>()
@@ -322,6 +315,15 @@ namespace Domain
                 .WithRequired(e => e.project)
                 .HasForeignKey(e => e.idProject)
                 .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<project>()
+                .HasMany(e => e.terms1)
+                .WithMany(e => e.projects)
+                .Map(m => m.ToTable("project_term").MapLeftKey("Project_idProject").MapRightKey(new[] { "terms_idProject", "terms_idResource" }));
+
+            modelBuilder.Entity<projectrequest>()
+                .Property(e => e.comments)
+                .IsUnicode(false);
 
             modelBuilder.Entity<projectrequest>()
                 .Property(e => e.descriptionProject)
@@ -332,24 +334,13 @@ namespace Domain
                 .IsUnicode(false);
 
             modelBuilder.Entity<projectrequest>()
-                .Property(e => e.comments)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<projectrequest>()
                 .Property(e => e.presentedBy)
                 .IsUnicode(false);
 
             modelBuilder.Entity<projectrequest>()
-                .HasMany(e => e.projectrequest_competence)
-                .WithRequired(e => e.projectrequest)
-                .HasForeignKey(e => e.ProjectRequest_idRequest)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<projectrequest>()
-                .HasMany(e => e.projectrequest_competence1)
-                .WithRequired(e => e.projectrequest1)
-                .HasForeignKey(e => e.projectRequests_idRequest)
-                .WillCascadeOnDelete(false);
+                .HasMany(e => e.competences)
+                .WithMany(e => e.projectrequests)
+                .Map(m => m.ToTable("projectrequest_competence").MapLeftKey("projectRequests_idRequest").MapRightKey("competences_idCompetence"));
 
             modelBuilder.Entity<resource>()
                 .Property(e => e.address)
@@ -412,26 +403,16 @@ namespace Domain
             modelBuilder.Entity<resource>()
                 .HasMany(e => e.leaverequests1)
                 .WithMany(e => e.resources)
-                .Map(m => m.ToTable("resource_leaverequest").MapLeftKey("Resource_idUser").MapRightKey("leaveRequests_idLeaveRequest"));
+                .Map(m => m.ToTable("resource_leaverequest", "map").MapLeftKey("Resource_idUser").MapRightKey("leaveRequests_idLeaveRequest"));
 
             modelBuilder.Entity<resource>()
                 .HasMany(e => e.terms1)
                 .WithMany(e => e.resources)
-                .Map(m => m.ToTable("resource_term").MapLeftKey("Resource_idUser").MapRightKey(new[] { "terms_idProject", "terms_idResource", "terms_idTerm" }));
+                .Map(m => m.ToTable("resource_term", "map").MapLeftKey("Resource_idUser").MapRightKey(new[] { "terms_idProject", "terms_idResource" }));
 
             modelBuilder.Entity<resume>()
                 .Property(e => e.description)
                 .IsUnicode(false);
-
-            modelBuilder.Entity<resume>()
-                .HasMany(e => e.degrees)
-                .WithRequired(e => e.resume)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<resume>()
-                .HasMany(e => e.jobdates)
-                .WithRequired(e => e.resume)
-                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<resume>()
                 .HasMany(e => e.resources)
@@ -441,7 +422,7 @@ namespace Domain
             modelBuilder.Entity<resume>()
                 .HasMany(e => e.certificates)
                 .WithMany(e => e.resumes)
-                .Map(m => m.ToTable("resume_certificate").MapRightKey("certificates_idCertificate"));
+                .Map(m => m.ToTable("resume_certificate", "map").MapRightKey("certificates_idCertificate"));
 
             modelBuilder.Entity<seniority>()
                 .Property(e => e.description)
@@ -465,9 +446,9 @@ namespace Domain
                 .IsUnicode(false);
 
             modelBuilder.Entity<society>()
-                .HasMany(e => e.jobdates)
-                .WithRequired(e => e.society)
-                .WillCascadeOnDelete(false);
+                .HasMany(e => e.resumes)
+                .WithMany(e => e.societies)
+                .Map(m => m.ToTable("resume_society", "map").MapRightKey("Resume_idResume"));
 
             modelBuilder.Entity<term>()
                 .Property(e => e.description)
@@ -476,12 +457,7 @@ namespace Domain
             modelBuilder.Entity<term>()
                 .HasMany(e => e.termarchives)
                 .WithOptional(e => e.term)
-                .HasForeignKey(e => new { e.term_idProject, e.term_idResource, e.term_idTerm });
-
-            modelBuilder.Entity<term>()
-                .HasMany(e => e.projects)
-                .WithMany(e => e.terms1)
-                .Map(m => m.ToTable("project_term").MapLeftKey(new[] { "terms_idProject", "terms_idResource", "terms_idTerm" }).MapRightKey("Project_idProject"));
+                .HasForeignKey(e => new { e.term_idProject, e.term_idResource });
 
             modelBuilder.Entity<user>()
                 .Property(e => e.address)

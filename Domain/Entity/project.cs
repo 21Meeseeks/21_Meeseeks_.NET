@@ -1,4 +1,4 @@
-namespace Domain
+namespace Domain.Entity
 {
     using System;
     using System.Collections.Generic;
@@ -27,17 +27,18 @@ namespace Domain
         public DateTime? dateStart { get; set; }
 
         [StringLength(255)]
+        public string description { get; set; }
+
+        [StringLength(255)]
         public string name { get; set; }
 
         [StringLength(255)]
         public string picture { get; set; }
 
-        public int? projectType { get; set; }
+        [StringLength(255)]
+        public string projectType { get; set; }
 
         public int? client_idUser { get; set; }
-
-        [StringLength(255)]
-        public string description { get; set; }
 
         public virtual client client { get; set; }
 

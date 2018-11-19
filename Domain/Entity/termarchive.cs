@@ -1,4 +1,4 @@
-namespace Domain
+namespace Domain.Entity
 {
     using System;
     using System.Collections.Generic;
@@ -16,8 +16,6 @@ namespace Domain
         public int? term_idProject { get; set; }
 
         public int? term_idResource { get; set; }
-
-        public int? term_idTerm { get; set; }
 
         public virtual term term { get; set; }
     }

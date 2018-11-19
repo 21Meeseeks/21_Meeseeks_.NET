@@ -1,7 +1,9 @@
 ﻿
 @{
     ViewBag.Title = "Index";
+    
 }
+@using  WebMAP.Models;
 <table border="1">
     @foreach (var x in ViewBag.result)
     {
@@ -13,4 +15,15 @@
     }
 </table>
 <h2>Index</h2>
+<table border="1">
+    @foreach (KeyValuePair<string,Resource> x in ViewBag.Resources)
+    {
+        <tr>
+            <td>@x.Value.idUser</td>
+            <td>@x.Value.email</td>
+            <td>@x.Value.password</td>
+        </tr>
+            
+        }
+</table>
 

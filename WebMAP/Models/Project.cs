@@ -15,7 +15,7 @@ namespace WebMAP.Models
 
         public string picture { get; set; }
 
-        public int? projectType { get; set; }
+        public string projectType { get; set; }
 
         public int? client_idUser { get; set; }
 

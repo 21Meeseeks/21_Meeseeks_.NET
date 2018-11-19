@@ -1,4 +1,4 @@
-namespace Domain
+namespace Domain.Entity
 {
     using System;
     using System.Collections.Generic;
@@ -42,22 +42,18 @@ namespace Domain
         public string clientName { get; set; }
 
         [StringLength(255)]
+        public string clientType { get; set; }
+
+        [StringLength(255)]
         public string logo { get; set; }
 
         public int? clientCategory_idCategory { get; set; }
-
-        public int? clientType_idClientType { get; set; }
-
-        [StringLength(255)]
-        public string clientType { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<project> projects { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<organigram> organigrams { get; set; }
-
-        public virtual clienttype clienttype1 { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<projectrequest> projectrequests { get; set; }

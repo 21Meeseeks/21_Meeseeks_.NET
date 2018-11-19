@@ -1,4 +1,4 @@
-namespace Domain
+namespace Domain.Entity
 {
     using System;
     using System.Collections.Generic;
@@ -12,8 +12,8 @@ namespace Domain
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public level()
         {
-            competences = new HashSet<competence>();
             resources = new HashSet<resource>();
+            competences = new HashSet<competence>();
         }
 
         [Key]
@@ -41,9 +41,9 @@ namespace Domain
         public virtual resource resource { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<competence> competences { get; set; }
+        public virtual ICollection<resource> resources { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<resource> resources { get; set; }
+        public virtual ICollection<competence> competences { get; set; }
     }
 }

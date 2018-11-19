@@ -1,4 +1,4 @@
-namespace Domain
+namespace Domain.Entity
 {
     using System;
     using System.Collections.Generic;
@@ -16,12 +16,12 @@ namespace Domain
             leaverequests = new HashSet<leaverequest>();
             levels = new HashSet<level>();
             terms = new HashSet<term>();
-            fields = new HashSet<field>();
             holidays = new HashSet<holiday>();
             leaverequests1 = new HashSet<leaverequest>();
             levels1 = new HashSet<level>();
             notes = new HashSet<note>();
             terms1 = new HashSet<term>();
+            fields = new HashSet<field>();
         }
 
         [Key]
@@ -85,9 +85,6 @@ namespace Domain
         public virtual ICollection<term> terms { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<field> fields { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<holiday> holidays { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -101,5 +98,8 @@ namespace Domain
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<term> terms1 { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<field> fields { get; set; }
     }
 }

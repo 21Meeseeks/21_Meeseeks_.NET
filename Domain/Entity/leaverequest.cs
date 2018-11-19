@@ -1,4 +1,4 @@
-namespace Domain
+namespace Domain.Entity
 {
     using System;
     using System.Collections.Generic;
@@ -18,6 +18,8 @@ namespace Domain
         [Key]
         public int idLeaveRequest { get; set; }
 
+        public DateTime? depositDate { get; set; }
+
         [StringLength(255)]
         public string description { get; set; }
 
@@ -28,8 +30,6 @@ namespace Domain
         public int? leaveType_idLeaveType { get; set; }
 
         public int? resource_idUser { get; set; }
-
-        public DateTime? depositDate { get; set; }
 
         public virtual resource resource { get; set; }
 
