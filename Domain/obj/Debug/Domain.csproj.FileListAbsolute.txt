@@ -1,6 +1,5 @@
 C:\Users\Flavio\documents\visual studio 2015\Projects\MAP\Domain\bin\Debug\Domain.dll
 C:\Users\Flavio\documents\visual studio 2015\Projects\MAP\Domain\bin\Debug\Domain.pdb
-C:\Users\Flavio\documents\visual studio 2015\Projects\MAP\Domain\obj\Debug\Domain.csprojResolveAssemblyReference.cache
 C:\Users\Flavio\documents\visual studio 2015\Projects\MAP\Domain\obj\Debug\Domain.dll
 C:\Users\Flavio\documents\visual studio 2015\Projects\MAP\Domain\obj\Debug\Domain.pdb
 C:\Users\Flavio\Documents\Visual Studio 2015\Projects\MAP\Domain\bin\Debug\Domain.dll.config
@@ -10,3 +9,4 @@ C:\Users\Flavio\Documents\Visual Studio 2015\Projects\MAP\Domain\bin\Debug\MySql
 C:\Users\Flavio\Documents\Visual Studio 2015\Projects\MAP\Domain\bin\Debug\MySql.Data.Entity.EF6.dll
 C:\Users\Flavio\Documents\Visual Studio 2015\Projects\MAP\Domain\bin\Debug\EntityFramework.xml
 C:\Users\Flavio\Documents\Visual Studio 2015\Projects\MAP\Domain\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Flavio\documents\visual studio 2015\Projects\MAP\Domain\obj\Debug\Domain.csprojResolveAssemblyReference.cache

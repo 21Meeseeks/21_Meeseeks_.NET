@@ -174,3 +174,9 @@ C:\Users\Prometheus\Documents\Visual Studio 2015\Projects\21_Meeseeks_.NET\WebMA
 C:\Users\Prometheus\Documents\Visual Studio 2015\Projects\21_Meeseeks_.NET\WebMAP\bin\System.Runtime.InteropServices.RuntimeInformation.dll
 C:\Users\Flavio\Documents\Visual Studio 2015\Projects\MAP\WebMAP\bin\System.Net.Http.Formatting.dll
 C:\Users\Flavio\Documents\Visual Studio 2015\Projects\MAP\WebMAP\bin\System.Runtime.InteropServices.RuntimeInformation.dll
+C:\Users\Flavio\documents\visual studio 2015\Projects\MAP\WebMAP\bin\Service.dll
+C:\Users\Flavio\documents\visual studio 2015\Projects\MAP\WebMAP\bin\ServicePattern.dll
+C:\Users\Flavio\documents\visual studio 2015\Projects\MAP\WebMAP\bin\ServicePattern.pdb
+C:\Users\Flavio\documents\visual studio 2015\Projects\MAP\WebMAP\bin\Service.pdb
+C:\Users\Flavio\documents\visual studio 2015\Projects\MAP\WebMAP\bin\MySql.Data.Entity.EF6.dll
+C:\Users\Flavio\documents\visual studio 2015\Projects\MAP\WebMAP\bin\MySql.Data.dll

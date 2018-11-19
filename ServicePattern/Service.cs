@@ -64,5 +64,6 @@ namespace Service.Pattern
         {
             utk.GetRepositoryBase<T>().Update(entity);
         }
+        
     }
 }

@@ -215,6 +215,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ResourceController.cs" />
+    <Compile Include="Controllers\StatisticsController.cs" />
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -596,6 +597,8 @@
     <Content Include="Views\ClientCategory\_ClientCategoryList.cshtml" />
     <Content Include="Views\Home\Settings.cshtml" />
     <Content Include="Views\ClientCategory\_ClientCategoryCreate.cshtml" />
+    <Content Include="Views\Statistics\Statistics.cshtml" />
+    <Content Include="Views\Test\Show.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -617,6 +620,14 @@
     <ProjectReference Include="..\Domain\Domain.csproj">
       <Project>{91a2770e-957a-40b1-acdc-0480c230551b}</Project>
       <Name>Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ServicePattern\ServicePattern.csproj">
+      <Project>{9DF2E786-001F-4452-932D-FB3BD0046D60}</Project>
+      <Name>ServicePattern</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Service\Service.csproj">
+      <Project>{EDBA1AAD-A0FF-4E4D-80CA-D1967419D41B}</Project>
+      <Name>Service</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
