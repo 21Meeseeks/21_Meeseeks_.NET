@@ -11,9 +11,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using Domain.Entity;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using Service;
 using WebMAP.Models;
 
 namespace WebMAP.Controllers
@@ -63,6 +65,8 @@ namespace WebMAP.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
+            IUserService us = new UserService();
+
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }
@@ -97,21 +101,20 @@ namespace WebMAP.Controllers
                     //   Response.Cookies["userName"].Expires = DateTime.Now.AddDays(1);
 
                     //localhost:18080/21meeseeks-web/rest/client?email=admin@admin.com
-
-
-
-                    HttpClient client = new HttpClient();
-                    client.BaseAddress = new Uri("http://localhost:18080/21meeseeks-web/");
-                    client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                    try
+                    ClientService cs = new ClientService();
+                     client c=  cs.Get(d => d.email.Equals(email));
+                    if(c==null)
                     {
-                        HttpResponseMessage response2 = client.GetAsync("rest/client?email=" + email).Result;
-                        //localhost:18080/21meeseeks-web/rest/client
-
-                        IEnumerable<Client> lc = response2.Content.ReadAsAsync<IEnumerable<Client>>().Result;
-                            Client c = lc.Where(cli => cli.email == email).First();
+                        AdminService aserv= new AdminService();
+                        admin a = aserv.Get(d => d.email.Equals(email));
+                        Session["role"] = "admin";
 
 
+                        Session["token"] = responseMessage;
+                        Session["username"] = a.email;
+                    }
+                    else
+                    {
                         Session["role"] = "client";
 
 
@@ -119,23 +122,6 @@ namespace WebMAP.Controllers
                         Session["username"] = c.email;
                         Session["logo"] = c.logo;
                         Session["name"] = c.clientName;
-                    }
-                    catch (Exception e)
-                    {
-                        HttpResponseMessage response2 = client.GetAsync("rest/client/admin?email=" + email).Result;
-                        //localhost:18080/21meeseeks-web/rest/client/admin?email=theadmin222@admin.com
-                        Admin a = response2.Content.ReadAsAsync<Admin>().Result;
-                        Session["role"] = "admin";
-                        Session["token"] = responseMessage;
-                        Session["username"] =a.email;
-                        Session["logo"] = null;
-                        Session["name"] = a.firstName;
-
-
-
-                        return RedirectToAction("Index", "Client", new { area = "" });
-
-
                     }
                     return RedirectToAction("Index", "Client", new { area = "" });
 

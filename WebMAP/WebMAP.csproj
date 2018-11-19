@@ -624,6 +624,14 @@
       <Project>{91a2770e-957a-40b1-acdc-0480c230551b}</Project>
       <Name>Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ServicePattern\ServicePattern.csproj">
+      <Project>{9df2e786-001f-4452-932d-fb3bd0046d60}</Project>
+      <Name>ServicePattern</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Service\Service.csproj">
+      <Project>{EDBA1AAD-A0FF-4E4D-80CA-D1967419D41B}</Project>
+      <Name>Service</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />

@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Web;
 using System.Web.Mvc;
+using Service;
 using WebMAP.Models;
 
 namespace WebMAP.Controllers
@@ -15,13 +16,16 @@ namespace WebMAP.Controllers
         // GET: Client/all
         public ActionResult Index()
         {
-            HttpClient client = new HttpClient();
+            /*HttpClient client = new HttpClient();
             client.BaseAddress = new Uri("http://localhost:18080/21meeseeks-web/");
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             HttpResponseMessage response = client.GetAsync("rest/client").Result;
             //localhost:18080/21meeseeks-web/rest/client
             ViewBag.result = response.Content.ReadAsAsync<IEnumerable<Client>>().Result;
+            */
+            ClientService cs = new ClientService();
 
+            ViewBag.result = cs.GetMany();
             return View();
         }
 
