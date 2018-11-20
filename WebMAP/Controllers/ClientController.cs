@@ -25,7 +25,7 @@ namespace WebMAP.Controllers
             */
             ClientService cs = new ClientService();
 
-            ViewBag.result = cs.GetMany();
+            ViewBag.result2 = cs.GetMany();
             return View();
         }
 

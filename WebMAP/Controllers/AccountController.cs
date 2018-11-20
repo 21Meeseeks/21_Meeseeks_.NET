@@ -65,8 +65,9 @@ namespace WebMAP.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
-            IUserService us = new UserService();
-
+            //IUserService us = new UserService();
+            ClientService CS = new ClientService();
+            ViewBag.message = CS.GetMany().Count();
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }
