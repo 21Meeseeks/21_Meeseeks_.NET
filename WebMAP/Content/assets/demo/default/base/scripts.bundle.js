@@ -9449,7 +9449,9 @@ var mLayout = function() {
             the.showProgress();
 
             $.ajax({
-                url: 'https://keenthemes.com/metronic/themes/themes/metronic/dist/preview/inc/api/quick_search.php',
+            url: "Client/Search",
+                //url: '@Url.Action("Search","Client",new{query=the.query})',
+               // url: 'https://keenthemes.com/metronic/themes/themes/metronic/dist/preview/inc/api/quick_search.php',
                 data: {
                     query: the.query
                 },
@@ -9460,7 +9462,8 @@ var mLayout = function() {
                 },
                 error: function(res) {
                     the.hideProgress();
-                    the.showError('Connection error. Pleae try again later.');
+                    the
+                    .showError('Connection error. Pleae try again later.');
                 }
             });
         });

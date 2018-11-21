@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Web;
 using System.Web.Mvc;
+using Domain.Entity;
 using Service;
 using WebMAP.Models;
 
@@ -32,6 +33,17 @@ namespace WebMAP.Controllers
         // GET: Client/Details/5
         public ActionResult Details(int id)
         {
+            ClientService us = new  ClientService();
+            client c = us.GetById(id);
+            Client cl = new Client();
+            cl.idUser = id;
+            cl.logo = c.logo;
+            cl.phoneNumber = c.phoneNumber;
+            cl.address = c.address;
+            cl.email = c.email;
+            cl.clientName = c.clientName;
+            ViewBag.client = cl;
+
             return View();
         }
 
@@ -121,6 +133,55 @@ namespace WebMAP.Controllers
             return RedirectToAction("Index", "Client", new { area = "" });
 
         }
+
+
+        // GET: Client/ajax
+        public string Search(string query)
+        {
+            IEnumerable<client> StuList;
+            ClientService cs = new ClientService();
+            StuList = cs.GetMany(a => a.clientName.StartsWith(query));
+            var result = "<div class=\"m-list-search__results\">";
+            if (StuList.Count() == 0)
+            {
+                result = result +
+      "	<span class=\"m-list-search__result-message\">" +
+      "  No record found" +
+      " </ span >";
+
+            }
+            if(StuList.Count()!=0)
+            {
+                result = result + "  <span class=\"m-list-search__result-category m-list-search__result-category--first\">	Client </span>";
+
+
+                foreach (var item in StuList)
+                {
+                    result = result + "<a href=\"   "+ Url.Content("~/") + "Client/Details/"+item.idUser+" \" class=\"m-list-search__result-item\">	<span class=\"m-list-search__result-item-pic\">";
+
+
+                        if (item.logo==null)
+                    {
+                        result = result + "<img class=\"m--img-rounded\" src=\" "+ Url.Content("~/") + "Content/assets/app/media/img/users/user4.jpg\" />";
+                    }
+                        else
+                    {
+                        result = result + "<img class=\"m--img-rounded\" src=\" " + Url.Content("~/") + "Content/ProfilePictures/" + item.logo +"\")\" />";
+
+                    }
+                    result =result+       "</span>		<span class=\"m-list-search__result-item-text\">" + item.clientName + "</span></a>";
+                }
+     
+    }
+
+
+            result = result + "</div>";
+                return (result);
+            
+        }
+
+
+
 
 
 
