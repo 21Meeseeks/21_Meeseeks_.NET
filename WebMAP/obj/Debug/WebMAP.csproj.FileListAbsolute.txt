@@ -266,3 +266,12 @@ C:\Users\User\Documents\21_Meeseeks_NET\WebMAP\bin\MySql.Data.Entity.EF6.dll
 C:\Users\User\Documents\21_Meeseeks_NET\WebMAP\bin\MySql.Data.dll
 C:\Users\User\Documents\21_Meeseeks_NET\WebMAP\bin\ServicePattern.pdb
 C:\Users\User\Documents\21_Meeseeks_NET\WebMAP\bin\Service.pdb
+C:\Users\User\Documents\21_Meeseeks_NET\WebMAP\bin\Microsoft.AspNet.SignalR.Core.dll
+C:\Users\User\Documents\21_Meeseeks_NET\WebMAP\bin\Microsoft.AspNet.SignalR.SystemWeb.dll
+C:\Users\User\Documents\21_Meeseeks_NET\WebMAP\bin\Microsoft.AspNet.SignalR.Core.pdb
+C:\Users\User\Documents\21_Meeseeks_NET\WebMAP\bin\Microsoft.AspNet.SignalR.Core.xml
+C:\Users\User\Documents\21_Meeseeks_NET\WebMAP\bin\Microsoft.AspNet.SignalR.SystemWeb.pdb
+C:\Users\User\Documents\21_Meeseeks_NET\WebMAP\bin\Microsoft.AspNet.SignalR.SystemWeb.xml
+C:\Users\User\Documents\21_Meeseeks_NET\WebMAP\bin\fr\Microsoft.Owin.resources.dll
+C:\Users\User\Documents\21_Meeseeks_NET\WebMAP\bin\fr\Microsoft.Owin.Host.SystemWeb.resources.dll
+C:\Users\User\Documents\21_Meeseeks_NET\WebMAP\bin\fr\Microsoft.Owin.Security.resources.dll

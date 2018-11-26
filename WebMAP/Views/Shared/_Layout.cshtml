@@ -725,11 +725,14 @@ License: You must have a valid license purchased only from themeforest(the above
                                             </div>
                                         </div>
                                     </li>
-                                    <li id="m_quick_sidebar_toggle" class="m-nav__item">
-                                        <a href="#" class="m-nav__link m-dropdown__toggle">
-                                            <span class="m-nav__link-icon"><i class="flaticon-grid-menu"></i></span>
-                                        </a>
-                                    </li>
+                                    @if (Session["id"] != null)
+                                    {
+                                        <li class="m-nav__item">
+                                            <a href='@Url.Action("Chat", "Message")' class="m-nav__link">
+                                                <span class="m-nav__link-icon"><i class="flaticon-grid-menu"></i></span>
+                                            </a>
+                                        </li>
+                                    }
                                 </ul>
                             </div>
                         </div>
@@ -837,8 +840,7 @@ License: You must have a valid license purchased only from themeforest(the above
 
                 <!-- END: Subheader -->
                 <div class="m-content">
-
-                    @RenderBody();
+                    @RenderBody()
                 </div>
             </div>
         </div>
@@ -1386,6 +1388,9 @@ License: You must have a valid license purchased only from themeforest(the above
 
     <!--end::Page Scripts -->
     <!--end::Page Scripts -->
+
+    @Scripts.Render("~/bundles/jquery")
+    @RenderSection("scripts", required: false)
 </body>
 
 <!-- end::Body -->

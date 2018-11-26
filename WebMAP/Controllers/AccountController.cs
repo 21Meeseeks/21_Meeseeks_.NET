@@ -66,8 +66,6 @@ namespace WebMAP.Controllers
         public ActionResult Login(string returnUrl)
         {
             //IUserService us = new UserService();
-            ClientService CS = new ClientService();
-            ViewBag.message = CS.GetMany().Count();
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }
@@ -103,29 +101,26 @@ namespace WebMAP.Controllers
 
                     //localhost:18080/21meeseeks-web/rest/client?email=admin@admin.com
                     ClientService cs = new ClientService();
-                     client c=  cs.Get(d => d.email.Equals(email));
+                    client c=  cs.Get(d => d.email.Equals(email));
                     if(c==null)
                     {
                         AdminService aserv= new AdminService();
                         admin a = aserv.Get(d => d.email.Equals(email));
-                        Session["role"] = "admin";
-
-
+                        Session["role"] = "Admin";
+                        Session["id"] = a.idUser;
                         Session["token"] = responseMessage;
                         Session["username"] = a.email;
                     }
                     else
                     {
-                        Session["role"] = "client";
-
-
+                        Session["role"] = "Client";
+                        Session["id"] = c.idUser;
                         Session["token"] = responseMessage;
                         Session["username"] = c.email;
                         Session["logo"] = c.logo;
                         Session["name"] = c.clientName;
                     }
                     return RedirectToAction("Index", "Client", new { area = "" });
-
                 }
             }
             catch (WebException e)
