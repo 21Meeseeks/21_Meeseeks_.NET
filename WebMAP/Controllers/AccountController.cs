@@ -92,8 +92,6 @@ namespace WebMAP.Controllers
             {
                 using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
                 {
-                   
-
                     string responseMessage = response.ToString(); //response raw
 
                     Response.Cookies["token"].Value = responseMessage;
