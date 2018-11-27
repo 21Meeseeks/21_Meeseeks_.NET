@@ -99,10 +99,12 @@
             $(function ()
             {
                 var current;
+                var currentName;
                 // Reference the auto-generated proxy for the hub.
                 var chat = $.connection.chatHub;
+
                 // Create a function that the hub can call back to display messages.
-                chat.client.addChatMessage = function (sender, rec, message)
+                chat.client.addChatMessage = function (sender, rec, message, name)
                 {
                     if ("@mail" != "No User Found")
                     {
@@ -127,8 +129,8 @@
                                 $('.nav-link').removeClass('active');
                                 $('.tab-pane').removeClass('active');
                                 $('#Chatting').append('<li class="nav-item">'
-                                    + '<a class="nav-link active" data-toggle="tab" style="width: 100px; overflow:hidden;" href="#' + sender + '">'
-                                    
+                                    + '<a class="nav-link active" data-toggle="tab" style="width: 110px; overflow:hidden;" href="#' + sender + '">'
+                                    + name
                                     + '</a>' + '</li>');
                                 $('#Chatbox').append('<div class="tab-pane active" id="' + sender + '" role="tabpanel">'
                                     + '<div class="m-messenger m-messenger--message-arrow m-messenger--skin-light">'
@@ -144,14 +146,14 @@
                                     + '<i class="la la-envelope-o"></i>'
                                     + '</a>' + '</div>' + '</div>' + '</div>' + '</div>');
                             }
-                            var time = new Date();
+                            var time = moment().format('YYYY-MM-DD HH:mm');
                             document.getElementById('messages_' + sender).innerHTML += '<div class="m-messenger__wrapper">'
                                 + '<div class="m-messenger__message m-messenger__message--in">'
                                 + '<div class="m-messenger__message-body">'
                                 + '<div class="m-messenger__message-arrow"></div>'
                                 + '<div class="m-messenger__message-content">'
                                 + '<div class="m-messenger__message-text">'
-                                + message
+                                + '<strong>' + message + '</strong>'
                                 + '</div>'
                                 + '<div class="m-messenger__message-username">'
                                 + time
@@ -159,7 +161,7 @@
                         }
                         else
                         {
-                            var time = new Date();
+                            var time = moment().format('YYYY-MM-DD HH:mm');
                             // Add the message to the page.
                             document.getElementById('messages_' + rec).innerHTML += '<div class="m-messenger__wrapper">'
                                 + '<div class="m-messenger__message m-messenger__message--out">'
@@ -167,16 +169,12 @@
                                 + '<div class="m-messenger__message-arrow"></div>'
                                 + '<div class="m-messenger__message-content">'
                                 + '<div class="m-messenger__message-text">'
-                                + message
+                                + '<strong>' + message + '</strong>'
                                 + '</div>'
                                 + '<div class="m-messenger__message-username">'
                                 + time
                                 + '</div>' + '</div>' + '</div>' + '</div>' + '</div>';
                         }
-                        /*var elmnt = $('#messages_' + sender);
-                        var height = elmnt[0].scrollHeight;
-                        elmnt.scrollTop(height);
-                        $('#message_' + sender).val('').focus();*/
                         var elmnt = document.getElementById('messages_' + rec);
                         document.getElementById('message_' + rec).value = '';
                         document.getElementById('message_' + rec).focus();
@@ -192,6 +190,7 @@
                     if ("@mail" != "No User Found")
                     {
                         current = "@mail.email";
+                        currentName = "@mail.clientName";
                         chat.invoke('connect', current).done(function (data)
                         {
                             console.log("Connected As : " + data);
@@ -206,7 +205,21 @@
                     {
                         var receiver = $(this).data('receiver');
                         var input = document.getElementById('message_' + receiver).value;
-                        chat.server.sendChatMessage(current, receiver, input);
+                        chat.server.sendChatMessage(current, receiver, input, currentName);
+                    });
+
+                    
+                    $(document).on('click', '.m-messenger__form-input', function ()
+                    {
+                        var email = $(this).data('email');
+                        chat.invoke('getConversation', current, email).done(function (data)
+                        {
+                            console.log(data);
+
+                        }).fail(function (error)
+                        {
+                            console.log('Invocation of GetConversation failed. ' + error);
+                        });
                     });
 
                     $('.contactbutton').click(function ()
@@ -227,7 +240,7 @@
                                 $('.nav-link').removeClass('active');
                                 $('.tab-pane').removeClass('active');
                                 $('<li class="nav-item">'
-                                    + '<a class="nav-link active" data-toggle="tab" style="width: 100px; overflow:hidden;" href="#' + email + '">'
+                                    + '<a class="nav-link active" data-toggle="tab" style="width: 110px; overflow:hidden;" href="#' + email + '">'
                                     + name
                                     + '</a>' + '</li>').appendTo('#Chatting');
                                 $('<div class="tab-pane active" id="' + email + '" role="tabpanel">'
@@ -237,18 +250,20 @@
                                     + '<div class="m-messenger__seperator"></div>'
                                     + '<div class="m-messenger__form">'
                                     + '<div class="m-messenger__form-controls">'
-                                    + '<input type="text" id="message_' + email + '" placeholder="Type here..." class="m-messenger__form-input">'
+                                    + '<input type="text" id="message_' + email + '" data-email="' + email +'" placeholder="Type here..." class="m-messenger__form-input">'
                                     + '</div>'
                                     + '<div class="m-messenger__form-tools">'
                                     + '<a id="sendmessage_' + email + '" href="#" data-receiver="' + email + '" class="sendmessage m-messenger__form-attachment">'
                                     + '<i class="la la-envelope-o"></i>'
                                     + '</a>' + '</div>' + '</div>' + '</div>' + '</div>').appendTo('#Chatbox');
+
                             }
 
                         }).fail(function (error)
                         {
                             console.log('Invocation of Contact failed. Error: ' + error);
                         });
+
                     });
 
                     $('#refresh').click(function ()
