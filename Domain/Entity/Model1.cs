@@ -10,6 +10,7 @@ namespace Domain.Entity
         public Model1()
             : base("name=Model11")
         {
+            Database.SetInitializer<Model1>(null);
         }
 
         public virtual DbSet<admin> admins { get; set; }
@@ -292,9 +293,9 @@ namespace Domain.Entity
                 .Property(e => e.projectName)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<project>()
-                .Property(e => e.description)
-                .IsUnicode(false);
+            //modelBuilder.Entity<project>()
+            //    .Property(e => e.description)
+            //    .IsUnicode(false);
 
             modelBuilder.Entity<project>()
                 .Property(e => e.name)

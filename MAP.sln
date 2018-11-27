@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebMAP", "WebMAP\WebMAP.csproj", "{418BA5DE-1379-4AF7-9EA5-6FCD2D533103}"
 EndProject
@@ -12,6 +12,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service", "Service\Service.csproj", "{EDBA1AAD-A0FF-4E4D-80CA-D1967419D41B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServicePattern", "ServicePattern\ServicePattern.csproj", "{9DF2E786-001F-4452-932D-FB3BD0046D60}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{9553633D-96F8-4B32-AE96-F4878103D1C3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{9DF2E786-001F-4452-932D-FB3BD0046D60}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9DF2E786-001F-4452-932D-FB3BD0046D60}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9DF2E786-001F-4452-932D-FB3BD0046D60}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9553633D-96F8-4B32-AE96-F4878103D1C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9553633D-96F8-4B32-AE96-F4878103D1C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9553633D-96F8-4B32-AE96-F4878103D1C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9553633D-96F8-4B32-AE96-F4878103D1C3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

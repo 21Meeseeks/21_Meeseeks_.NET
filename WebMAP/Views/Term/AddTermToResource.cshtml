@@ -1,0 +1,181 @@
+﻿@model Domain.Entity.term
+
+@{
+    Dictionary<int, string> dic = new Dictionary<int, string>();
+    ViewBag.Title = "AddTermToResource";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    List<Domain.Entity.project> projetsList = ViewBag.Projects;
+    SelectList slProjects = new SelectList(ViewBag.Projects as List<Domain.Entity.project>, "idProject", "name");
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Resource: @Model.resource.firstName @Model.resource.lastName Salary:@Model.resource.salary</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.idProject)
+
+        @Html.HiddenFor(model => model.idResource)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.project, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <select id="project_idProject" name="project.idProject" class="form-control">
+                    @foreach (var item in projetsList)
+                    {
+                        <option data-enddate="@item.dateEnd.Value.ToString("yyyy-MM-dd")" value="1">@item.name</option>
+                    }
+                </select>
+                @*@Html.DropDownListFor(model => model.project.idProject, slProjects, new { htmlAttributes = new { @class = "form-control" } })*@
+                @Html.ValidationMessageFor(model => model.project, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.dateStart, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.dateStart, new { htmlAttributes = new { @class = "form-control calculateParams" } })
+                @Html.ValidationMessageFor(model => model.dateStart, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.numberofDaysTerm, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.numberofDaysTerm, new { htmlAttributes = new { @class = "form-control calculateParams" } })
+                @Html.ValidationMessageFor(model => model.numberofDaysTerm, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.dateEnd, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.dateEnd, new { htmlAttributes = new { @class = "form-control", @readOnly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.dateEnd, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div id="alertdate" class="alert alert-danger" role="alert" style="display:none;">
+            <strong>Oh snap!</strong> La date fin mandat dépasse la date de fin du projet.
+        </div>
+        <div class="form-group">
+            @Html.Label("Frais Mandat", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBox("FraisMandat", "", htmlAttributes: new { @class = "form-control", @readOnly = "readonly" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.description, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.description, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.description, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input id="btnsave" type="submit" value="Save" class="btn btn-default" />
+                <input id="btnmail" style="display:none;" type="button" value="Contacter resource" class="btn btn-warning" />
+            </div>
+
+        </div>
+        <div>
+
+        </div>
+    </div>
+}
+@section Scripts {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var lastStartDate ;
+            var lastNumberOfDays;
+            $("#btnmail").click(function () {
+                $("#btnmail").prop("disabled",true);
+                $.ajax({
+                    type: "Get",
+                    url: "/Term/SendMail",
+                    data: {
+                        mail: "@Model.resource.email"
+                    },
+                    contentType: "application/json; charset=utf-8",
+                    success: function (response) {
+                        $("#btnmail").hide();
+                        $("#btnmail").prop("disabled",false);
+                        swal('Email Sent!','','success');
+                    },
+                    failure: function (response) {
+                        alert(response.responseText);
+                    },
+                    error: function (response) {
+                        alert(response.responseText);
+                    }
+                });
+            });
+            $(".calculateParams").blur(function () {
+                //if ($("#dateStart").val() != lastStartDate && $("#numberofDaysTerm").val() != lastNumberOfDays) {
+                // calculer date end
+                lastStartDate = $("#dateStart").val();
+                lastNumberOfDays= $("#numberofDaysTerm").val();
+                var endProject = $("#project_idProject").find(':selected').attr('data-enddate');
+                $.ajax({
+                    type: "Get",
+                    url: "/Term/GetEndDate",
+                    data: {
+                        idUser : @Model.resource.idUser,
+                        dateStart: $("#dateStart").val(),
+                        numberofDaysTerm: $("#numberofDaysTerm").val()
+                    },
+                    contentType: "application/json; charset=utf-8",
+                    success: function (response) {
+                        $("#dateEnd").val(response);
+                        //si end date > date fin project
+                        if (new Date(response) > new Date(endProject) ) {
+                            $("#alertdate").show();
+                            $("#btnmail").show();
+                            $("#btnsave").prop("disabled",true);
+                        }
+                        else {
+                            $("#alertdate").hide();
+                            $("#btnsave").prop("disabled",false);
+                            $("#btnmail").hide();
+                        }
+                        // on affiche un alert
+                        // proposer l'envoie d'un mail
+                    },
+                    failure: function (response) {
+                        alert(response.responseText);
+                    },
+                    error: function (response) {
+                        alert(response.responseText);
+                    }
+                });
+                //}
+
+
+                // calculer frais
+                //if ( $("#numberofDaysTerm").val() != lastNumberOfDays) {
+                lastNumberOfDays= $("#numberofDaysTerm").val();
+                $.ajax({
+                    type: "Get",
+                    url: "/Term/GetFrais",
+                    data: {
+                        salary: @Model.resource.salary,
+                        numberofDaysTerm: $("#numberofDaysTerm").val()
+                    },
+                    contentType: "application/json; charset=utf-8",
+                    success: function (response) {
+                        $("#FraisMandat").val(response);
+                    },
+                    failure: function (response) {
+                        alert(response.responseText);
+                    },
+                    error: function (response) {
+                        alert(response.responseText);
+                    }
+                });
+                //}
+            });
+        });
+    </script>
+
+}

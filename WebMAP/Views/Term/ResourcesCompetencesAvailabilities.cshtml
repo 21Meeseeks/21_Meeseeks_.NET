@@ -1,0 +1,144 @@
+﻿@model IEnumerable<Domain.Entity.resource>
+
+@{
+    ViewBag.Title = "Resource List";
+    List<Domain.Entity.competence> competences = ViewBag.Competences;
+    SelectList listCompt = new SelectList(competences, "idCompetence", "Label");
+}
+
+
+<div class="row">
+    @using (Html.BeginForm("Index", "Resource", null, FormMethod.Post, new { @class = "m-form m-form--fit m-form--label-align-right m-form--group-seperator-dashed" ,@style="width:100%;", role = "form" }))
+            {
+        <hr />
+        <div class="form-group row">
+            @Html.Label("Competence", new { @class = "col-lg-2 col-form-label" })
+            <div class="col-lg-3">
+                @Html.DropDownList("idCompetence", listCompt, "-- Select Competence --", new { @class = "form-control", @required = "required" })
+            </div>
+            <div class="col-lg-3">
+                <input type="submit" value="Rechercher" class="btn btn-default" />
+            </div>
+        </div>
+
+        <div class="form-group m-form__group row">
+            <div class="col-lg-2">
+                <div class="checkbox">
+                    @Html.CheckBox("Available", false)
+                    @Html.Label("Available")
+                </div>
+            </div>
+            <div class="col-lg-2">
+                <div class="checkbox">
+                    @Html.CheckBox("Unavailable")
+                    @Html.Label("Unavailable")
+                </div>
+            </div>
+            <div class="col-lg-2">
+                <div class="checkbox">
+                    @Html.CheckBox("AvailableSoon")
+                    @Html.Label("AvailableSoon")
+                </div>
+            </div>
+            <div class="col-lg-2">
+                <div class="checkbox">
+                    @Html.CheckBox("UnavailableSoon") UnavailableSoon
+                    @*@Html.Label("UnavailableSoon")*@
+                </div>
+            </div>
+        </div>
+
+
+    }
+</div>
+<table class="table table-bordered table-condensed table-striped table-hover">
+    <tr>
+        <th>
+            Adresse
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.email)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.phoneNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.availability)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.contractType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.firstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.lastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.photo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.rate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.state)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.resume_idResume)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.seniority_idSeniority)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.email)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.phoneNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.availability)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.contractType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.firstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.lastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.photo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.rate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.state)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.resume_idResume)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.seniority_idSeniority)
+            </td>
+            <td>
+                @Html.ActionLink("Add Term", "AddTermToResource", new { id = item.idUser, firstname = item.firstName, lastname = item.lastName, salary = item.salary, mail = item.email }) |
+                @*@Html.ActionLink("Details", "Details", new { id=item.idUser }) |
+                    @Html.ActionLink("Delete", "Delete", new { id=item.idUser })*@
+            </td>
+        </tr>
+    }
+
+</table>

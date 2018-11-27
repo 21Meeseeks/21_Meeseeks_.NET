@@ -112,15 +112,14 @@ namespace WebMAP.Controllers
 
 
                     Session["token"] = responseMessage;
-<<<<<<< Updated upstream
+
                     return RedirectToAction("","Home");
-=======
+
                     Session["username"] =c.email;
                     Session["logo"] = c.logo;
                     Session["name"] = c.clientName;
 
                     return RedirectToAction("Settings", "Home", new { area = "" });
->>>>>>> Stashed changes
 
                 }
             }

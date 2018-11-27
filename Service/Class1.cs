@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Domain.Entity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +9,11 @@ namespace Service
 {
     public class Class1
     {
+        public static List<term> test()
+        {
+            Model1 ctx = new Model1();
+            return ctx.terms.ToList();
+
+        }
     }
 }

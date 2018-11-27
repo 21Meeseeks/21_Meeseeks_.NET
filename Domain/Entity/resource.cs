@@ -61,6 +61,8 @@ namespace Domain.Entity
 
         public double? rate { get; set; }
 
+        public double? salary{ get; set; }
+
         [Column(TypeName = "bit")]
         public bool state { get; set; }
 

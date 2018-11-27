@@ -59,11 +59,39 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entity\admin.cs" />
+    <Compile Include="Entity\certificate.cs" />
+    <Compile Include="Entity\client.cs" />
+    <Compile Include="Entity\clientcategory.cs" />
+    <Compile Include="Entity\clienttype.cs" />
+    <Compile Include="Entity\competence.cs" />
+    <Compile Include="Entity\conversation.cs" />
+    <Compile Include="Entity\conversation_user.cs" />
+    <Compile Include="Entity\dayoff.cs" />
+    <Compile Include="Entity\establishment.cs" />
+    <Compile Include="Entity\field.cs" />
+    <Compile Include="Entity\hibernate_sequences.cs" />
+    <Compile Include="Entity\holiday.cs" />
+    <Compile Include="Entity\leaverequest.cs" />
+    <Compile Include="Entity\leavetype.cs" />
+    <Compile Include="Entity\level.cs" />
+    <Compile Include="Entity\message.cs" />
+    <Compile Include="Entity\message_user.cs" />
+    <Compile Include="Entity\Model1.cs" />
+    <Compile Include="Entity\note.cs" />
+    <Compile Include="Entity\organigram.cs" />
+    <Compile Include="Entity\project.cs" />
+    <Compile Include="Entity\projectrequest.cs" />
+    <Compile Include="Entity\resource.cs" />
+    <Compile Include="Entity\resume.cs" />
+    <Compile Include="Entity\seniority.cs" />
+    <Compile Include="Entity\society.cs" />
+    <Compile Include="Entity\term.cs" />
+    <Compile Include="Entity\termarchive.cs" />
+    <Compile Include="Entity\user.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Entity\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />

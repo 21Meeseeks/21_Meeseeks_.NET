@@ -1,34 +1,16 @@
-<<<<<<< HEAD
-C:\Users\Flavio\documents\visual studio 2015\Projects\MAP\ServicePattern\bin\Debug\ServicePattern.dll.config
-C:\Users\Flavio\documents\visual studio 2015\Projects\MAP\ServicePattern\bin\Debug\ServicePattern.dll
-C:\Users\Flavio\documents\visual studio 2015\Projects\MAP\ServicePattern\bin\Debug\ServicePattern.pdb
-C:\Users\Flavio\documents\visual studio 2015\Projects\MAP\ServicePattern\bin\Debug\Data.dll
-C:\Users\Flavio\documents\visual studio 2015\Projects\MAP\ServicePattern\bin\Debug\EntityFramework.dll
-C:\Users\Flavio\documents\visual studio 2015\Projects\MAP\ServicePattern\bin\Debug\EntityFramework.SqlServer.dll
-C:\Users\Flavio\documents\visual studio 2015\Projects\MAP\ServicePattern\bin\Debug\MySql.Data.dll
-C:\Users\Flavio\documents\visual studio 2015\Projects\MAP\ServicePattern\bin\Debug\MySql.Data.Entity.EF6.dll
-C:\Users\Flavio\documents\visual studio 2015\Projects\MAP\ServicePattern\bin\Debug\Domain.dll
-C:\Users\Flavio\documents\visual studio 2015\Projects\MAP\ServicePattern\bin\Debug\Data.pdb
-C:\Users\Flavio\documents\visual studio 2015\Projects\MAP\ServicePattern\bin\Debug\EntityFramework.xml
-C:\Users\Flavio\documents\visual studio 2015\Projects\MAP\ServicePattern\bin\Debug\EntityFramework.SqlServer.xml
-C:\Users\Flavio\documents\visual studio 2015\Projects\MAP\ServicePattern\bin\Debug\Domain.pdb
-C:\Users\Flavio\documents\visual studio 2015\Projects\MAP\ServicePattern\obj\Debug\ServicePattern.csprojResolveAssemblyReference.cache
-C:\Users\Flavio\documents\visual studio 2015\Projects\MAP\ServicePattern\obj\Debug\ServicePattern.dll
-C:\Users\Flavio\documents\visual studio 2015\Projects\MAP\ServicePattern\obj\Debug\ServicePattern.pdb
-=======
-C:\Users\Flavio\Documents\Visual Studio 2015\Projects\MAP\ServicePattern\bin\Debug\ServicePattern.dll.config
-C:\Users\Flavio\Documents\Visual Studio 2015\Projects\MAP\ServicePattern\bin\Debug\ServicePattern.dll
-C:\Users\Flavio\Documents\Visual Studio 2015\Projects\MAP\ServicePattern\bin\Debug\ServicePattern.pdb
-C:\Users\Flavio\Documents\Visual Studio 2015\Projects\MAP\ServicePattern\bin\Debug\EntityFramework.dll
-C:\Users\Flavio\Documents\Visual Studio 2015\Projects\MAP\ServicePattern\bin\Debug\EntityFramework.SqlServer.dll
-C:\Users\Flavio\Documents\Visual Studio 2015\Projects\MAP\ServicePattern\bin\Debug\MySql.Data.dll
-C:\Users\Flavio\Documents\Visual Studio 2015\Projects\MAP\ServicePattern\bin\Debug\MySql.Data.Entity.EF6.dll
-C:\Users\Flavio\Documents\Visual Studio 2015\Projects\MAP\ServicePattern\bin\Debug\EntityFramework.xml
-C:\Users\Flavio\Documents\Visual Studio 2015\Projects\MAP\ServicePattern\bin\Debug\EntityFramework.SqlServer.xml
-C:\Users\Flavio\Documents\Visual Studio 2015\Projects\MAP\ServicePattern\obj\Debug\ServicePattern.csprojResolveAssemblyReference.cache
-C:\Users\Flavio\Documents\Visual Studio 2015\Projects\MAP\ServicePattern\obj\Debug\ServicePattern.dll
-C:\Users\Flavio\Documents\Visual Studio 2015\Projects\MAP\ServicePattern\obj\Debug\ServicePattern.pdb
-C:\Users\Prometheus\Documents\Visual Studio 2015\Projects\21_Meeseeks_.NET\ServicePattern\obj\Debug\ServicePattern.csprojResolveAssemblyReference.cache
-C:\Users\Prometheus\Documents\Visual Studio 2015\Projects\21_Meeseeks_.NET\ServicePattern\obj\Debug\ServicePattern.dll
-C:\Users\Prometheus\Documents\Visual Studio 2015\Projects\21_Meeseeks_.NET\ServicePattern\obj\Debug\ServicePattern.pdb
->>>>>>> master
+C:\Users\hp\Documents\21_Meeseeks_.NET\ServicePattern\bin\Debug\ServicePattern.dll.config
+C:\Users\hp\Documents\21_Meeseeks_.NET\ServicePattern\bin\Debug\ServicePattern.dll
+C:\Users\hp\Documents\21_Meeseeks_.NET\ServicePattern\bin\Debug\ServicePattern.pdb
+C:\Users\hp\Documents\21_Meeseeks_.NET\ServicePattern\bin\Debug\Data.dll
+C:\Users\hp\Documents\21_Meeseeks_.NET\ServicePattern\bin\Debug\Domain.dll
+C:\Users\hp\Documents\21_Meeseeks_.NET\ServicePattern\bin\Debug\EntityFramework.dll
+C:\Users\hp\Documents\21_Meeseeks_.NET\ServicePattern\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\hp\Documents\21_Meeseeks_.NET\ServicePattern\bin\Debug\MySql.Data.dll
+C:\Users\hp\Documents\21_Meeseeks_.NET\ServicePattern\bin\Debug\MySql.Data.Entity.EF6.dll
+C:\Users\hp\Documents\21_Meeseeks_.NET\ServicePattern\bin\Debug\Data.pdb
+C:\Users\hp\Documents\21_Meeseeks_.NET\ServicePattern\bin\Debug\Domain.pdb
+C:\Users\hp\Documents\21_Meeseeks_.NET\ServicePattern\bin\Debug\EntityFramework.xml
+C:\Users\hp\Documents\21_Meeseeks_.NET\ServicePattern\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\hp\Documents\21_Meeseeks_.NET\ServicePattern\obj\Debug\ServicePattern.csprojResolveAssemblyReference.cache
+C:\Users\hp\Documents\21_Meeseeks_.NET\ServicePattern\obj\Debug\ServicePattern.dll
+C:\Users\hp\Documents\21_Meeseeks_.NET\ServicePattern\obj\Debug\ServicePattern.pdb

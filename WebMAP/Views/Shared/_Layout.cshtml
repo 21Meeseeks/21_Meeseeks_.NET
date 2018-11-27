@@ -47,7 +47,7 @@ License: You must have a valid license purchased only from themeforest(the above
     <!--end::Global Theme Styles -->
     <!--begin::Page Vendors Styles -->
     <link href="~/Content/assets/vendors/custom/fullcalendar/fullcalendar.bundle.css" rel="stylesheet" type="text/css" />
-
+    <link href="~/Content/datatables.min.css" rel="stylesheet" />
     <!--RTL version:<link href="~/Content/assets/vendors/custom/fullcalendar/fullcalendar.bundle.rtl.css" rel="stylesheet" type="text/css" />-->
     <!--end::Page Vendors Styles -->
     <link rel="shortcut icon" href="~/Content/favicon.ico" />
@@ -762,6 +762,33 @@ License: You must have a valid license purchased only from themeforest(the above
                             </a>
                         </li>
                         <li class="m-menu__item  m-menu__item--submenu  @(CurrentURL.Contains("Client")  ? "m-menu__item--open m-menu__item--expanded" : "")" aria-haspopup="true" m-menu-submenu-toggle="hover">
+                            <a href="javascript:;" class="m-menu__link m-menu__toggle"><i class="m-menu__link-icon flaticon-suitcase"></i><span class="m-menu__link-text">Terms</span><i class="m-menu__ver-arrow la la-angle-right"></i></a>
+                            <div class="m-menu__submenu ">
+                                <span class="m-menu__arrow"></span>
+                                <ul class="m-menu__subnav">
+                                    <li class="m-menu__item   @(CurrentURL.Contains("Term/ResourcesCompetencesAvailabilities")  ? " m-menu__item--active" : "") " aria-haspopup="true">
+                                    <a href='@Url.Action("ResourcesCompetencesAvailabilities", "Term")' class="m-menu__link ">
+                                        <i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i>
+                                        <span class="m-menu__link-text">Resources</span>
+                                        </a>
+                                    </li>
+                                    <li class="m-menu__item   @(CurrentURL.Contains("Term/List")  ? " m-menu__item--active" : "") " aria-haspopup="true">
+                                        <a href='@Url.Action("List", "Term")' class="m-menu__link ">
+                                            <i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i>
+                                            <span class="m-menu__link-text">List Terms</span>
+                                        </a>
+                                    </li>
+                                    <li class="m-menu__item   @(CurrentURL.Contains("Term/Archive")  ? " m-menu__item--active" : "") " aria-haspopup="true">
+                                        <a href='@Url.Action("Archive", "Term")' class="m-menu__link ">
+                                            <i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i>
+                                            <span class="m-menu__link-text">Archived Terms</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+
+                        <li class="m-menu__item  m-menu__item--submenu  @(CurrentURL.Contains("Client")  ? "m-menu__item--open m-menu__item--expanded" : "")" aria-haspopup="true" m-menu-submenu-toggle="hover">
                             <a href="javascript:;" class="m-menu__link m-menu__toggle"><i class="m-menu__link-icon flaticon-suitcase"></i><span class="m-menu__link-text">Clients</span><i class="m-menu__ver-arrow la la-angle-right"></i></a>
                             <div class="m-menu__submenu ">
                                 <span class="m-menu__arrow"></span>
@@ -1383,9 +1410,10 @@ License: You must have a valid license purchased only from themeforest(the above
     <!--end::Page Vendors -->
     <!--begin::Page Scripts -->
     <script src="~/Content/assets/demo/default/custom/crud/datatables/basic/basic.js" type="text/javascript"></script>
-
+    <script src="~/Scripts/datatables.min.js"></script>
     <!--end::Page Scripts -->
     <!--end::Page Scripts -->
+    @RenderSection("scripts", required: false)
 </body>
 
 <!-- end::Body -->

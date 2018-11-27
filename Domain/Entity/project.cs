@@ -26,8 +26,8 @@ namespace Domain.Entity
         [Column(TypeName = "date")]
         public DateTime? dateStart { get; set; }
 
-        [StringLength(255)]
-        public string description { get; set; }
+        //[StringLength(255)]
+        //public string description { get; set; }
 
         [StringLength(255)]
         public string name { get; set; }

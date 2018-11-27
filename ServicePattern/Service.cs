@@ -10,7 +10,7 @@ namespace Service.Pattern
 {
     public abstract class Service<T> : IService<T> where T : class
     {
-         IUnitOfWork utk;
+        IUnitOfWork utk;
         protected Service(IUnitOfWork utk)
         {
             this.utk = utk;
@@ -45,6 +45,11 @@ namespace Service.Pattern
             return utk.GetRepositoryBase<T>().Get(condition);
         }
 
+        public IEnumerable<T> GetAll()
+        {
+            throw new NotImplementedException();
+        }
+
         public T GetById(string id)
         {
             return utk.GetRepositoryBase<T>().GetById(id);
@@ -55,9 +60,9 @@ namespace Service.Pattern
             return utk.GetRepositoryBase<T>().GetById(id);
         }
 
-        public IEnumerable<T> GetMany(Expression<Func<T, bool>> condition = null, Expression<Func<T, bool>> orderBy = null)
+        public IEnumerable<T> GetMany(Expression<Func<T, bool>> condition = null, Expression<Func<T, bool>> orderBy = null, string includeEntities = null)
         {
-            return utk.GetRepositoryBase<T>().GetMany(condition, orderBy);
+            return utk.GetRepositoryBase<T>().GetMany(condition, orderBy, includeEntities);
         }
 
         public void Update(T entity)

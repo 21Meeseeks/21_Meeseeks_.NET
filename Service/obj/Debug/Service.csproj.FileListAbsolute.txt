@@ -2,3 +2,23 @@ C:\Users\Flavio\Documents\Visual Studio 2015\Projects\MAP\Service\bin\Debug\Serv
 C:\Users\Flavio\Documents\Visual Studio 2015\Projects\MAP\Service\bin\Debug\Service.pdb
 C:\Users\Flavio\Documents\Visual Studio 2015\Projects\MAP\Service\obj\Debug\Service.dll
 C:\Users\Flavio\Documents\Visual Studio 2015\Projects\MAP\Service\obj\Debug\Service.pdb
+C:\Users\hp\Documents\21_Meeseeks_.NET\Service\bin\Debug\Service.dll
+C:\Users\hp\Documents\21_Meeseeks_.NET\Service\bin\Debug\Service.pdb
+C:\Users\hp\Documents\21_Meeseeks_.NET\Service\bin\Debug\Data.dll
+C:\Users\hp\Documents\21_Meeseeks_.NET\Service\bin\Debug\Domain.dll
+C:\Users\hp\Documents\21_Meeseeks_.NET\Service\bin\Debug\EntityFramework.dll
+C:\Users\hp\Documents\21_Meeseeks_.NET\Service\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\hp\Documents\21_Meeseeks_.NET\Service\bin\Debug\MySql.Data.dll
+C:\Users\hp\Documents\21_Meeseeks_.NET\Service\bin\Debug\MySql.Data.Entity.EF6.dll
+C:\Users\hp\Documents\21_Meeseeks_.NET\Service\bin\Debug\ServicePattern.dll
+C:\Users\hp\Documents\21_Meeseeks_.NET\Service\bin\Debug\Data.pdb
+C:\Users\hp\Documents\21_Meeseeks_.NET\Service\bin\Debug\Domain.pdb
+C:\Users\hp\Documents\21_Meeseeks_.NET\Service\bin\Debug\ServicePattern.pdb
+C:\Users\hp\Documents\21_Meeseeks_.NET\Service\bin\Debug\EntityFramework.xml
+C:\Users\hp\Documents\21_Meeseeks_.NET\Service\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\hp\Documents\21_Meeseeks_.NET\Service\obj\Debug\Service.csprojResolveAssemblyReference.cache
+C:\Users\hp\Documents\21_Meeseeks_.NET\Service\obj\Debug\Service.dll
+C:\Users\hp\Documents\21_Meeseeks_.NET\Service\obj\Debug\Service.pdb
+C:\Users\hp\Documents\21_Meeseeks_.NET\Service\bin\Debug\Service.dll.config
+C:\Users\hp\Documents\21_Meeseeks_.NET\Service\bin\Debug\Newtonsoft.Json.dll
+C:\Users\hp\Documents\21_Meeseeks_.NET\Service\bin\Debug\Newtonsoft.Json.xml

@@ -17,7 +17,9 @@ namespace Service.Pattern
         T GetById(string id);
         // GetMany() ou getMany(param)
         IEnumerable<T> GetMany(Expression<Func<T, bool>> condition = null,
-            Expression<Func<T, bool>> orderBy = null);
+            Expression<Func<T, bool>> orderBy = null, string includeEntities = null);
+
+        IEnumerable<T> GetAll();
         void Update(T entity);
         void Commit();
         //void Dispose(); hidden

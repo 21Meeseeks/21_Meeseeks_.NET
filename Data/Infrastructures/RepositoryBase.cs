@@ -1,4 +1,5 @@
 ﻿using Domain;
+using Domain.Entity;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -11,7 +12,7 @@ namespace Data.Infrastructures
 {
     public class RepositoryBase<T> : IRepositoryBase<T> where T : class
     {//new()
-   
+
         private Model1 dataContext;
         private readonly IDbSet<T> dbset; // générique
 
@@ -53,10 +54,10 @@ namespace Data.Infrastructures
         //    return dbset.ToList();
         //}
 
-        public virtual IEnumerable<T> GetMany(Expression<Func<T, bool>> where = null, 
-            Expression<Func<T, bool>> orderBy = null)
+        public virtual IEnumerable<T> GetMany(Expression<Func<T, bool>> where = null,
+            Expression<Func<T, bool>> orderBy = null, string includeEntities = null)
         {
-           
+
             IQueryable<T> Query = dbset;
             if (where != null)
             {
@@ -66,13 +67,17 @@ namespace Data.Infrastructures
             {
                 Query = Query.OrderBy(orderBy);
             }
+            if (includeEntities != null)
+            {
+                Query = Query.Include(includeEntities);
+            }
             return Query;
         }
         public T Get(Expression<Func<T, bool>> where)
         {
             return dbset.Where(where).FirstOrDefault<T>();
-        } 
-        
+        }
+
 
     }
 }

@@ -17,7 +17,7 @@ namespace Data.Infrastructures
         T GetById(string id);
         // GetMany() ou getMany(param)
         IEnumerable<T> GetMany(Expression<Func<T, bool>> condition = null,
-            Expression<Func<T, bool>> orderBy = null);
+            Expression<Func<T, bool>> orderBy = null, string includeEntities = null);
         void Update(T entity);
     }
 }
