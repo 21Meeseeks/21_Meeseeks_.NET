@@ -15,19 +15,31 @@ namespace WebMAP.Controllers
     public class TermController : Controller
     {
         // GET: test
-        public ActionResult ResourcesCompetencesAvailabilities(int idCompetence = 1, bool Available = true, bool Unavailable = false, bool AvailableSoon = false, bool UnavailableSoon = false)
+        public ActionResult ResourcesCompetencesAvailabilities(int idCompetence = -1, bool Available = false, bool Unavailable = false, bool AvailableSoon = false, bool UnavailableSoon = false)
         {
+          
+            if (idCompetence==-1 && !(Available || Unavailable || UnavailableSoon || AvailableSoon))
+            {
+                var comptences = ResourceTermService.FindCompetence();
+                ViewBag.Competences = comptences;
+                var listResource = new List<resource>();
+                return View(listResource);
+            }
+            else
+            {
+                var searchValue = new resource();
+                searchValue.levels = new List<level>();
+                searchValue.levels.Add(new level() { idCompetence = idCompetence });
 
-            var searchValue = new resource();
-            searchValue.levels = new List<level>();
-            searchValue.levels.Add(new level() { idCompetence = idCompetence });
+                searchValue.availability = string.Join(";", Available ? "Available" : "", Unavailable ? "Unavailable" : "", AvailableSoon ? "AvailableSoon" : "", UnavailableSoon ? "UnavailableSoon" : "");
+                ResourceTermService RC = new ResourceTermService();
+                var listResource = RC.GetMany(searchValue);
+                var comptences = ResourceTermService.FindCompetence();
+                ViewBag.Competences = comptences;
+                return View(listResource);
+            }
 
-            searchValue.availability = string.Join(";", Available ? "Available" : "", Unavailable ? "Unavailable" : "", AvailableSoon ? "AvailableSoon" : "", UnavailableSoon ? "UnavailableSoon" : "");
-            ResourceTermService RC = new ResourceTermService();
-            var listResource = RC.GetMany(searchValue);
-            var comptences = ResourceTermService.FindCompetence();
-            ViewBag.Competences = comptences;
-            return View(listResource);
+           
         }
         public ActionResult List()
         {
@@ -90,7 +102,7 @@ namespace WebMAP.Controllers
             //    dateStart = model.dateStart,
             //    numberofDaysTerm = model.numberofDaysTerm
             //};
-            ApiFactory.AddTerm(model.project.idProject, model.idResource, model.dateStart.Value, model.dateEnd.Value, model.numberofDaysTerm);
+            ApiFactory.AddTerm(model.project.idProject, model.idResource, model.dateStart.Value, model.dateEnd.Value, model.numberofDaysTerm,model.description);
             return RedirectToAction("List");
         }
 

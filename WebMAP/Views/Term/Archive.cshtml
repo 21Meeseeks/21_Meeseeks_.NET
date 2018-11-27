@@ -10,51 +10,59 @@
 
    
     
-    <table class="table table-striped- table-bordered table-hover table-checkable" id="m_table_1">
-       
+    <table class="table table-striped- table-bordered table-hover dataTable no-footer dtr-inline" id="archive">
+        <thead>
             <tr>
                 <th>
 
                     @Html.DisplayNameFor(model => model.term.resource.firstName)
-                    </th>
+                </th>
                 <th>
                     @Html.DisplayNameFor(model => model.term.resource.lastName)
-                    </th>
+                </th>
                 <th>
                     @Html.DisplayNameFor(model => model.term.description)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.term.numberofDaysTerm)
-                    </th>
+                </th>
                 <th>
                     @Html.DisplayNameFor(model => model.term.project.name)
 
                 </th>
-                
+
             </tr>
-        
-            
+</thead>
+<tbody>
             @foreach (var item in Model)
             {
                 <tr>
-                    
-                        <td>
+
+                    <td>
                         @Html.DisplayFor(modelItem => item.term.resource.firstName)
-                            </td>
+                    </td>
                     <td>
 
                         @Html.DisplayFor(modelItem => item.term.resource.lastName)
-                        </td>
+                    </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.term.description)
-                        </td>
+                    </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.term.numberofDaysTerm)
-                        </td>
+                    </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.term.project.name)
                     </td>
 
                 </tr>
             }
-        </table>
+            </tbody>
+</table>
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#archive').DataTable();
+        });
+    </script>
+}

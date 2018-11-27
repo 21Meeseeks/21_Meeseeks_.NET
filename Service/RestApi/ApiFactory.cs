@@ -35,9 +35,9 @@ namespace Service.RestApi
             return result;
         }
 
-        public static void AddTerm(int idProject, int idRessource, DateTime start, DateTime end, int numberofDaysTerm)
+        public static void AddTerm(int idProject, int idRessource, DateTime start, DateTime end, int numberofDaysTerm,string description)
         {
-            var requestObject = new { pkTerm = new { idProject = idProject, idResource = idRessource }, dateStart = start, dateEnd = end, numberofDaysTerm = numberofDaysTerm };
+            var requestObject = new { pkTerm = new { idProject = idProject, idResource = idRessource }, dateStart = start, dateEnd = end, numberofDaysTerm = numberofDaysTerm , description = description };
 
             PostRequest(new Uri(Properties.Settings.Default.AddTerm), requestObject);
         }
