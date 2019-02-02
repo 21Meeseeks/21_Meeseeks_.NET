@@ -11,3 +11,5 @@ C:\Users\Flavio\documents\visual studio 2015\Projects\MAP\Data\bin\Debug\EntityF
 C:\Users\Flavio\documents\visual studio 2015\Projects\MAP\Data\obj\Debug\Data.csprojResolveAssemblyReference.cache
 C:\Users\Flavio\documents\visual studio 2015\Projects\MAP\Data\obj\Debug\Data.dll
 C:\Users\Flavio\documents\visual studio 2015\Projects\MAP\Data\obj\Debug\Data.pdb
+C:\Users\Flavio\documents\visual studio 2015\Projects\MAP\Data\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Flavio\documents\visual studio 2015\Projects\MAP\Data\bin\Debug\Newtonsoft.Json.xml

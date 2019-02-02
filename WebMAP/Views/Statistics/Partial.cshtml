@@ -1,0 +1,15 @@
+﻿@using (Ajax.BeginForm("AddressTypePartial", new AjaxOptions { HttpMethod = "Get", UpdateTargetId = "chart-donut", InsertionMode = InsertionMode.Replace }))
+            {
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        <hr />
+        <h4>Select an address type to add</h4>
+      
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Select" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}

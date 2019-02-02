@@ -1,0 +1,155 @@
+﻿
+@{
+    ViewBag.Title = "Project/Term Map";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryunobtrusive") @*For unobtrusive-ajax*@
+    @Scripts.Render("~/bundles/jqueryval") @*For validate and validate-unobtrusive*@
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
+}
+<div class="row">
+    <div class="m-portlet m-portlet--tab">
+        <div class="m-portlet__head">
+            <div class="m-portlet__head-caption">
+                <div class="m-portlet__head-title">
+                    <span class="m-portlet__head-icon m--hide">
+                        <i class="la la-gear"></i>
+                    </span>
+                    <h3 class="m-portlet__head-text">
+                        Projects/Terms Map
+                    </h3>
+                </div>
+            </div>
+          </div>
+        <div class="m-portlet__body">
+            <div id="myMap" style="position:relative;width:900px;height:600px;"></div>
+        </div>
+        </div>
+    </div>
+<script type="text/javascript">
+    /* var map, clusterLayer;
+     function GetMap() {
+         map = new Microsoft.Maps.Map('#myMap', {});
+         //Load the Clustering module.
+         Microsoft.Maps.loadModule("Microsoft.Maps.Clustering", function () {
+             //Generate 1,000 random pushpins in the map view.
+             var pins = Microsoft.Maps.TestDataGenerator.getPushpins(1000, map.getBounds());
+             //Create a ClusterLayer and add it to the map.
+             clusterLayer = new Microsoft.Maps.ClusterLayer(pins);
+             map.layers.insert(clusterLayer);
+         });
+     }*/
+    var mapData = [
+    @foreach (var x in ViewBag.ListProject) {
+
+    <text>{ "Title": "</text> @x.project.name<text>", "Description":"</text> @x.project.description<text>", "End":"</text> @x.project.dateEnd<text>","Latitude":</text> @x.lat<text>, "Longitude": </text>@x.lon<text>},</text>
+    }
+    ];
+    var map, infobox, clusterLayer;
+
+    function GetMap() {
+        map = new Microsoft.Maps.Map('#myMap',{
+
+            zoom: 3
+        });
+
+        //Add an infobox to the map.
+        infobox = new Microsoft.Maps.Infobox(map.getCenter(), { visible: false });
+        infobox.setMap(map);
+
+        //Hide infobox when user clicks or moves the map.
+        Microsoft.Maps.Events.addHandler(map, 'click', hideInfobox);
+        Microsoft.Maps.Events.addHandler(map, 'viewchangestart', hideInfobox);
+        //Register the spaider cluster manager module.
+        Microsoft.Maps.registerModule('SpiderClusterManager', '../Scripts/SpiderClusterManager.js');
+
+        Microsoft.Maps.loadModule(['SpiderClusterManager'], function () {
+            var pins = [];
+
+            for(var i = 0;i < mapData.length;i++){
+                var pin = new Microsoft.Maps.Pushpin(new Microsoft.Maps.Location(mapData[i].Latitude, mapData[i].Longitude));
+
+                //Store the original data object in the pushpins metadata so that you can access other properties like Name.
+                pin.metadata = mapData[i];
+
+                pins.push(pin);
+            }
+
+            //Create a ClusterLayer with options and add it to the map.
+            //clusterLayer = new Microsoft.Maps.ClusterLayer(pins);
+
+            //Add a click event to the cluster layer to open an infobox.
+            //Microsoft.Maps.Events.addHandler(clusterLayer, 'click', showInfobox);
+
+            //map.layers.insert(clusterLayer);
+            spiderManager = new SpiderClusterManager(map, pins, {
+                pinSelected: function (pin, cluster , pins) {
+                    if (cluster) {
+                        showInfobox(cluster.getLocation(), pin.metadata);
+                    } else {
+                        showInfobox(pin.getLocation(), pin.metadata);
+                    }
+                },
+                pinUnselected: function(){
+                    hideInfobox();
+                },
+                gridSize: 80
+            });
+
+        });
+    }
+
+    function customizeClusteredPin(cluster) {
+        //Add click event to clustered pushpin
+        Microsoft.Maps.Events.addHandler(cluster, 'click', clusterClicked);
+    }
+
+    function showInfobox(location, metadata,e) {
+
+        infobox.setOptions({
+            location: location,
+            title: 'The Project : ' + metadata.Title + '',
+            description: 'Description : '+metadata.Description + '\n , Will End : ' + metadata.End,
+            visible: true
+        });
+    }
+    /*
+    function showInfobox(e) {
+        var pin = e.target;
+
+        //Check to see if the pushpin is a cluster.
+        if (pin.containedPushpins) {
+            //Cluster clicked, zoom the map in.
+            var locs = [];
+            for (var i = 0, len = e.target.containedPushpins.length; i < len; i++) {
+                //Get the location of each pushpin.
+                locs.push(e.target.containedPushpins[i].getLocation());
+            }
+
+            //Create a bounding box for the pushpins.
+            var bounds = Microsoft.Maps.LocationRect.fromLocations(locs);
+
+            //Zoom into the bounding box of the cluster.
+            //Add a padding to compensate for the pixel area of the pushpins.
+            map.setView({ bounds: bounds, padding: 100 });
+        } else {
+            //Pushpin clicked, show infobox.
+            infobox.setOptions({
+                location: pin.getLocation(),
+                title: pin.metadata.Title,
+                description: pin.metadata.Description,
+                visible: true
+            });
+        }
+    }*/
+    function hideInfobox() {
+        infobox.setOptions({ visible: false });
+    }
+</script>
+<script type='text/javascript' src='https://www.bing.com/api/maps/mapcontrol?callback=GetMap&key=AnI6TWFIEdpN9NiIdNbaXxJ6hJB4Cj7WOwSiNalwFixnXDuJcWUsgREnwjXpwaWO' async defer></script>
+

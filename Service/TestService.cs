@@ -24,7 +24,7 @@ namespace Service
         {
             var x = "HELLO";
             Console.WriteLine(x);
-            return GetMany(e=>e.email.Equals("aaaaa")).Count();
+            return GetMany().Count();
         }
 
 

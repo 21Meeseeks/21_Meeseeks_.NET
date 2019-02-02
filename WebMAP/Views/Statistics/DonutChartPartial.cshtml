@@ -1,0 +1,138 @@
+﻿<!--<button id="refresh" value="click me">click me</button>
+<div id="donut_example" style="height:500px;"></div>
+<script>
+    new Morris.Donut({
+        element: 'donut_example',
+        data: [
+          { label: "Employee", value: @ViewBag.countemployee},
+          { label: "Freelancer", value: @ViewBag.countfreelancer }
+        ]
+    });
+</script>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $("#refresh").click(function () {
+
+            $("#chart-donut").load('@(Url.Action("AddressTypePartial", "Statistics"))');
+        });
+    });
+</script>  -->
+<!-- Styles -->
+@using Service;
+<!-- Resources -->
+<script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
+<script src="https://www.amcharts.com/lib/3/pie.js"></script>
+<script src="https://www.amcharts.com/lib/3/plugins/animate/animate.min.js"></script>
+<script src="https://www.amcharts.com/lib/3/plugins/export/export.min.js"></script>
+<link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
+<script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
+
+<style>
+    #chartdiv {
+        width: 100%;
+        height: 500px;
+    }
+</style>
+@section Scripts {
+
+      
+    }
+<!-- Chart code -->
+<script>
+    /**
+     * Define data for each year
+     */
+
+    /**
+     * Define data for each year
+     */
+    
+    var chartData = {
+        @foreach(var item in ViewBag.year)
+    {
+           <text>"</text>@item.Key<text>": [</text>
+           foreach (var item2 in item.Value) { 
+                        <text>{ "sector":"</text> @item2.sector <text>", "size":</text> @item2.size <text>},</text>
+                                    }
+               <text> ],</text>
+       }
+    };
+
+    /**
+     * Create the chart
+     */
+    var currentYear = 2017;
+    var chart = AmCharts.makeChart( "chartdiv", {
+        "type": "pie",
+        "theme": "light",
+        "dataProvider": [],
+        "valueField": "size",
+        "titleField": "sector",
+        "startDuration": 0,
+        "innerRadius": 80,
+        "pullOutRadius": 20,
+        "marginTop": 30,
+        "titles": [{
+            "text": "South African Economy"
+        }],
+        "allLabels": [{
+            "y": "54%",
+            "align": "center",
+            "size": 25,
+            "bold": true,
+            "text": "1995",
+            "color": "#555"
+        }, {
+            "y": "49%",
+            "align": "center",
+            "size": 15,
+            "text": "Year",
+            "color": "#555"
+        }],
+        "listeners": [ {
+            "event": "init",
+            "method": function( e ) {
+                var chart = e.chart;
+
+                function getCurrentData() {
+                    var data = chartData[currentYear];
+                    currentYear++;
+                    if (currentYear > 2018)
+                        currentYear = 2017;
+                    return data;
+                }
+
+                function loop() {
+                    chart.allLabels[0].text = currentYear;
+                    var data = getCurrentData();
+                    chart.animateData( data, {
+                        duration: 1000,
+                        complete: function() {
+                            setTimeout( loop, 3000 );
+                        }
+                    } );
+                }
+
+                loop();
+            }
+        } ],
+        "export": {
+            "enabled": true
+        }
+    } );
+
+</script>
+
+<!-- HTML -->
+<div id="chartdiv"></div>	
+<!-- Styles -->
+<style>
+    #chartdiv {
+        width: 100%;
+        height: 500px;
+    }
+</style>
+
+

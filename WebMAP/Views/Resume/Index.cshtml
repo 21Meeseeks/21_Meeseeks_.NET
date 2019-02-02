@@ -1,0 +1,73 @@
+﻿@model IEnumerable<WebMAP.Models.ResumeVM>
+
+@{
+    
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="m-portlet m-portlet--mobile">
+
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table m-table m-table--head-bg-brand" id="m_table">
+        <thead>
+            <tr>
+                <th>Description</th>
+                <th>Etablissement</th>
+                <th>Society</th>
+                <th>Certificate</th>
+                <th>Competences</th>
+                <th>Actions</th>
+
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var item in ViewBag.result)
+            {
+                <tr>
+                    <td>
+                        @item.description
+                    </td>
+                   @foreach (var i in item.etablissement)
+                   {
+                    <td>
+                        @i.nameEstablishment
+                    </td>
+                   }
+                    
+                    <td>
+                        @foreach (var i in item.society)
+                        {
+                        @i.name
+                        }
+                    </td>
+                    
+                   
+                    <td>
+                         @foreach (var i in item.certificates)
+                         {
+                        @i.descriptionCertificate
+                         }
+                    </td>
+                    
+                    
+                        <td>
+                            @foreach (var i in item.competence)
+                            {
+                            @i.Label
+                            }
+                        </td>
+                    
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.idResume }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.idResume }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.idResume })
+                    </td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+</div>

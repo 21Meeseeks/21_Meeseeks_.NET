@@ -1,0 +1,96 @@
+﻿@model IEnumerable<WebMAP.Models.ResourceVM>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+    
+        <div class="m-portlet">
+            <div class="m-portlet__head">
+                <div class="m-portlet__head-caption">
+                    <div class="m-portlet__head-title">
+                        <h3 class="m-portlet__head-text">
+                            Resources List
+                        </h3>
+                    </div>
+                </div>
+                
+            </div>
+            @using (Html.BeginForm())
+            {
+                <table>
+                    <tr>
+                        <td>
+
+                            <div>
+                                Please type the name of the resource:  @Html.TextBox("searchString")
+                                <input type="submit" value="Search" id="submit" />
+
+                            </div>
+
+                        </td>
+                    </tr>
+
+                </table>
+
+            }
+
+            <button href=@Url.Action("Edit", "Resource") type="button" class="btn m-btn m-btn--gradient-from-success m-btn--gradient-to-accent">Create New</button>        
+            <br />    
+            <table class="table m-table m-table--head-bg-brand" id="m_table">
+                    <thead>
+                        <tr>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                             <th>Address</th>
+                            <th>Email</th>
+                            <th>Phone Number</th>
+                            <th>ContractType</th>
+                           <th>Resume</th>
+                            <th>DayOff</th>
+                            <th>Add Term</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+            {
+                            <tr>
+                                <td>
+                                    @item.firstName
+                                </td>
+                                <td>
+                                    @item.lastName
+                                </td>
+                                <td>
+                                    @item.address
+                                </td>
+                                <td>
+                                    @item.email
+                                </td>
+                               
+                                <td>
+                                    @item.phoneNumber
+                                </td>
+                                <td>
+                                    @item.contractType
+                                </td>
+                                
+                               
+                                <td>
+                                    @(item.resume?.idResume)
+                                </td>
+                                 <td>
+                                    <a href="@Url.Action("DayOffCalendar","DayOff",new { id = item.idUser})"><i class="fa fa-calendar"></i></a>
+                                </td>
+                               
+                                <td>
+                                    <a href="@Url.Action("AddTermToResource","Term",new { id = item.idUser})"><i class="fa fa-buysellads"></i></a>
+                                </td>
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+    </div>

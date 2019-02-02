@@ -1,0 +1,185 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    ViewBag.Title1 = "Project";
+    ViewBag.Title2 = "List";
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+  
+
+
+
+    <div class="col-xl-6">
+        @foreach (var item in ViewBag.projects2)
+        {
+
+
+        <!--begin::Portlet-->
+            <div class="m-portlet m-portlet--tabs">
+                <div class="m-portlet__head">
+                    <div class="m-portlet__head-caption">
+                        <div class="m-portlet__head-title">
+                            <h3 class="m-portlet__head-text">
+                               @item.programName
+                            </h3>
+                        </div>
+                    </div>
+                    <div class="m-portlet__head-tools">
+                        <ul class="nav nav-tabs m-tabs m-tabs-line   m-tabs-line--right m-tabs-line-danger" role="tablist">
+                            <li class="nav-item m-tabs__item">
+                                <a class="nav-link m-tabs__link active" data-toggle="tab" href="#m_portlet_tab_1_1" role="tab">
+                                    Details
+                                </a>
+                            </li>
+                            <li class="nav-item m-tabs__item">
+                                <a class="nav-link m-tabs__link" data-toggle="tab" href="#m_portlet_tab_1_2" role="tab">
+                                    Client
+                                </a>
+                            </li>
+                            <li class="nav-item m-tabs__item">
+                                <a class="nav-link m-tabs__link" data-toggle="tab" href="#m_portlet_tab_1_3" role="tab">
+                                   Organigram
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="m-portlet__body">
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="m_portlet_tab_1_1">
+                            @item.project.description    <br />
+                            <a href="@Url.Action("GeneratePDF","Project",new { id = item.idOrganigram })">
+
+                                Download Report
+
+                            </a>
+                         </div>
+                        
+                        <div class="tab-pane" id="m_portlet_tab_1_2">
+
+
+                            <div class="m-card-user m-card-user--skin-dark">
+                                <div class="m-card-user__pic">
+
+                                    @if (@item.project.client.logo != null)
+                                    {
+                                        <img src="@Url.Content("~/Content/ProfilePictures/"+@item.project.client.logo)" class="m--img-rounded m--marginless" alt="" />
+
+                                    }
+                                    else
+                                    {
+                                        <img src="~/Content/assets/app/media/img/users/user4.jpg" class="m--img-rounded m--marginless" alt="" />
+
+                                    }
+
+                                    <!--
+            <span class="m-type m-type--lg m--bg-danger"><span class="m--font-light">S<span><span>
+            -->
+                                </div>
+                                <div class="m-card-user__details">
+                                    <span  style="color:black" class="m-card-user__name m--font-weight-500">@item.project.client.clientName</span>
+                                    <a style="color:black" href="" class="m-card-user__email m--font-weight-300 m-link">@item.project.client.email</a>
+                                </div>
+                            </div>
+
+
+
+
+
+
+
+  </div>
+                        <div class="tab-pane" id="m_portlet_tab_1_3">
+                    
+                        
+                            <div id="m_tree_1" class="tree-demo">
+                                <ul>
+                                    <li>
+                                       Project Collaborators
+                                        <ul>
+ 
+                                            <li data-jstree='{ "opened" : false }'>
+                                                @item.project.client.clientName 
+                                                <ul>
+                                                    <li data-jstree='{ "icon" : "fa fa-briefcase m--font-success " }'>
+                                                       Project Manager
+                                                        <ul>
+                                                            <li data-jstree='{ "type" : "file" }'>@item.projectManagerName</li>
+
+                                                        </ul>
+                                                    </li>
+                                                    <li data-jstree='{ "icon" : "fa fa-code-branch m--font-success " }'>
+                                                        Assignment Manager
+                                                        <ul>
+                                                            <li data-jstree='{ "type" : "file" }'>@item.assignmentManager</li>
+
+                                                        </ul>
+                                                    </li>
+                                                    <li data-jstree='{ "icon" : " fa fa-dollar-sign m--font-success " }'>
+                                                        Financial Manager
+                                                        <ul>
+                                                            <li data-jstree='{ "type" : "file" }'>@item.financialManager</li>
+
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li data-jstree='{ "opened" : false }'>
+                                                Levio
+                                                <ul>
+                                                    <li data-jstree='{ "disabled" : true }'>
+                                                       No Assigned Resources.
+                                             
+                                                    </li>
+                                                  
+                                                </ul>
+                                            </li>
+                                            <li data-jstree='{ "opened" : false }'>
+                                                Freelancers
+                                                <ul>
+                                                    <li data-jstree='{ "disabled" : true }'>
+                                                        No Assigned Freelancers.
+
+                                                    </li>
+
+                                                </ul>
+                                            </li>
+
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        
+                                            </ul>
+                                    </li>
+                                        <li data-jstree='{ "type" : "file" }'>
+                                            <a href="@Url.Action("GeneratePDF","Project",new { id = item.idOrganigram })">
+                                                
+                                               Download Report
+
+                                            </a>
+
+</li>
+                                </ul>
+                            </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+
+        <!--end::Portlet-->
+        }
+    </div>
+
+
+
+
+
+
+</div>
+
+

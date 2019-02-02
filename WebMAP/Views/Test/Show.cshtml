@@ -1,10 +1,15 @@
-﻿
-@{
-    ViewBag.Title = "Show";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+﻿@using Service;
+
+@foreach (KeyValuePair<int, List<ProjectStatService.Sector>> x in ViewBag.year)
+{
+    <tr>
+        <td>@x.Key</td>
+   </tr>
+
+    foreach (ProjectStatService.Sector y in x.Value)
+    {
+        @y.sector
+        @y.size    
+    }
 }
-
-@ViewBag.NumberOfResource
-
-@ViewBag.isChanged
 <h2>Show</h2>

@@ -1,0 +1,105 @@
+﻿<div class="m-portlet">
+    <div class="m-portlet__head">
+        <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+                <span class="m-portlet__head-icon">
+                    @if (ViewBag.result.archived)
+                    {
+                        <a href="@Url.Action("IndexArchived", "Request")">
+                            <span>
+                                <i class="fa fa-arrow-left"></i>
+                            </span>
+                        </a>
+                    }
+                    else
+                    {
+                        <a href="@Url.Action("Index", "Request")">
+                            <span>
+                                <i class="fa fa-arrow-left"></i>
+                            </span>
+                        </a>
+                    }
+                </span>
+                <span class="m-portlet__head-icon">
+                    <i class="flaticon-multimedia"></i>
+                </span>
+                <h3 class="m-portlet__head-text">
+                    @ViewBag.result.nameProject
+                    <small>Sent: @ViewBag.result.depositDate</small>
+                </h3>
+            </div>
+        </div>
+        <div class="m-portlet__head-tools">
+            <ul class="m-portlet__nav">
+                @if (ViewBag.result.archived)
+                {
+                    <li class="m-portlet__nav-item">
+                        <a href="@Url.Action("Unarchive", "Request", new {ID = @ViewBag.result.idRequest})">
+                            <button class="btn btn-warning" type="button">Unarchive</button>
+                        </a>
+                    </li>
+                }
+                else
+                {
+                    <li class="m-portlet__nav-item">
+                        <a href="@Url.Action("Update", "Request", new {ID = @ViewBag.result.idRequest})">
+                            <button class="btn btn-primary" type="button">Update</button>
+                        </a>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+    <div class="m-portlet__body">
+        @if (ViewBag.result.client != null)
+        {
+            <h5 class="control-label col-md-5">Client</h5>
+            <p class="control-label col-md-10">@ViewBag.result.client.clientName</p>
+        }
+        <h5 class="control-label col-md-5">Presented By</h5>
+        <p class="control-label col-md-10">@ViewBag.result.presentedBy</p>
+        <h5 class="control-label col-md-5">Project's Start Date</h5>
+        <p class="control-label col-md-10">@ViewBag.dateStartProject</p>
+        <h5 class="control-label col-md-5">Project's End Date</h5>
+        <p class="control-label col-md-10">@ViewBag.dateEndProject</p>
+        <h5 class="control-label col-md-5">Project's Description</h5>
+        <p style="padding: 20px; margin: 10px 0 30px 0; border: 4px solid #efefef" id="m_blockui_1_content">
+            @ViewBag.result.descriptionProject
+        </p>
+        <h5 class="control-label col-md-5">Number Of Resources Needed (Estimated)</h5>
+        <p class="control-label col-md-10">@ViewBag.result.resourcesNumber</p>
+        <h5 class="control-label col-md-5">Competences Needed</h5>
+        @foreach (var c in ViewBag.result.competences)
+        {
+            <p class="control-label col-md-10">@c.label</p>
+        }
+        <h5 class="control-label col-md-5">Additional Comments</h5>
+        <p style="padding: 20px; margin: 10px 0 30px 0; border: 4px solid #efefef" id="m_blockui_1_content">
+            @ViewBag.result.comments
+        </p>
+        @if (@ViewBag.result.reviewDate != null)
+        {
+            <h5 class="control-label col-md-5">Last Reviewed</h5>
+            <p class="control-label col-md-10">
+                @ViewBag.result.reviewDate
+            </p>
+        }
+        <h5 class="control-label col-md-5">Request Status</h5>
+        <p class="control-label col-md-10">
+            <span class="m-badge m-badge--info m-badge--wide">@ViewBag.result.requestStatus</span>
+        </p>
+    </div>
+    @if (!ViewBag.result.archived && Session["role"] == "Admin")
+    {
+        <div class="m-portlet__foot">
+            <div class="row align-items-center">
+                <div class="col-lg-6 m--valign-middle">
+                </div>
+                <div class="col-lg-6 m--align-right">
+                    <button type="submit" class="btn btn-brand">Submit</button>
+                    <span class="m--margin-left-10"><a href="#" class="m-link m--font-bold">Cancel</a></span>
+                </div>
+            </div>
+        </div>
+    }
+</div>

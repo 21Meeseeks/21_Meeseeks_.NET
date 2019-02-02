@@ -1,12 +1,10 @@
-﻿using Service;
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Reflection;
-using System.Threading;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
@@ -14,54 +12,9 @@ using WebMAP.Models;
 
 namespace WebMAP.Controllers
 {
-
-    //Fucking CSharp And Screw you Microsoft , I hate you so much 
-    //I have to resolve this fucking reference dumb ass shit 
-    //And start to do the regular things such Displaying the statistics
-    //There's the idea of making a dynamic tracking for some stuffs 
-    //Am gonna look for it later , but first i really have to boost up 
     public class TestController : Controller
     {
-        static string nbResource = " ";
-        static ITestService test;
-        IEnumerable r ;
-        public TestController()
-        {
-
-            test = new TestService();
-
-            r = test.GetMany().AsEnumerable();
-        }
         // GET: Test
-        public ActionResult Show()
-        {
-           
-            ViewBag.NumberOfResource = test.countResource();
-            ThreadStart childref = new ThreadStart(isChanged);
-            Thread thread = new Thread(childref);
-            thread.Start();
-            return View();
-        }
-        [NonAction]
-        public void isChanged()
-        {
-            string isChanged;
-            while (true) {
-
-                Console.WriteLine("Child thread starts");
-                if (test.isChanged(ref r))
-                {
-                    isChanged = "Something changed^^'";
-                    Console.WriteLine("Changes Done");
-                }
-                // the thread is paused for 5000 milliseconds
-                int sleepfor = 5000;
-
-                Console.WriteLine("Child Thread Paused for {0} seconds", sleepfor / 1000);
-                Thread.Sleep(sleepfor);
-                Console.WriteLine("Child thread resumes");
-            }
-        }
         public async System.Threading.Tasks.Task<ActionResult> Index()
         {
             HttpClient Client = new HttpClient();
@@ -81,31 +34,7 @@ namespace WebMAP.Controllers
 
             }*/
             //ViewBag.Resources = obj;
-            ThreadStart childref = new ThreadStart(CallToChildThread);
-            Thread thread = new Thread(childref);
-            thread.Start();
             return View();
-        }
-        public static async void CallToChildThread()
-        {
-            while (true) { 
-                Console.WriteLine("Child thread starts");
-                HttpClient Client = new HttpClient();
-                Client.BaseAddress = new Uri("http://localhost:18080/21meeseeks-web/");
-                Client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                HttpResponseMessage response = await Client.GetAsync("rest/resources");
-                string data = await response.Content.ReadAsStringAsync();
-                if (!data.Equals(nbResource)) { 
-                    nbResource = data;
-                    Console.WriteLine("Changes Done");
-                }
-                // the thread is paused for 5000 milliseconds
-                int sleepfor = 5000;
-
-                Console.WriteLine("Child Thread Paused for {0} seconds", sleepfor / 1000);
-                Thread.Sleep(sleepfor);
-                Console.WriteLine("Child thread resumes");
-            }
         }
 
         [Route("Adress/{country}")]

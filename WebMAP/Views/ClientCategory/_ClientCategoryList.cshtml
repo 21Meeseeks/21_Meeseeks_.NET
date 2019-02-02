@@ -18,23 +18,26 @@
                 </tr>
             </thead>
             <tbody>
-@foreach (var item in ViewBag.result)
-{
-                <tr>
-                    <th scope="row">@item.name</th>
-                    <td>@item.description</td>
-                    <th><a href=" @Url.Action("Delete", "ClientCategory" , new { name=@item.name }) ">
-    <span>delete</span>
-</a>
-                    
-                    </th>
-                </tr>
-}
+                @if(ViewBag.result != null)
+                {
+                    foreach (var item in ViewBag.result)
+                {
+                        <tr>
+                            <th scope="row">@item.name</th>
+                            <td>@item.description</td>
+                            <th>
+                                <a href="@Url.Action("Delete", "ClientCategory", new { name = @item.name })" class="btn btn-danger">
+                                    <span>Delete</span>
+                                </a>
+                            </th>
+                        </tr>
+                    }
+                }
             </tbody>
         </table>
     </div>
     <td>
-        <button type="button" class="btn btn-focus" data-toggle="modal" data-target="#m_modal_6">Launch Modal</button>
+        <button type="button" class="btn btn-focus" data-toggle="modal" data-target="#m_modal_6">Create</button>
     </td>
 </div>
 @{

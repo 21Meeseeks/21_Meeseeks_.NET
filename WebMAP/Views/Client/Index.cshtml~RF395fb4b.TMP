@@ -1,0 +1,244 @@
+﻿
+@{
+    ViewBag.Title = "CLIENTS";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css"
+      integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
+      crossorigin="" />
+
+<style>
+    #map { 
+    height: 300px; 
+}
+</style>
+
+<div class="m-portlet m-portlet--mobile">
+    <div class="m-portlet__head">
+        <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+                <h3 class="m-portlet__head-text">
+                   CLIENTS LIST
+                </h3>
+            </div>
+        </div>
+        <div class="m-portlet__head-tools">
+            <ul class="m-portlet__nav">
+                <li class="m-portlet__nav-item">
+                    <a href="#" class="btn btn-accent m-btn m-btn--custom m-btn--pill m-btn--icon m-btn--air">
+                        <span>
+                            <i class="la la-plus"></i>
+                            <span>New Client</span>
+                        </span>
+                    </a>
+                </li>
+                <li class="m-portlet__nav-item"></li>
+                <li class="m-portlet__nav-item">
+                    <div class="m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push" m-dropdown-toggle="hover" aria-expanded="true">
+                        <a href="#" class="m-portlet__nav-link btn btn-lg btn-secondary  m-btn m-btn--icon m-btn--icon-only m-btn--pill  m-dropdown__toggle">
+                            <i class="la la-ellipsis-h m--font-brand"></i>
+                        </a>
+                        <div class="m-dropdown__wrapper">
+                            <span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust"></span>
+                            <div class="m-dropdown__inner">
+                                <div class="m-dropdown__body">
+                                    <div class="m-dropdown__content">
+                                        <ul class="m-nav">
+                                            <li class="m-nav__section m-nav__section--first">
+                                                <span class="m-nav__section-text">Quick Actions</span>
+                                            </li>
+                                            <li class="m-nav__item">
+                                                <a href="" class="m-nav__link">
+                                                    <i class="m-nav__link-icon flaticon-share"></i>
+                                                    <span class="m-nav__link-text">Create Post</span>
+                                                </a>
+                                            </li>
+                                            <li class="m-nav__item">
+                                                <a href="" class="m-nav__link">
+                                                    <i class="m-nav__link-icon flaticon-chat-1"></i>
+                                                    <span class="m-nav__link-text">Send Messages</span>
+                                                </a>
+                                            </li>
+                                            <li class="m-nav__item">
+                                                <a href="" class="m-nav__link">
+                                                    <i class="m-nav__link-icon flaticon-multimedia-2"></i>
+                                                    <span class="m-nav__link-text">Upload File</span>
+                                                </a>
+                                            </li>
+                                            <li class="m-nav__section">
+                                                <span class="m-nav__section-text">Useful Links</span>
+                                            </li>
+                                            <li class="m-nav__item">
+                                                <a href="" class="m-nav__link">
+                                                    <i class="m-nav__link-icon flaticon-info"></i>
+                                                    <span class="m-nav__link-text">FAQ</span>
+                                                </a>
+                                            </li>
+                                            <li class="m-nav__item">
+                                                <a href="" class="m-nav__link">
+                                                    <i class="m-nav__link-icon flaticon-lifebuoy"></i>
+                                                    <span class="m-nav__link-text">Support</span>
+                                                </a>
+                                            </li>
+                                            <li class="m-nav__separator m-nav__separator--fit m--hide">
+                                            </li>
+                                            <li class="m-nav__item m--hide">
+                                                <a href="#" class="btn btn-outline-danger m-btn m-btn--pill m-btn--wide btn-sm">Submit</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="m-portlet__body">
+
+        <!--begin: Datatable -->
+        <table class="table table-striped- table-bordered table-hover table-checkable" id="m_table_1">
+            <thead>
+                <tr>
+                    <th>Client ID</th>
+                    <th>Order ID</th>
+                    <th>Name</th>
+                    <th hidden>Ship City</th>
+                    <th>Address</th>
+                    <th>Phone</th>
+                    <th>Email</th>
+                    <th hidden>Ship Date</th>
+                    <th>Status</th>
+                    <th>Type</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+
+@foreach (var item in ViewBag.result)
+{
+                <tr>
+                    <td>
+                    
+                    
+                        <a href="#" class="m-nav__link m-dropdown__toggle">
+                            <span class="m-topbar__userpic">
+                                @if (item.logo != null)
+                                {
+                                    <img style="height:90px;" src="@Url.Content("~/Content/ProfilePictures/"+item.logo)" class="m--img-rounded m--marginless" alt="" />
+
+                                }
+                                else
+                                {
+                                    <img style="height:90px;" src="~/Content/assets/app/media/img/users/user4.jpg" class="m--img-rounded m--marginless" alt="" />
+
+                                }                            </span>
+                            <span class="m-topbar__username m--hide">Nick</span>
+                        </a>
+                    
+                    
+                             
+      </td>
+                    <td>@item.idUser</td>
+                    <td>@item.clientName</td>
+                    <td hidden>test</td>
+                    <td onclick="test2()" data-toggle="modal" data-target="#m_modal_6">@item.address</td>
+                    <td>@item.phoneNumber</td>
+                    <td>@item.email</td>
+                    <td hidden>2/12/2018</td>
+                    @if (item.clientType == null)
+                    {
+                        <td>4</td>
+                    }
+                   else if (item.clientType == "NEW_CLIENT")
+                   {
+                    <td>1</td>
+                   }
+                   else
+                   {
+                    <td>3</td>
+
+                   }
+                  <td></td>
+                  
+                    <td nowrap>
+                                                <span class="dropdown">
+                                                 <a href="#" class="btn m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill" data-toggle="dropdown" aria-expanded="true">
+                                                                                  <i class="la la-ellipsis-h"></i>                           </a>
+                                                    <div class="dropdown-menu dropdown-menu-right">                                <a class="dropdown-item" href="#"><i class="la la-edit"></i> Edit Details</a>
+                                                                                   <a class="dropdown-item" href='@Url.Action("Archive","Client",new { id = item.idUser })'><i class="la la-leaf"></i> Archive Client</a>
+                                                                                   <a class="dropdown-item" href="#"><i class="la la-print"></i> Generate Report</a>
+                                                                              </div>                        </span>
+                                                <a href="#" class="m-portlet__nav-link btn m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill" title="View">
+                                                <i class="la la-edit"></i>
+                                                                        </a>
+
+                    </td>
+                </tr>
+}
+
+            </tbody>
+        </table>
+        <div   class="modal fade" id="m_modal_6" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div  class="modal-dialog modal-dialog-centered" role="document">
+                <div    class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body" id="map" style="height=100%;  border: 1px solid #ccc;">
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" onclick="test2()" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js"
+        integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA=="
+        crossorigin=""></script>
+<script>
+
+    function test2()
+    {
+        setTimeout(function () {
+            const Http = new XMLHttpRequest();
+            const url = 'https://open.mapquestapi.com/geocoding/v1/address?key=02XNZK5GTJ5C3iZhVyfa9o1teGm7LmUw&location=1600+Pennsylvania+Ave+NW,Washington,DC,20500';
+            Http.open("GET", url);
+            Http.send();
+            Http.onreadystatechange = (e) => {
+
+                console.log(Http.responseText.results.locations[0].latLng.lat)
+            }
+            mymap.invalidateSize()
+        }, 500);
+    }
+
+    $('#m_modal_6').on('shown.bs.modal', function () {
+        alert("test");
+    });
+    var mymap = L.map('map');
+    mymap.setView([40.775, -73.972], 15);
+    L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+        attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
+        maxZoom: 18
+    }).addTo(mymap);
+
+
+
+    mymap.on('locationfound', onLocationFound);
+    function onLocationFound(e) {
+        console.log(e);
+        // e.heading will contain the user's heading (in degrees) if it's available, and if not it will be NaN. This would allow you to point a marker in the same direction the user is pointed. 
+        L.marker(e.latlng).addTo(mymap);
+    }
+
+</script>

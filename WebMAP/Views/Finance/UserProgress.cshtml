@@ -1,0 +1,73 @@
+﻿<div class="col-xl-8">
+
+    <!--begin:: Widgets/User Progress -->
+    <div class="m-portlet m-portlet--full-height ">
+        <div class="m-portlet__head">
+            <div class="m-portlet__head-caption">
+                <div class="m-portlet__head-title">
+                    <h3 class="m-portlet__head-text">
+                        Resource Progress
+                    </h3>
+                </div>
+            </div>
+            
+        </div>
+        <div class="m-portlet__body">
+            <div class="tab-content">
+                <div class="tab-pane active" id="m_widget4_tab1_content">
+                    <div class="m-widget4 m-widget4--progress">
+                       @foreach (var progress in ViewBag.UserProgress)
+                       {
+                           string progressRation = progress.Value.progress + "%";
+                           string color = "bg-danger";
+                           if (10< progress.Value.progress && progress.Value.progress<50) {
+                               color = "bg-warning";
+                           }else if (50 < progress.Value.progress && progress.Value.progress < 80)
+                           {
+                               color = "bg-brand";
+                           }
+                           else if (80 < progress.Value.progress && progress.Value.progress < 100)
+                           {
+                               color = "bg-success";
+                           }
+
+                        <div class="m-widget4__item">
+                            <div class="m-widget4__img m-widget4__img--pic">
+                                <img src="~/Content/assets/app/media/img/users/@progress.Key.photo" alt="">
+                            </div>
+                            <div class="m-widget4__info">
+                                <span class="m-widget4__title">
+                                   @progress.Key.firstName  @progress.Key.lastName
+                                </span><br>
+                                <span class="m-widget4__sub">
+                                    @progress.Value.Project.name
+                                </span>
+                            </div>
+                            <div class="m-widget4__progress">
+                                <div class="m-widget4__progress-wrapper">
+                                    <span class="m-widget17__progress-number">@progressRation</span>
+                                    <span class="m-widget17__progress-label"></span>
+                                    <div class="progress m-progress--sm">
+                                        <div class="progress-bar @color" role="progressbar" style="height:100%;width: @progressRation;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="63"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="m-widget4__ext">
+                                <a class="m-btn m-btn--hover-brand m-btn--pill btn btn-sm btn-secondary">@progress.Key.contractType</a>
+                            </div>
+                        </div>
+                       }
+                            <!--end:: User Progress -->
+                       
+                    </div>
+                </div>
+                <div class="tab-pane" id="m_widget4_tab2_content">
+                </div>
+                <div class="tab-pane" id="m_widget4_tab3_content">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--end:: Widgets/User Progress -->
+</div>

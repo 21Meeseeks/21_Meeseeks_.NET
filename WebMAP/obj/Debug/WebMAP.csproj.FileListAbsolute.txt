@@ -180,3 +180,10 @@ C:\Users\Flavio\documents\visual studio 2015\Projects\MAP\WebMAP\bin\ServicePatt
 C:\Users\Flavio\documents\visual studio 2015\Projects\MAP\WebMAP\bin\Service.pdb
 C:\Users\Flavio\documents\visual studio 2015\Projects\MAP\WebMAP\bin\MySql.Data.Entity.EF6.dll
 C:\Users\Flavio\documents\visual studio 2015\Projects\MAP\WebMAP\bin\MySql.Data.dll
+C:\Users\Flavio\documents\visual studio 2015\Projects\MAP\WebMAP\bin\Microsoft.AspNet.SignalR.Core.dll
+C:\Users\Flavio\documents\visual studio 2015\Projects\MAP\WebMAP\bin\Microsoft.AspNet.SignalR.SystemWeb.dll
+C:\Users\Flavio\documents\visual studio 2015\Projects\MAP\WebMAP\bin\Microsoft.AspNet.SignalR.Core.pdb
+C:\Users\Flavio\documents\visual studio 2015\Projects\MAP\WebMAP\bin\Microsoft.AspNet.SignalR.Core.xml
+C:\Users\Flavio\documents\visual studio 2015\Projects\MAP\WebMAP\bin\Microsoft.AspNet.SignalR.SystemWeb.pdb
+C:\Users\Flavio\documents\visual studio 2015\Projects\MAP\WebMAP\bin\Microsoft.AspNet.SignalR.SystemWeb.xml
+C:\Users\Flavio\documents\visual studio 2015\Projects\MAP\WebMAP\bin\Rotativa.dll

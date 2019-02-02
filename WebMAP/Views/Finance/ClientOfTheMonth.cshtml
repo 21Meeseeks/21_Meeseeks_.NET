@@ -1,0 +1,132 @@
+﻿
+<div class="col-sm-6">
+
+    <!--begin:: Widgets/Company Summary-->
+    <div class="m-portlet m-portlet--full-height ">
+        <div class="m-portlet__head">
+            <div class="m-portlet__head-caption">
+                <div class="m-portlet__head-title">
+                    <h3 class="m-portlet__head-text">
+                        Company Of The Month
+                    </h3>
+                </div>
+            </div>
+            <div class="m-portlet__head-tools">
+                <ul class="m-portlet__nav">
+                    <li class="m-portlet__nav-item m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push" m-dropdown-toggle="hover" aria-expanded="true">
+                        <a href="#" class="m-portlet__nav-link m-dropdown__toggle dropdown-toggle btn btn--sm m-btn--pill btn-secondary m-btn m-btn--label-primary">
+                            @ViewBag.ThisMonth
+                        </a>
+                        <div class="m-dropdown__wrapper">
+                            <span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust" style="left: auto; right: 34.5px;"></span>
+                            <div class="m-dropdown__inner">
+                                <div class="m-dropdown__body">
+                                    <div class="m-dropdown__content">
+                                        <ul class="m-nav">
+                                            <li class="m-nav__section m-nav__section--first">
+                                                <span class="m-nav__section-text">Months</span>
+                                            </li>
+
+
+                                            @foreach (var month in ViewBag.Months)
+                                            {
+                                                <li class="m-nav__item">
+                                                    <a class="m-nav__link">
+                                                        <i class="m-nav__link-icon flaticon-share"></i>
+                                                        <span class="m-nav__link-text">@month</span>
+                                                    </a>
+                                                </li>
+                                            }
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="m-portlet__body">
+            <div class="m-widget13">
+                <div class="m-widget13__item">
+                    <span class="m-widget13__desc m--align-right">
+                        Company Name
+                    </span>
+                    <span class="Client-Name m-widget13__text m-widget13__text-bolder">
+                        @ViewBag.Client.Client.clientName
+                    </span>
+                </div>
+                <div class="m-widget13__item">
+                    <span class="m-widget13__desc m--align-right">
+                        Total Income:
+                    </span>
+                    <span class="m-widget13__text m-widget13__text-bolder">
+                        $<span class="Client-Sum">@ViewBag.Client.Sum</span> 
+                    </span>
+                </div>
+                <div class="m-widget13__item">
+                    <span class="m-widget13__desc m--align-right">
+                        Business Description:
+                    </span>
+                    <span class="Client-desc m-widget13__text">
+                        @ViewBag.Client.Client.clientcategory.description
+                    </span>
+                </div>
+                <div class="m-widget13__item">
+                    <span class="m-widget13__desc m--align-right">
+                        Projects Amount:
+                    </span>
+                    <span class="Client-projects m-widget13__text m-widget13__text-bolder">
+                        5
+                    </span>
+                </div>
+                <div class="m-widget13__item">
+                    <span class="m-widget13__desc m--align-right">
+                        Email:
+                    </span>
+                    <span class="Client-email m-widget13__text">
+                        @ViewBag.Client.Client.email
+                    </span>
+                </div>
+                <div class="m-widget13__item">
+                    <span class="m-widget13__desc m--align-right">
+                        Phone:
+                    </span>
+                    <span class="Client-phone m-widget13__text m-widget13__number-bolder m--font-brand">
+                        @ViewBag.Client.Client.phoneNumber
+                    </span>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!--end:: Widgets/Company Summary-->
+</div>
+
+<div class="Hamouda"></div>
+<script>
+    $(".m-nav__link-text").click(function () {
+        alert("clicked");
+        var month = $(this).text();
+        console.log(month);
+        $.ajax({
+            type: 'POST',
+            cache: false,
+            url: '@Url.Action("OnGetFilter", "Finance")',
+            dataType: 'json',
+            data: { month : month},
+            error: function () {
+                alert("failed")
+            },
+            success: function (result) {
+                $(".Client-Name").html(result.Data.name);
+                $(".Client-phone").html(result.Data.phone);
+                $(".Client-Sum").html(result.Data.sum);
+                $(".Client-desc").html(result.Data.desc);
+                $(".Client-email").html(result.Data.email);
+                $(".Client-projects").html(result.Data.nbProjects);
+            }
+        });
+    });
+</script>

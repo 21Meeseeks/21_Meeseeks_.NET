@@ -86,18 +86,10 @@ namespace WebMAP.Controllers
 
             WebRequest request = WebRequest.Create(sURL);
             request.Method = "DELETE";
-
+                
             HttpWebResponse response = (HttpWebResponse)request.GetResponse();
             return RedirectToAction("Settings", "Home", new { area = "" });
-            //            name = (String)Request.QueryString["name"];
-
-
-            //          HttpClient client = new HttpClient();
-            //        client.BaseAddress = new Uri("http://localhost:18080/21meeseeks-web/rest");
-            //      var response = client.DeleteAsync("client/category/omar").Result;
-
-            //    System.Threading.Thread.Sleep(3000);
-            //  return RedirectToAction("Settings", "Home", new { area = "" });
+           
         }
 
         // POST: ClientCategory/Delete/5

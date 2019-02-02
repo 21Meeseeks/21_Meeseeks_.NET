@@ -17,11 +17,15 @@ License: You must have a valid license purchased only from themeforest(the above
 <!-- begin::Head -->
 <head>
     <meta charset="utf-8" />
-    <title>Metronic | Dashboard</title>
+    <title>Levio | @ViewBag.title</title>
     <meta name="description" content="Latest updates and statistic charts">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
 
     <!--begin::Web font -->
+
+    <script src="~/Scripts/jquery-1.10.2.js" type="text/javascript"></script>
+
+    <script src="~/Content/assets/demo/default/custom/components/charts/morris-charts.js" type="text/javascript"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
     <script>
 			WebFont.load({
@@ -31,7 +35,7 @@ License: You must have a valid license purchased only from themeforest(the above
             }
           });
     </script>
-
+    @RenderSection("Scripts", false)
     <!--end::Web font -->
     <!--begin::Global Theme Styles -->
     <link href="~/Content/assets/vendors/base/vendors.bundle.css" rel="stylesheet" type="text/css" />
@@ -655,42 +659,17 @@ License: You must have a valid license purchased only from themeforest(the above
                                                                 <span class="m-nav__section-text">Section</span>
                                                             </li>
                                                             <li class="m-nav__item">
-                                                                <a href="header/profile.html" class="m-nav__link">
+                                                                <a href=@Url.Action("Chat","Message") class="m-nav__link">
                                                                     <i class="m-nav__link-icon flaticon-profile-1"></i>
                                                                     <span class="m-nav__link-title">
                                                                         <span class="m-nav__link-wrap">
-                                                                            <span class="m-nav__link-text">My Profile</span>
+                                                                            <span class="m-nav__link-text">Chat</span>
                                                                             <span class="m-nav__link-badge"><span class="m-badge m-badge--success">2</span></span>
                                                                         </span>
                                                                     </span>
                                                                 </a>
                                                             </li>
-                                                            <li class="m-nav__item">
-                                                                <a href="header/profile.html" class="m-nav__link">
-                                                                    <i class="m-nav__link-icon flaticon-share"></i>
-                                                                    <span class="m-nav__link-text">Activity</span>
-                                                                </a>
-                                                            </li>
-                                                            <li class="m-nav__item">
-                                                                <a href="header/profile.html" class="m-nav__link">
-                                                                    <i class="m-nav__link-icon flaticon-chat-1"></i>
-                                                                    <span class="m-nav__link-text">Messages</span>
-                                                                </a>
-                                                            </li>
-                                                            <li class="m-nav__separator m-nav__separator--fit">
-                                                            </li>
-                                                            <li class="m-nav__item">
-                                                                <a href="header/profile.html" class="m-nav__link">
-                                                                    <i class="m-nav__link-icon flaticon-info"></i>
-                                                                    <span class="m-nav__link-text">FAQ</span>
-                                                                </a>
-                                                            </li>
-                                                            <li class="m-nav__item">
-                                                                <a href="header/profile.html" class="m-nav__link">
-                                                                    <i class="m-nav__link-icon flaticon-lifebuoy"></i>
-                                                                    <span class="m-nav__link-text">Support</span>
-                                                                </a>
-                                                            </li>
+                                                            
                                                             <li class="m-nav__separator m-nav__separator--fit">
                                                             </li>
                                                             <li class="m-nav__item">
@@ -729,11 +708,11 @@ License: You must have a valid license purchased only from themeforest(the above
                 <div id="m_ver_menu" class="m-aside-menu  m-aside-menu--skin-dark m-aside-menu--submenu-skin-dark " m-menu-vertical="1" m-menu-scrollable="1" m-menu-dropdown-timeout="500" style="position: relative;">
                     <ul class="m-menu__nav  m-menu__nav--dropdown-submenu-arrow ">
                         <li class="m-menu__item  m-menu__item--active" aria-haspopup="true">
-                            <a href="index.html" class="m-menu__link ">
+                            <a href="@Url.Action("Index", "Home")" class="m-menu__link ">
                                 <i class="m-menu__link-icon flaticon-line-graph"></i><span class="m-menu__link-title">
                                     <span class="m-menu__link-wrap">
                                         <span class="m-menu__link-text">Home</span>
-                                        <span class="m-menu__link-badge"><span class="m-badge m-badge--danger">2</span></span>
+                                        <span class="m-menu__link-badge"></span>
                                     </span>
                                 </span>
                             </a>
@@ -743,9 +722,9 @@ License: You must have a valid license purchased only from themeforest(the above
                             <div class="m-menu__submenu ">
                                 <span class="m-menu__arrow"></span>
                                 <ul class="m-menu__subnav">
-                                    <li class="m-menu__item  " aria-haspopup="true"><a href="New-client.html" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text">New Client</span></a></li>
+                                    <li class="m-menu__item  " aria-haspopup="true"><a href=@Url.Action("Create", "Client") class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text">New Client</span></a></li>
                                     <li class="m-menu__item " aria-haspopup="true">
-                                        <a href="List-client.html" class="m-menu__link ">
+                                        <a href=@Url.Action("Index", "Client") class="m-menu__link ">
                                             <i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text">Clients List</span>
 
                                         </a>
@@ -761,15 +740,57 @@ License: You must have a valid license purchased only from themeforest(the above
                             <div class="m-menu__submenu ">
                                 <span class="m-menu__arrow"></span>
                                 <ul class="m-menu__subnav">
-                                    <li class="m-menu__item " aria-haspopup="true"><a href="../../components/icons/flaticon.html" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text">Project Requests <span style="margin-left: 20px;" class="m-badge m-badge--danger">5</span></span> </a></li>
+                                    <li class="m-menu__item " aria-haspopup="true"><a href=@Url.Action("Create", "Request") class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text">Project Requests <span style="margin-left: 20px;" class="m-badge m-badge--danger">5</span></span> </a></li>
                                     <li class="m-menu__item " aria-haspopup="true">
-                                        <a href="../../components/icons/fontawesome5.html" class="m-menu__link ">
+                                        <a href=@Url.Action("Create", "Project") class="m-menu__link ">
                                             <i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text">New Projects</span>
 
                                         </a>
                                     </li>
-                                    <li class="m-menu__item " aria-haspopup="true"><a href="../../components/icons/lineawesome.html" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text">Ongoing Projects</span></a></li>
-                                    <li class="m-menu__item " aria-haspopup="true"><a href="../../components/icons/socicons.html" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text">All Projects</span></a></li>
+                                    <li class="m-menu__item " aria-haspopup="true"><a href=@Url.Action("Index", "Project") class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text">All Projects</span></a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover">
+                            <a href="javascript:;" class="m-menu__link m-menu__toggle"><i class="m-menu__link-icon flaticon-layers"></i><span class="m-menu__link-text">Resources</span><i class="m-menu__ver-arrow la la-angle-right"></i></a>
+                            <div class="m-menu__submenu ">
+                                <span class="m-menu__arrow"></span>
+                                <ul class="m-menu__subnav">
+                                    <li class="m-menu__item " aria-haspopup="true"><a href=@Url.Action("Edit", "Resource") class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text">Add Resource</span> </a></li>
+                                    <li class="m-menu__item " aria-haspopup="true">
+                                        <a href=@Url.Action("Index", "Resource") class="m-menu__link ">
+                                            <i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text">Show Resources</span>
+
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover">
+                            <a href="javascript:;" class="m-menu__link m-menu__toggle"><i class="m-menu__link-icon flaticon-layers"></i><span class="m-menu__link-text">Terms</span><i class="m-menu__ver-arrow la la-angle-right"></i></a>
+                            <div class="m-menu__submenu ">
+                                <span class="m-menu__arrow"></span>
+                                <ul class="m-menu__subnav">
+                                    <li class="m-menu__item " aria-haspopup="true">
+                                    </li>
+                                    <li class="m-menu__item " aria-haspopup="true"><a href=@Url.Action("List", "Term") class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text">Show Terms</span></a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover">
+                            <a href="javascript:;" class="m-menu__link m-menu__toggle"><i class="m-menu__link-icon flaticon-suitcase"></i><span class="m-menu__link-text">Statistics</span><i class="m-menu__ver-arrow la la-angle-right"></i></a>
+                            <div class="m-menu__submenu ">
+                                <span class="m-menu__arrow"></span>
+                                <ul class="m-menu__subnav">
+                                    <li class="m-menu__item " aria-haspopup="true">
+                                        <a href="@Url.Action("Index", "ResourceStat")" class="m-menu__link ">
+                                            <i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text">Resource</span>
+
+                                        </a>
+                                    </li>
+                                    <li class="m-menu__item " aria-haspopup="true"><a href="@Url.Action("Index", "Finance")" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text">Clients</span></a></li>
+                                    <li class="m-menu__item " aria-haspopup="true"><a href="@Url.Action("Index", "ProjectStats")" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text">Projects/Term</span></a></li>
+
                                 </ul>
                             </div>
                         </li>
@@ -815,7 +836,7 @@ License: You must have a valid license purchased only from themeforest(the above
                 <!-- END: Subheader -->
                 <div class="m-content">
 
-                    @RenderBody();
+                    @RenderBody()
                 </div>
             </div>
         </div>
@@ -1345,14 +1366,20 @@ License: You must have a valid license purchased only from themeforest(the above
     <!--begin::Global Theme Bundle -->
     <script src="~/Content/assets/vendors/base/vendors.bundle.js" type="text/javascript"></script>
     <script src="~/Content/assets/demo/default/base/scripts.bundle.js" type="text/javascript"></script>
+    <script src="~/Content/assets/demo/default/custom/crud/wizard/wizard.js" type="text/javascript"></script>
 
     <!--end::Global Theme Bundle -->
     <!--begin::Page Vendors -->
     <script src="~/Content/assets/vendors/custom/fullcalendar/fullcalendar.bundle.js" type="text/javascript"></script>
-
+    <script src="~/Content/assets/demo/default/custom/crud/datatables/basic/basic.js" type="text/javascript"></script>
+    <script src="~/Content/assets/demo/default/custom/crud/forms/widgets/bootstrap-datepicker.js" type="text/javascript"></script>
+    <script src="~/Content/assets/demo/default/custom/crud/forms/widgets/select2.js" type="text/javascript"></script>
+    <script src="~/Content/assets/demo/default/custom/components/base/treeview.js" type="text/javascript"></script>
     <!--end::Page Vendors -->
     <!--begin::Page Scripts -->
     <script src="~/Content/assets/app/js/dashboard.js" type="text/javascript"></script>
+    @RenderSection("Scripts2", false)
+
 
     <!--end::Page Scripts -->
 </body>

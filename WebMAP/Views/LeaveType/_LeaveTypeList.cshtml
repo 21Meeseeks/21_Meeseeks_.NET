@@ -1,0 +1,48 @@
+﻿@{
+
+    Layout = "";
+}
+
+<div class="m-section">
+    <div class="m-section__content">
+        <table class="table m-table m-table--head-separator-primary">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (ViewBag.leave != null)
+                {
+                    foreach (var item in ViewBag.leave)
+                    {
+                        <tr>
+                            <th scope="row">@item.name</th>
+                            <td>@item.description</td>
+                            <th>
+                                <a href="@Url.Action("Delete", "LeaveType", new {ID = @item.idLeaveType })">
+                                    <button class="btn btn-danger" type="button">Delete</button>
+                                </a>
+                            </th>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+    <td>
+        <button type="button" class="btn btn-focus" data-toggle="modal" data-target="#m_modal_5">Create</button>
+    </td>
+</div>
+@{
+    Html.RenderPartial("~/Views/LeaveType/_LeaveTypeCreate.cshtml");
+}
+
+
+
+
+
+
+

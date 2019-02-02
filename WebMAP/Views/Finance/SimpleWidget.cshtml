@@ -1,0 +1,112 @@
+﻿<!--Begin::Section-->
+<div class="m-portlet">
+    <div class="m-portlet__body m-portlet__body--no-padding">
+        <div class="row m-row--no-padding m-row--col-separator-xl">
+            <div class="col-md-12 col-lg-12 col-xl-4">
+
+                <!--begin:: Widgets/Stats2-1 -->
+                <div class="m-widget1">
+                    <div class="m-widget1__item">
+                        <div class="row m-row--no-padding align-items-center">
+                            <div class="col">
+                                <h3 class="m-widget1__title">Cilent Profit</h3>
+                                <span class="m-widget1__desc">Awerage Profit Per Client </span>
+                            </div>
+                            <div class="col m--align-right">
+                                <span class="m-widget1__number m--font-brand">$@ViewBag.MemberProfit</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="m-widget1__item">
+                        <div class="row m-row--no-padding align-items-center">
+                            <div class="col">
+                                <h3 class="m-widget1__title">Terms</h3>
+                                <span class="m-widget1__desc">Weekly Terms</span>
+                            </div>
+                            <div class="col m--align-right">
+                                <span class="m-widget1__number m--font-danger">@ViewBag.MonthlyTerm</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="m-widget1__item">
+                        <div class="row m-row--no-padding align-items-center">
+                            <div class="col">
+                                <h3 class="m-widget1__title">Revenue</h3>
+                                <span class="m-widget1__desc">Overall Revenue Increase</span>
+                            </div>
+                            <div class="col m--align-right">
+                                <span class="m-widget1__number m--font-primary">+@ViewBag.ProfitGrowth<span>%</span></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--end:: Widgets/Stats2-1 -->
+            </div>
+            <div class="col-md-12 col-lg-12 col-xl-4">
+
+                <!--begin:: Widgets/Stats2-2 -->
+                <div class="m-widget1">
+                    <div class="m-widget1__item">
+                        <div class="row m-row--no-padding align-items-center">
+                            <div class="col">
+                                <h3 class="m-widget1__title">Project Success</h3>
+                                <span class="m-widget1__desc">Client Success Rate Increase This Year </span>
+                            </div>
+                            <div class="col m--align-right">
+                                <span class="m-widget1__number m--font-accent">@ViewBag.ProjectIncrease<span>%</span> </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="m-widget1__item">
+                        <div class="row m-row--no-padding align-items-center">
+                            <div class="col">
+                                <h3 class="m-widget1__title">Skills</h3>
+                                <span class="m-widget1__desc">Skills Among Levio</span>
+                            </div>
+                            <div class="col m--align-right">
+                                <span class="m-widget1__number m--font-warning">+@ViewBag.TotalSkills</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="m-widget1__item">
+                        <div class="row m-row--no-padding align-items-center">
+                            <div class="col">
+                                <h3 class="m-widget1__title">Total Resources</h3>
+                                <span class="m-widget1__desc">Total Number Of Resources in Levio</span>
+                            </div>
+                            <div class="col m--align-right">
+                                <span class="m-widget1__number m--font-danger">@ViewBag.TotalResources<span></span></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--begin:: Widgets/Stats2-2 -->
+            </div>
+            <div class="col-md-12 col-lg-12 col-xl-4">
+
+                <!--begin:: Widgets/Stats2-3 -->
+                <div class="m-widget1">
+                    <div class="m-widget1__item">
+                        <div class="row m-row--no-padding align-items-center">
+                            <div class="col">
+                                <h3 class="m-widget1__title">Freelancers</h3>
+                                <span class="m-widget1__desc">Freelancers Inside Levio</span>
+                            </div>
+                            <div class="col m--align-right">
+                                <span class="m-widget1__number m--font-success">@ViewBag.countfreelancer<span>%</span></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--begin:: Widgets/Stats2-3 -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--End::Section-->

@@ -5,7 +5,6 @@ C:\Users\Flavio\Documents\Visual Studio 2015\Projects\MAP\Service\obj\Debug\Serv
 C:\Users\Flavio\documents\visual studio 2015\Projects\MAP\Service\bin\Debug\Data.dll
 C:\Users\Flavio\documents\visual studio 2015\Projects\MAP\Service\bin\Debug\Domain.dll
 C:\Users\Flavio\documents\visual studio 2015\Projects\MAP\Service\bin\Debug\ServicePattern.dll
-C:\Users\Flavio\documents\visual studio 2015\Projects\MAP\Service\bin\Debug\EntityFramework.dll
 C:\Users\Flavio\documents\visual studio 2015\Projects\MAP\Service\bin\Debug\Data.pdb
 C:\Users\Flavio\documents\visual studio 2015\Projects\MAP\Service\bin\Debug\Domain.pdb
 C:\Users\Flavio\documents\visual studio 2015\Projects\MAP\Service\bin\Debug\ServicePattern.pdb
@@ -13,3 +12,8 @@ C:\Users\Flavio\documents\visual studio 2015\Projects\MAP\Service\bin\Debug\Enti
 C:\Users\Flavio\documents\visual studio 2015\Projects\MAP\Service\obj\Debug\Service.csprojResolveAssemblyReference.cache
 C:\Users\Flavio\documents\visual studio 2015\Projects\MAP\Service\bin\Debug\MySql.Data.Entity.EF6.dll
 C:\Users\Flavio\documents\visual studio 2015\Projects\MAP\Service\bin\Debug\MySql.Data.dll
+C:\Users\Flavio\documents\visual studio 2015\Projects\MAP\Service\bin\Debug\MySql.Data.xml
+C:\Users\Flavio\documents\visual studio 2015\Projects\MAP\Service\bin\Debug\Service.dll.config
+C:\Users\Flavio\documents\visual studio 2015\Projects\MAP\Service\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Flavio\documents\visual studio 2015\Projects\MAP\Service\bin\Debug\MySql.Data.Entity.EF6.xml
+C:\Users\Flavio\documents\visual studio 2015\Projects\MAP\Service\bin\Debug\Newtonsoft.Json.xml

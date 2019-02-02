@@ -1,0 +1,68 @@
+﻿@model WebMAP.Models.LeaveRequest
+
+<div class="m-portlet m-portlet--mobile">
+    <div class="m-portlet__head">
+        <div class="m-portlet__head-tools">
+            <ul class="m-portlet__nav">
+                <li class="m-portlet__nav-item">
+                    <a href="@Url.Action("IndexLeaveRequest", "Request")">
+                        <span>
+                            <i class="fa fa-arrow-left"></i>
+                        </span>
+                    </a>
+                </li>
+                <li class="m-portlet__nav-item">
+                    <h2>Send A Leave Request</h2>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <h5 class="control-label col-md-3">Cause</h5>
+            <div class="col-md-10">
+                @Html.DropDownList("leavetypes")
+                @Html.ValidationMessageFor(model => model.leaveType, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <h5 class="control-label col-md-3">Description</h5>
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.description, new { @class = "form-control m-input", @cols = "77", @rows = "4" })
+                @Html.ValidationMessageFor(model => model.description, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <h5 class="control-label col-md-3">From</h5>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.fromDate, new { htmlAttributes = new { @class = "form-control m-input col-md-4", @type = "datetime-local" } })
+                @Html.ValidationMessageFor(model => model.fromDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <h5 class="control-label col-md-3">To</h5>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.toDate, new { htmlAttributes = new { @class = "form-control m-input col-md-4", @type = "datetime-local" } })
+                @Html.ValidationMessageFor(model => model.toDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-succes" />
+            </div>
+        </div>
+    </div>
+}
+

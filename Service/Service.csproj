@@ -30,8 +30,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+    <Reference Include="MySql.Data, Version=6.8.8.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
+    <Reference Include="MySql.Data.Entity.EF6, Version=6.8.8.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -40,10 +48,50 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdminService.cs" />
     <Compile Include="Class1.cs" />
+    <Compile Include="ClientService.cs" />
+    <Compile Include="ClientStatService.cs" />
+    <Compile Include="ClientTypeService.cs" />
+    <Compile Include="CompetenceService.cs" />
+    <Compile Include="ConversationService.cs" />
+    <Compile Include="ConversationUsersService.cs" />
+    <Compile Include="DayoffService.cs" />
+    <Compile Include="FinanceService.cs" />
+    <Compile Include="IAdminService.cs" />
+    <Compile Include="IClientService.cs" />
+    <Compile Include="IClientStatService.cs" />
+    <Compile Include="IClientTypeService.cs" />
+    <Compile Include="ICompetenceService.cs" />
+    <Compile Include="IConversationService.cs" />
+    <Compile Include="IConversationUsersService.cs" />
+    <Compile Include="IFinanceService.cs" />
+    <Compile Include="IMessageService.cs" />
+    <Compile Include="IProjectService.cs" />
+    <Compile Include="IProjectStatService.cs" />
+    <Compile Include="IResourceService.cs" />
+    <Compile Include="IResumeService.cs" />
+    <Compile Include="ISkillsStatService.cs" />
     <Compile Include="ITestService.cs" />
+    <Compile Include="IUserService.cs" />
+    <Compile Include="MessageService.cs" />
+    <Compile Include="ProjectService.cs" />
+    <Compile Include="ProjectStatService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ResourceService.cs" />
+    <Compile Include="ResourceTermService.cs" />
+    <Compile Include="RestApi\ApiFactory.cs" />
+    <Compile Include="ResumeService.cs" />
+    <Compile Include="Settings.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="SkillsStatService.cs" />
+    <Compile Include="TermService.cs" />
     <Compile Include="TestService.cs" />
+    <Compile Include="UserService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Data\Data.csproj">
@@ -58,6 +106,14 @@
       <Project>{9DF2E786-001F-4452-932D-FB3BD0046D60}</Project>
       <Name>ServicePattern</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,0 +1,44 @@
+﻿<link rel="stylesheet" href="https://cdn.rawgit.com/konpa/devicon/df6431e323547add1b4cf45992913f15286456d3/devicon.min.css">
+<!--Begin::Section-->
+    <div class="col-md-4">
+
+        <div class="m-portlet m-portlet--bordered-semi m-portlet--full-height ">
+            <div class="m-portlet__head">
+                <div class="m-portlet__head-caption">
+                    <div class="m-portlet__head-title">
+                        <h3 class="m-portlet__head-text">
+                            Skills Profit
+                        </h3>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="m-portlet__body">
+                <div class="m-widget4">
+                    @foreach (var widget in ViewBag.Widgets)
+                    {
+                        string icon = "devicon-" + widget.Key.Label.ToLower() + "-plain colored"; 
+                    <div class="m-widget4__item">
+                        <div class="m-widget4__img m-widget4__img--logo">
+                            <i class="@icon" style="font-size:26px;"></i>
+
+                        </div>
+                        <div class="m-widget4__info">
+                            <span class="m-widget4__title">
+                                @widget.Key.Label
+                            </span><br>
+                            
+                        </div>
+                        <span class="m-widget4__ext">
+                            <span class="m-widget4__number m--font-brand">$@widget.Value</span>
+                        </span>
+                    </div>
+                    }
+                    <!--end:: OneWidget States-->
+                </div>
+            </div>
+        </div>
+
+        <!--end:: Widgets/Sales States-->
+    </div>
+    

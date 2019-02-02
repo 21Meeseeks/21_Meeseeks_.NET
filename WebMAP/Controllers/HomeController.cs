@@ -37,9 +37,13 @@ namespace WebMAP.Controllers
             client.BaseAddress = new Uri("http://localhost:18080/21meeseeks-web/rest/");
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             HttpResponseMessage response = client.GetAsync("client/category").Result;
-
             ViewBag.result = response.Content.ReadAsAsync<IEnumerable<ClientCategory>>().Result;
 
+            HttpClient HTTPC = new HttpClient();
+            HTTPC.BaseAddress = new Uri("http://localhost:18080/21meeseeks-web/rest/");
+            HTTPC.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            HttpResponseMessage HTTPRM = HTTPC.GetAsync("Leavetype").Result;
+            ViewBag.leave = HTTPRM.Content.ReadAsAsync<IEnumerable<LeaveType>>().Result;
 
             return View();
         }

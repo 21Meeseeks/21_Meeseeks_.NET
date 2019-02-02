@@ -1,0 +1,415 @@
+﻿@{
+    ViewBag.Title = "Chat";
+    var mail = ViewBag.user;
+}
+<div class="row">
+    <div class="col-lg-8">
+        <div class="m-portlet m-portlet--unair">
+            <div class="m-portlet__head">
+                <div class="m-portlet__head-caption">
+                    <div class="m-portlet__head-title">
+                        <h3 class="m-portlet__head-text">
+                            Chat-Box
+                        </h3>
+                    </div>
+                </div>
+                <div class="m-portlet__head-tools">
+                    <ul id="Chatting" class="nav nav-pills nav-fill" role="tablist">
+                                              
+                    </ul>
+                </div>
+            </div>
+            <div class="m-portlet__body">
+                <div id="Chatbox" class="tab-content">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-4">
+        <div class="m-portlet m-portlet--full-height ">
+            <div class="m-portlet__head">
+                <div class="m-portlet__head-caption">
+                    <div class="m-portlet__head-title">
+                        <h3 class="m-portlet__head-text">
+                            Contacts List
+                        </h3>
+                    </div>
+                </div>
+                <div class="m-portlet__head-tools">
+                    <ul class="nav nav-pills nav-pills--brand m-nav-pills--align-right m-nav-pills--btn-pill m-nav-pills--btn-sm" role="tablist">
+                        <li class="nav-item m-tabs__item">
+                            <i id="refresh" class="fa fa-sync-alt"></i>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="m-portlet__body m-scrollable" style="height: 300px; overflow: auto" data-scrollable="true">
+                <div class="tab-content">
+                    <div id="m_widget4_tab1_content">
+                        <!--begin::Widget 14-->
+                        <div class="m-widget4">
+                            <!--begin::Widget 14 Item-->
+                            @if (ViewBag.clients != null)
+                            {
+                                <span class="m-list-search__result-category">
+                                    Clients
+                                </span>
+                                foreach (var c in ViewBag.clients)
+                                {
+                                    <div class="m-widget4__item">
+                                        <div class="m-widget4__img m-widget4__img--pic">
+                                            @if (c.logo != null)
+                                            {
+                                                <img src="@Url.Content("~/Content/ProfilePictures/"+c.logo)" class="m--img-rounded m--marginless" alt="" />
+                                            }
+                                            else
+                                            {
+                                                <img src="~/Content/assets/app/media/img/users/user4.jpg" class="m--img-rounded m--marginless" alt="" />
+                                            }
+                                        </div>
+                                        <div class="m-widget4__info">
+                                            <span class="m-widget4__title">
+                                                @c.clientName
+                                            </span>
+                                        </div>
+                                        <div class="m-widget4__ext">
+                                            <a href="#" data-email="@c.email" data-name="@c.clientName" class="contactbutton m-btn m-btn--pill m-btn--hover-brand btn btn-sm btn-secondary">Contact</a>
+                                        </div>
+                                    </div>
+                                }
+                            }
+                            @if (ViewBag.resources != null)
+                            {
+                                <span class="m-list-search__result-category">
+                                    Resources
+                                </span>
+                                foreach (var r in ViewBag.resources)
+                                {
+                                    <div class="m-widget4__item">
+                                        <div class="m-widget4__img m-widget4__img--pic">
+                                            <img src="~/Content/assets/app/media/img/users/user4.jpg" class="m--img-rounded m--marginless" alt="" />
+                                        </div>
+                                        <div class="m-widget4__info">
+                                            <span class="m-widget4__title">
+                                                @(r.firstName + " " + r.lastName)
+                                            </span>
+                                        </div>
+                                        <div class="m-widget4__ext">
+                                            <a href="#" data-email="@r.email" data-name="@(r.firstName + ' ' + r.lastName)" class="contactbutton m-btn m-btn--pill m-btn--hover-brand btn btn-sm btn-secondary">Contact</a>
+                                        </div>
+                                    </div>
+                                }
+                            }
+                            <!--end::Widget 14 Item-->
+                        </div>
+                        <!--end::Widget 14-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    @section Scripts2
+    {
+@Scripts.Render("~/bundles/jquery")
+
+
+        <!--Script references. -->
+        <!--The jQuery library is required and is referenced by default in _Layout.cshtml. -->
+        <!--Reference the SignalR library. -->
+        <script src="~/Scripts/jquery.signalR-2.4.0.min.js"></script>
+        <!--Reference the autogenerated SignalR hub script. -->
+        <script src="~/signalr/hubs"></script>
+        <!--SignalR script to update the chat page and send messages.-->
+        <script>
+            $(function ()
+            {
+                var current;
+                var currentName;
+                // Reference the auto-generated proxy for the hub.
+                var chat = $.connection.chatHub;
+
+                // Create a function that the hub can call back to display messages.
+                chat.client.addChatMessage = function (sender, rec, message, name)
+                {
+                    if ("@mail" != "No User Found")
+                    {
+                        if (current == rec)
+                        {
+                            chat.invoke('connect', sender).done(function (data)
+                            {
+                                console.log(data + " Sent You A Message");
+
+                            }).fail(function (error)
+                            {
+                                console.log('Invocation of Connect failed. Error: ' + error);
+                            });
+                            var element = document.getElementById(sender);
+                            if (element == null)
+                            {
+                                var l = document.getElementById("Chatting").getElementsByTagName("li").length;
+                                if (l == 5)
+                                {
+                                    $('ul#Chatting li:first-child').remove();
+                                }
+                                $('.nav-link').removeClass('active');
+                                $('.tab-pane').removeClass('active');
+                                $('#Chatting').append('<li class="nav-item">'
+                                    + '<a class="nav-link active" data-toggle="tab" style="width: 110px; overflow:hidden;" href="#' + sender + '">'
+                                    + name
+                                    + '</a>' + '</li>');
+                                $('#Chatbox').append('<div class="tab-pane active" id="' + sender + '" role="tabpanel">'
+                                    + '<div class="m-messenger m-messenger--message-arrow m-messenger--skin-light">'
+                                    + '<div id="messages_' + sender + '" class="m-messenger__messages m-scrollable" data-scrollable="true" style="height: 250px; overflow: auto">'
+                                    + '</div>'
+                                    + '<div class="m-messenger__seperator"></div>'
+                                    + '<div class="m-messenger__form">'
+                                    + '<div class="m-messenger__form-controls">'
+                                    + '<input type="text" id="message_' + sender + '" placeholder="Type here..." class="m-messenger__form-input">'
+                                    + '</div>'
+                                    + '<div class="m-messenger__form-tools">'
+                                    + '<a id="sendmessage_' + sender + '" href="#" data-receiver="' + sender + '" class="m-messenger__form-attachment sendmessage">'
+                                    + '<i class="la la-envelope-o"></i>'
+                                    + '</a>' + '</div>' + '</div>' + '</div>' + '</div>');
+
+                                $.ajax(
+                                        {
+                                            type: 'get',
+                                            url: 'http://localhost:18080/21meeseeks-web/rest/conversation/' + current + '/' + sender,
+                                            crossDomain: true,
+                                            beforeSend: function () {
+                                                console.log('ça Charge');
+                                            },
+                                            success: function (response) {
+                                                $.each(response, function (a, b) {
+                                                    console.log(b.content);
+                                                    console.log(b.sendingDate);
+                                                    console.log(b.sender.email);
+                                                    var time = moment(b.sendingDate).format('YYYY-MM-DD HH:mm');
+                                                    if (b.sender.email == current) {
+                                                        document.getElementById('messages_' + sender).innerHTML += '<div class="m-messenger__wrapper">'
+                                + '<div class="m-messenger__message m-messenger__message--out">'
+                                + '<div class="m-messenger__message-body">'
+                                + '<div class="m-messenger__message-arrow"></div>'
+                                + '<div class="m-messenger__message-content">'
+                                + '<div class="m-messenger__message-text">'
+                                + '<strong>' + b.content + '</strong>'
+                                + '</div>'
+                                + '<div class="m-messenger__message-username">'
+                                + time
+                                + '</div>' + '</div>' + '</div>' + '</div>' + '</div>';
+                                                    }
+                                                    else {
+                                                        document.getElementById('messages_' + sender).innerHTML += '<div class="m-messenger__wrapper">'
+                                + '<div class="m-messenger__message m-messenger__message--in">'
+                                + '<div class="m-messenger__message-body">'
+                                + '<div class="m-messenger__message-arrow"></div>'
+                                + '<div class="m-messenger__message-content">'
+                                + '<div class="m-messenger__message-text">'
+                                + '<strong>' + b.content + '</strong>'
+                                + '</div>'
+                                + '<div class="m-messenger__message-username">'
+                                + time
+                                + '</div>' + '</div>' + '</div>' + '</div>' + '</div>';
+                                                    }
+
+                                                }
+                                                );
+                                            }
+                                        }
+                                    );
+                            }
+                            var time = moment().format('YYYY-MM-DD HH:mm');
+                            document.getElementById('messages_' + sender).innerHTML += '<div class="m-messenger__wrapper">'
+                                + '<div class="m-messenger__message m-messenger__message--in">'
+                                + '<div class="m-messenger__message-body">'
+                                + '<div class="m-messenger__message-arrow"></div>'
+                                + '<div class="m-messenger__message-content">'
+                                + '<div class="m-messenger__message-text">'
+                                + '<strong>' + message + '</strong>'
+                                + '</div>'
+                                + '<div class="m-messenger__message-username">'
+                                + time
+                                + '</div>' + '</div>' + '</div>' + '</div>' + '</div>';
+                        }
+                        else
+                        {
+                            var time = moment().format('YYYY-MM-DD HH:mm');
+                            // Add the message to the page.
+                            document.getElementById('messages_' + rec).innerHTML += '<div class="m-messenger__wrapper">'
+                                + '<div class="m-messenger__message m-messenger__message--out">'
+                                + '<div class="m-messenger__message-body">'
+                                + '<div class="m-messenger__message-arrow"></div>'
+                                + '<div class="m-messenger__message-content">'
+                                + '<div class="m-messenger__message-text">'
+                                + '<strong>' + message + '</strong>'
+                                + '</div>'
+                                + '<div class="m-messenger__message-username">'
+                                + time
+                                + '</div>' + '</div>' + '</div>' + '</div>' + '</div>';
+                        }
+                        var elmnt = document.getElementById('messages_' + rec);
+                        document.getElementById('message_' + rec).value = '';
+                        document.getElementById('message_' + rec).focus();
+                        var height = elmnt[0].scrollHeight;
+                        elmnt.scrollTop(height);
+                    }
+
+                };
+
+                // Start the connection.
+                $.connection.hub.start().done(function ()
+                {
+                    if ("@mail" != "No User Found")
+                    {
+                        currentName = "@ViewBag.name";
+                        current = "@mail.email";
+                        chat.invoke('connect', current).done(function (data)
+                        {
+                            console.log("Connected As : " + data);
+
+                        }).fail(function (error)
+                        {
+                            console.log('Invocation of Connect failed. Error: ' + error);
+                        });
+                    }
+
+                    $(document).on('click', '.sendmessage', function ()
+                    {
+                        var receiver = $(this).data('receiver');
+                        var input = document.getElementById('message_' + receiver).value;
+                        chat.server.sendChatMessage(current, receiver, input, currentName);
+                    });
+
+                    $(document).on('click', '.nav-link', function ()
+                    {
+                        $('.nav-link').removeClass('active');
+                        $('.tab-pane').removeClass('active');
+                        $(this).addClass('active');
+                        var id = $(this).attr("href");
+                        console.log(id);
+                        var id0 = id.substring(1);
+                        var element = document.getElementById(id0);
+                        element.classList.add("active");
+                    });
+
+                    $('.contactbutton').click(function ()
+                    {
+                        var email = $(this).data('email');
+                        var name = $(this).data('name');
+                        chat.invoke('connect', email).done(function (data)
+                        {
+                            console.log("You Can Contact " + data);
+                            var element = document.getElementById(email);
+                            if (element == null)
+                            {
+                                var l = document.getElementById("Chatting").getElementsByTagName("li").length;
+                                if (l == 5)
+                                {
+                                    $('ul#Chatting li:first-child').remove();
+                                }
+                                $('.nav-link').removeClass('active');
+                                $('.tab-pane').removeClass('active');
+                                $('#Chatting').append('<li class="nav-item">'
+                                    + '<a class="nav-link active" data-toggle="tab" style="width: 110px; overflow:hidden;" href="#' + email + '">'
+                                    + name
+                                    + '</a>' + '</li>');
+                                $('#Chatbox').append('<div class="tab-pane active" id="' + email + '" role="tabpanel">'
+                                    + '<div class="m-messenger m-messenger--message-arrow m-messenger--skin-light">'
+                                    + '<div id="messages_' + email + '" class="m-messenger__messages m-scrollable" data-scrollable="true" style="height: 250px; overflow: auto">'
+                                    + '</div>'
+                                    + '<div class="m-messenger__seperator"></div>'
+                                    + '<div class="m-messenger__form">'
+                                    + '<div class="m-messenger__form-controls">'
+                                    + '<input type="text" id="message_' + email + '" data-email="' + email +'" placeholder="Type here..." class="m-messenger__form-input">'
+                                    + '</div>'
+                                    + '<div class="m-messenger__form-tools">'
+                                    + '<a id="sendmessage_' + email + '" href="#" data-receiver="' + email + '" class="sendmessage m-messenger__form-attachment">'
+                                    + '<i class="la la-envelope-o"></i>'
+                                    + '</a>' + '</div>' + '</div>' + '</div>' + '</div>');
+
+                                $.ajax(
+                                        {
+                                            type: 'get',
+                                            url: 'http://localhost:18080/21meeseeks-web/rest/conversation/' + current + '/' + email,
+                                            crossDomain: true,
+                                            beforeSend: function ()
+                                            {
+                                                console.log('ça Charge');
+                                            },
+                                            success: function (response)
+                                            {
+                                                $.each(response, function (a, b)
+                                                {
+                                                    console.log(b.content);
+                                                    console.log(b.sendingDate);
+                                                    console.log(b.sender.email);
+                                                    var time = moment(b.sendingDate).format('YYYY-MM-DD HH:mm');
+                                                    if (b.sender.email == current)
+                                                    {
+                                                        document.getElementById('messages_' + email).innerHTML += '<div class="m-messenger__wrapper">'
+                                + '<div class="m-messenger__message m-messenger__message--out">'
+                                + '<div class="m-messenger__message-body">'
+                                + '<div class="m-messenger__message-arrow"></div>'
+                                + '<div class="m-messenger__message-content">'
+                                + '<div class="m-messenger__message-text">'
+                                + '<strong>' + b.content + '</strong>'
+                                + '</div>'
+                                + '<div class="m-messenger__message-username">'
+                                + time
+                                + '</div>' + '</div>' + '</div>' + '</div>' + '</div>';
+                                                    }
+                                                    else
+                                                    {
+                                                        document.getElementById('messages_' + email).innerHTML += '<div class="m-messenger__wrapper">'
+                                + '<div class="m-messenger__message m-messenger__message--in">'
+                                + '<div class="m-messenger__message-body">'
+                                + '<div class="m-messenger__message-arrow"></div>'
+                                + '<div class="m-messenger__message-content">'
+                                + '<div class="m-messenger__message-text">'
+                                + '<strong>' + b.content + '</strong>'
+                                + '</div>'
+                                + '<div class="m-messenger__message-username">'
+                                + time
+                                + '</div>' + '</div>' + '</div>' + '</div>' + '</div>';
+                                                    }
+                                                    
+                                                }
+                                                );
+                                            }
+                                        }
+                                    );
+
+                            }
+
+                        }).fail(function (error)
+                        {
+                            console.log('Invocation of Contact failed. Error: ' + error);
+                        });
+
+                    });
+
+                    $('#refresh').click(function ()
+                    {
+                        chat.invoke('connectedList').done(function (data)
+                        {
+                            console.log(data);
+
+                        }).fail(function (error)
+                        {
+                            console.log('Invocation of ConnectedList failed. Error: ' + error);
+                        });
+                    });
+
+                });
+            });
+            // This optional function html-encodes messages for display in the page.
+            function htmlEncode(value)
+            {
+                var encodedValue = $('<div />').text(value).html();
+                return encodedValue;
+            }
+        </script>
+    }

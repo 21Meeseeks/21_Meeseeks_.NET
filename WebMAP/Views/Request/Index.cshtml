@@ -1,0 +1,96 @@
+﻿<div class="m-portlet m-portlet--mobile">
+    <div class="m-portlet__head">
+        <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+                <h3 class="m-portlet__head-text">
+                    Project Requests List
+                </h3>
+            </div>
+        </div>
+        <div class="m-portlet__head-tools">
+            <ul class="m-portlet__nav">
+                @if (Session["role"] == "Client")
+                {
+                    <li class="m-portlet__nav-item">
+                        <a href="@Url.Action("Create", "Request")" class="btn btn-accent m-btn m-btn--custom m-btn--pill m-btn--icon m-btn--air">
+                            <span>
+                                <i class="la la-plus"></i>
+                                <span>Send New Project Request</span>
+                            </span>
+                        </a>
+                    </li>
+                }
+                @if (Session["role"] == "Admin")
+                {
+                    <li class="m-portlet__nav-item">
+                        <a href="@Url.Action("IndexArchived", "Request")" class="btn btn-danger">
+                            <span>
+                                <span>Show Archived Project Requests</span>
+                            </span>
+                        </a>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+    <div class="m-portlet__body">
+
+        <!--begin: Datatable -->
+        <table class="table table-striped- table-bordered table-hover table-checkable" id="m_table_1">
+            <thead>
+                <tr>
+                    <th>Client</th>
+                    <th>Presented By</th>
+                    <th>Project Name</th>
+                    <th>Deposit Date</th>
+                    <th>Request Status</th>
+                    <th>Review Date</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (ViewBag.result != null)
+                {
+                    foreach (var pr in ViewBag.result)
+                    {
+                        <tr>
+                            <td>
+                                @if (pr.client != null)
+	                            {
+                                    @pr.client.clientName
+	                            }
+                            </td>
+                            <td>@pr.presentedBy</td>
+                            <td>@pr.nameProject</td>
+                            <td>@pr.depositDate</td>
+                            <td><span class="m-badge m-badge--info m-badge--wide">@pr.requestStatus</span></td>
+                            <td>@pr.reviewDate</td>
+                            <td>
+                                @if (Session["role"] == "Client" && !pr.archived)
+                                {
+                                    <a href="@Url.Action("Update", "Request", new {ID = @pr.idRequest})">
+                                        <button class="btn btn-primary" type="button">Update</button>
+                                    </a>
+                                }
+                                <a href="@Url.Action("Details", "Request", new {ID = @pr.idRequest})">
+                                    <button class="btn btn-info" type="button">Details</button>
+                                </a>
+                                @if (Session["role"] == "Admin")
+                                {
+                                    <a href="@Url.Action("Archive", "Request", new {ID = @pr.idRequest})">
+                                        <button class="btn btn-warning" type="button">Archive</button>
+                                    </a>
+                                }
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+
+

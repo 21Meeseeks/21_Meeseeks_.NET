@@ -1,0 +1,98 @@
+﻿@model IEnumerable<Domain.Entity.term>
+
+@{
+    ViewBag.Title = "";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="row">
+    <div class="m-portlet m-portlet--tab">
+        <div class="m-portlet__head">
+            <div class="m-portlet__head-caption">
+                <div class="m-portlet__head-title">
+                    <span class="m-portlet__head-icon m--hide">
+                        <i class="la la-gear"></i>
+                    </span>
+                    <h3 class="m-portlet__head-text">
+                        Terms
+                    </h3>
+                </div>
+            </div>
+        </div>
+        <div class="m-portlet__body">
+
+            <table class="table table-striped- table-bordered table-hover dataTable no-footer dtr-inline" id="archivetable">
+                <thead>
+                    <tr>
+
+                        <th>
+                            @Html.DisplayNameFor(model => model.project.name)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.resource.firstName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.dailyFee)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.dateEnd)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.dateStart)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.description)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.numberofDaysTerm)
+                        </th>
+                        <th>
+
+                        </th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.project.name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.resource.firstName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.dailyFee)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.dateEnd)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.dateStart)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.description)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.numberofDaysTerm)
+                            </td>
+                            <td>
+                                @Html.ActionLink("End Term", "Terminate", new { idProject = item.idProject, idResource = item.idResource, mail = item.resource.email })
+
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            </div>
+        </div>
+    </div>
+            @section scripts{
+                <script type="text/javascript">
+                    $(document).ready(function () {
+                        $('#archivetable').DataTable();
+                    });
+                </script>
+            }

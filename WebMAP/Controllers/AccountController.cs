@@ -1,16 +1,21 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using Domain.Entity;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using Service;
 using WebMAP.Models;
 
 namespace WebMAP.Controllers
@@ -60,6 +65,7 @@ namespace WebMAP.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
+            //IUserService us = new UserService();
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }
@@ -71,6 +77,7 @@ namespace WebMAP.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         {
+            String email = model.Email.ToString();
             var request = (HttpWebRequest)WebRequest.Create("http://localhost:18080/21meeseeks-web/rest/authentication");
             request.Method = "POST";
             request.ContentType = "application/x-www-form-urlencoded";
@@ -80,24 +87,55 @@ namespace WebMAP.Controllers
             {
                 reqStream.Write(bytes, 0, bytes.Length);
             }
-
+            
             try
             {
                 using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
                 {
-                   
-
                     string responseMessage = response.ToString(); //response raw
 
                     Response.Cookies["token"].Value = responseMessage;
-                 //   Response.Cookies["userName"].Expires = DateTime.Now.AddDays(1);
-                    Session["token"] = responseMessage;
-                    return RedirectToAction("","Home");
+                    //   Response.Cookies["userName"].Expires = DateTime.Now.AddDays(1);
 
+                    //localhost:18080/21meeseeks-web/rest/client?email=admin@admin.com
+                    clientservice cs = new clientservice();
+                    client c=  cs.Get(d => d.email.Equals(email));
+                    if(c==null)
+                    {
+                        AdminService aserv= new AdminService();
+                        admin a = aserv.Get(d => d.email.Equals(email));
+                        if (a == null)
+                        {
+                            ResourceService rs = new ResourceService();
+                            resource r = rs.Get(d => d.email.Equals(email));
+                            Session["role"] = "Resource";
+                            Session["id"] = r.idUser;
+                            Session["token"] = responseMessage;
+                            Session["username"] = r.email;
+                        }
+                        else
+                        {
+                            Session["role"] = "Admin";
+                            Session["id"] = a.idUser;
+                            Session["token"] = responseMessage;
+                            Session["username"] = a.email;
+                        }
+                    }
+                    else
+                    {
+                        Session["role"] = "Client";
+                        Session["id"] = c.idUser;
+                        Session["token"] = responseMessage;
+                        Session["username"] = c.email;
+                        Session["logo"] = c.logo;
+                        Session["name"] = c.clientName;
+                    }
+                    return RedirectToAction("Index", "Client", new { area = "" });
                 }
             }
             catch (WebException e)
             {
+                ViewBag.message = "Wrong credentials";
                 return View(model);
 
             }

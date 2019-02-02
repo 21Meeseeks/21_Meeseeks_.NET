@@ -1,0 +1,61 @@
+﻿@model IEnumerable<WebMAP.Models.DayoffVM>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+
+    <div class="m-portlet">
+        <div class="m-portlet__head">
+            <div class="m-portlet__head-caption">
+                <div class="m-portlet__head-title">
+                    <h3 class="m-portlet__head-text">
+                        DayOff List
+                    </h3>
+                </div>
+            </div>
+
+        </div>
+        <button type="button" class="btn btn-success">@Html.ActionLink("Create New", "Create")</button>
+        <p>
+            
+        </p>
+        <table class="table m-table m-table--head-bg-brand" id="m_table">
+            <thead>
+                <tr>
+                    <th>StartDate</th>
+                    <th>EndDate</th>
+                    <th>leaveType</th>
+                    <th>Resource</th>                    
+                    <th>Actions</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+            {
+                    <tr>
+                        <td>
+                            @item.startDate
+                        </td>
+                        <td>
+                            @item.endDate
+                        </td>
+                        <td>
+                            @item.leaveType.name
+                        </td>
+                        <td>
+                            @item.resource.idUser
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.idLeave }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.idLeave }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.idLeave })
+                        </td>
+                    </tr>
+                }
+                </tbody>
+        </table>
+
+    </div>
+</div>

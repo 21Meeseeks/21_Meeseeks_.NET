@@ -10,14 +10,15 @@
         <th>name</th>
         <th>description</th>
     </tr>
-    @foreach (var item in ViewBag.result)
+    @if (ViewBag.result != null)
+    {  @foreach (var item in ViewBag.result)
     {
         <tr>
             <td>@item.name</td>
             <td>@item.description</td>
 
         </tr>
-    }
+    }}
 
 
 </table>
